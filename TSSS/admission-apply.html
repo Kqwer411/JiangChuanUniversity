@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>入院申报 - 圣殿科学学会学院</title>
+<meta name="description" content="圣殿科学学会学院入院申报表，面向本科、硕士、博士及古法学徒制申请者。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ============ 申报表专用样式（沿用学院主题变量） ============ */
+.form-page{max-width:1000px;margin:0 auto}
+.form-alert{display:flex;gap:12px;align-items:flex-start;background:#fff6f3;border:1px solid #ffd6c8;
+  border-left:4px solid var(--accent);border-radius:var(--radius);padding:16px 20px;margin:0 0 24px;font-size:.9rem;line-height:1.7;color:#7a2a10}
+.form-alert b{display:block;margin-bottom:2px;color:#7a2a10}
+.form-tip{background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:var(--radius);padding:16px 20px;margin:0 0 26px;font-size:.9rem;color:var(--text-2)}
+.form-tip h4{margin:0 0 8px;font-size:.95rem;color:var(--navy)}
+.form-tip ol{margin:0;padding-left:20px}
+.form-tip li{margin-bottom:4px}
+
+.fsec{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:26px;background:#fff;overflow:hidden}
+.fsec__head{display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:13px 22px}
+.fsec__no{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;
+  justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+.fsec__head h3{margin:0;font-size:1rem;font-weight:600;letter-spacing:.5px}
+.fsec__head span{margin-left:auto;font-size:.78rem;color:#b9c2e8;font-weight:400}
+.fsec__body{padding:6px 24px 24px}
+
+.fq{padding:18px 0;border-bottom:1px dashed var(--line)}
+.fq:last-child{border-bottom:none}
+.fq__t{display:flex;gap:10px;font-weight:500;color:#222;font-size:.94rem;line-height:1.65;margin-bottom:9px}
+.fq__n{color:var(--accent);font-weight:700;min-width:28px;flex-shrink:0}
+.fq__star{color:var(--accent);margin-left:2px}
+.fq__hint{display:block;font-weight:400;font-size:.8rem;color:var(--text-2);margin-top:3px}
+.fq__err{display:none;font-size:.8rem;color:var(--accent);margin-top:7px}
+.fq.is-err .fq__err{display:block}
+.fq.is-err .fq__t{color:var(--accent)}
+.fq.is-err input,.fq.is-err select,.fq.is-err textarea{border-color:var(--accent)}
+
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=month],input[type=number],select,textarea{
+  width:100%;font-family:inherit;font-size:.92rem;color:#222;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);padding:10px 12px;outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(9,17,62,.08)}
+textarea{min-height:104px;resize:vertical;line-height:1.7}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#828282 50%),linear-gradient(135deg,#828282 50%,transparent 50%);
+  background-position:calc(100% - 18px) 19px,calc(100% - 12px) 19px;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:34px}
+input[readonly]{background:var(--bg-soft);color:var(--text-2)}
+
+.fgrid{display:grid;gap:12px}
+.fgrid--2{grid-template-columns:1fr 1fr}
+.fgrid--3{grid-template-columns:1fr 1fr 1fr}
+.fgrid--4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.fgrid--2,.fgrid--3,.fgrid--4{grid-template-columns:1fr}}
+
+.fopts{display:flex;flex-wrap:wrap;gap:9px 22px}
+.fopt{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:.9rem;color:var(--text);user-select:none}
+.fopt input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer;margin:0;flex-shrink:0}
+.fopt:hover{color:var(--navy)}
+.fopts--col{flex-direction:column;gap:10px}
+
+.fcheck{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:4px}
+@media(max-width:760px){.fcheck{grid-template-columns:1fr}}
+.fcheck .fopt{align-items:flex-start;line-height:1.5}
+
+.fwarn{display:none;margin-top:10px;padding:10px 14px;background:#fff6f3;border:1px solid #ffd6c8;
+  border-radius:var(--radius);font-size:.84rem;color:#7a2a10}
+.fwarn.on{display:block}
+
+.fbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--bg-soft);
+  border-top:1px solid var(--line);padding:20px 24px}
+.fbar__note{font-size:.82rem;color:var(--text-2)}
+.fbar__btns{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.fbtn{font-family:inherit;font-size:.9rem;font-weight:600;padding:11px 24px;border-radius:40px;border:1px solid transparent;cursor:pointer;transition:.2s}
+.fbtn--main{background:var(--navy);color:#fff}
+.fbtn--main:hover{background:var(--navy-2)}
+.fbtn--accent{background:var(--accent);color:#fff}
+.fbtn--accent:hover{filter:brightness(1.08)}
+.fbtn--line{background:#fff;color:var(--navy);border-color:var(--line)}
+.fbtn--line:hover{border-color:var(--navy)}
+
+.repeat{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:6px}
+.repeat__row{display:grid;grid-template-columns:1.1fr 1.4fr 1.1fr 1fr auto;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}
+.repeat__row:last-child{border-bottom:none}
+.repeat__row input{font-size:.86rem;padding:8px 10px}
+.repeat__del{background:none;border:1px solid var(--line);border-radius:50%;width:26px;height:26px;color:var(--text-2);cursor:pointer;line-height:1;font-size:.9rem}
+.repeat__del:hover{border-color:var(--accent);color:var(--accent)}
+.repeat__add{margin-top:8px;font-family:inherit;font-size:.85rem;background:none;border:1px dashed var(--line);
+  border-radius:var(--radius);padding:8px 16px;color:var(--navy);cursor:pointer;width:100%}
+.repeat__add:hover{border-color:var(--navy);background:var(--bg-soft)}
+.repeat__head{display:grid;grid-template-columns:1.1fr 1.4fr 1.1fr 1fr auto;gap:10px;padding:9px 12px;background:var(--bg-soft);
+  font-size:.78rem;color:var(--text-2);border-bottom:1px solid var(--line)}
+
+.receipt{display:none;border:2px solid var(--navy);border-radius:var(--radius);overflow:hidden;margin-bottom:60px}
+.receipt__hd{background:var(--navy);color:#fff;padding:30px 28px;text-align:center}
+.receipt__hd .tick{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;
+  justify-content:center;font-size:26px;margin:0 auto 12px}
+.receipt__hd h2{margin:0 0 6px;font-size:1.3rem;font-weight:600;color:#fff}
+.receipt__hd p{margin:0;font-size:.86rem;color:#b9c2e8}
+.receipt__bd{padding:26px 28px}
+.receipt__no{font-size:1.6rem;font-weight:700;color:var(--navy);letter-spacing:2px}
+.receipt__grid{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin-top:16px;font-size:.88rem}
+.receipt__grid dt{color:var(--text-2)}
+.receipt__grid dd{margin:0;color:#222}
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.steps li{position:relative;padding:0 0 16px 24px}
+.steps li:last-child{padding-bottom:0;border-left-color:transparent}
+.steps li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+.steps li.on:before{background:var(--accent);border-color:var(--accent)}
+.steps b{display:block;font-size:.92rem;color:#222}
+.steps span{font-size:.82rem;color:var(--text-2)}
+.seal{margin-top:24px;padding:16px 20px;border:1px dashed var(--line);border-radius:var(--radius);
+  font-size:.8rem;color:var(--text-2);background:var(--bg-soft)}
+@media print{.subnav,.college-banner,.fbar__btns,.form-alert{display:none!important}}
+</style>
+</head>
+<body>
+
+<header class="college-bar">
+  <div class="container">
+    <div class="college-bar__orgs">
+      <a class="org-block org-block--link" href="../index.html">
+        <div class="ph ph--logo">【待填入图片】</div>
+        <div class="org-block__text">
+          <span class="org-block__cn">江川大学</span>
+          <span class="org-block__en">JIANGCHUAN UNIVERSITY</span>
+        </div>
+      </a>
+      <span class="college-bar__divider" aria-hidden="true"></span>
+      <a class="org-block org-block--link" href="index.html">
+        <div class="ph ph--logo">【待填入图片】</div>
+        <div class="org-block__text">
+          <h1 class="org-block__cn college-name">圣殿科学学会学院</h1>
+          <span class="org-block__en">Temple Society of Science School</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="college-banner">
+  <div class="container college-banner__inner">
+    <div class="college-banner__text">
+      <span class="college-banner__kicker">招生信息 · ADMISSION</span>
+      <h1 class="college-banner__title">入院申报</h1>
+    </div>
+    <div class="ph ph--banner college-banner__figure">【待填入图片】</div>
+  </div>
+</div>
+
+<nav class="subnav">
+  <div class="container subnav__bar">
+    <button class="subnav__toggle" aria-expanded="false" aria-label="导航菜单">☰ 导航菜单</button>
+    <ul class="megamenu"><li><a href="index.html">首页</a></li><li><a href="学院动态.html">学院动态</a></li><li><a href="about.html">学院简介</a><div class="megapanel"><a href="about-0.html">学院概况</a><a href="about-1.html">历史沿革</a><a href="about-2.html">机构设置</a><a href="about-3.html">现任领导</a><a href="about-4.html">联系我们</a></div></li><li><a href="faculty.html">师资队伍</a><div class="megapanel"><a href="faculty-0.html">师资概况</a><a href="faculty-top.html">顶尖师资团队</a><a href="faculty-1.html">教授与博士生导师</a><a href="faculty-2.html">副教授与硕士生导师</a><a href="faculty-3.html">讲师与其他师资</a><a href="faculty-4.html">行政与支撑人员</a></div></li><li><a href="research.html">科研成果</a><div class="megapanel"><a href="research-0.html">科研平台</a><a href="research-1.html">科研项目</a><a href="research-2.html">科研成果</a><a href="research-3.html">学术交流</a><a href="research-4.html">科研通知</a></div></li><li><a href="announcements.html" class="is-active">学术公告</a><div class="megapanel"><a href="announcements-0.html">通知公告</a><a href="announcements-1.html">学术讲座</a><a href="announcements-2.html">会议论坛</a><a href="announcements-3.html">招生信息</a><a href="announcements-4.html">青年法术师</a><a href="announcements-5.html">活动日历</a></div></li><li><a href="library.html">图书馆</a><div class="megapanel"><a href="archive.html">资料档案室</a><a href="archive-0.html">档案室简介</a><a href="archive-1.html">馆藏资源</a><a href="archive-2.html">规章制度</a><a href="archive-3.html">借阅服务</a><a href="archive-4.html">联系档案室</a></div></li><li><a href="intranet/index.html">内联网</a></li></ul>
+  </div>
+</nav>
+
+<main class="container form-page" style="padding:30px 20px 0">
+  <div class="breadcrumb">首页 &gt; 学术公告 &gt; 招生信息 &gt; 入院申报</div>
+
+  <div class="form-alert">
+    <div>
+      <b>古法实操信息填报提示 · 保密等级：内部（乙级）</b>
+      本表涉及古法魔法方向的天赋测评、流派传承与实操经历信息。请勿在公共网络环境或他人可窥视的场所填写；提交后系统将自动记录终端环境信息，用于异常访问追溯。
+    </div>
+  </div>
+
+  <div class="form-tip">
+    <h4>填表须知</h4>
+    <ol>
+      <li>本表为圣殿科学学会学院入院申报唯一线上入口，覆盖本科、硕士、博士与古法学徒制四类通道。</li>
+      <li>古法魔法方向申请者须在录取阶段通过天赋测评与综合面试；数理魔法解析方向按普通理工科标准招录，无需具备魔法感知能力。</li>
+      <li>古法学徒制通道须填写流派推荐人信息，推荐人须为在册流派传承人，学院将进行回访核实。</li>
+      <li>标记 <span style="color:var(--accent)">*</span> 项为必填。材料审核周期为提交之日起 15 个工作日。</li>
+    </ol>
+  </div>
+
+  <form id="admForm" novalidate>
+
+    <!-- 一 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">壹</span><h3>申报人基本信息</h3><span>第 1–9 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">1.</span><span>申报编号<span class="fq__hint">由教务办公室受理后生成，此处无需填写</span></span></div>
+          <input type="text" value="TSSS-2026-（待受理生成）" readonly>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">2.</span><span>姓名<span class="fq__star">*</span><span class="fq__hint">须与身份证件完全一致，入学后不予变更</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="a_name" required placeholder="中文姓名">
+            <input type="text" name="a_namepy" placeholder="拼音 / 英文姓名（选填）">
+            <input type="text" name="a_nameold" placeholder="曾用名（选填）">
+          </div>
+          <div class="fq__err">请填写姓名</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">3.</span><span>性别 / 出生日期<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--3">
+            <select name="a_gender" required>
+              <option value="">性别</option><option>男</option><option>女</option>
+            </select>
+            <input type="date" name="a_birth" required>
+            <input type="text" name="a_nation" placeholder="民族（选填）">
+          </div>
+          <div class="fq__err">请选择性别并填写出生日期</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">4.</span><span>证件类型与号码<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--3">
+            <select name="a_idtype" required>
+              <option value="">证件类型</option><option>居民身份证</option><option>港澳居民来往内地通行证</option>
+              <option>台湾居民来往大陆通行证</option><option>护照</option><option>圣殿科学学会会员证</option>
+            </select>
+            <input type="text" name="a_idno" required placeholder="证件号码" style="grid-column:span 2">
+          </div>
+          <div class="fq__err">请完整填写证件类型与号码</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">5.</span><span>联系电话 / 电子邮箱<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="tel" name="a_tel" required placeholder="手机号码">
+            <input type="email" name="a_email" required placeholder="电子邮箱">
+          </div>
+          <div class="fq__err">请填写有效的联系电话与邮箱</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">6.</span><span>通讯地址与邮政编码<span class="fq__star">*</span><span class="fq__hint">用于寄送录取通知书与入院须知</span></span></div>
+          <div class="fgrid fgrid--4">
+            <input type="text" name="a_prov" required placeholder="省 / 自治区">
+            <input type="text" name="a_city" required placeholder="市">
+            <input type="text" name="a_addr" required placeholder="详细地址" style="grid-column:span 2">
+          </div>
+          <div class="fq__err">请完整填写通讯地址</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">7.</span><span>紧急联系人及联系方式<span class="fq__star">*</span><span class="fq__hint">古法实操课程期间须保持可联络状态</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="a_ecname" required placeholder="联系人姓名">
+            <input type="text" name="a_ecrel" required placeholder="与本人关系">
+            <input type="tel" name="a_ectel" required placeholder="联系电话">
+          </div>
+          <div class="fq__err">请填写紧急联系人信息</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">8.</span><span>政治面貌 / 宗教信仰或流派归属<span class="fq__hint">选填。流派归属信息仅用于学徒制通道的传承人核验</span></span></div>
+          <div class="fgrid fgrid--2">
+            <select name="a_politic">
+              <option value="">政治面貌（选填）</option><option>群众</option><option>共青团员</option><option>中共党员（含预备）</option><option>民主党派</option><option>其他</option>
+            </select>
+            <input type="text" name="a_sect" placeholder="流派归属（选填）">
+          </div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">9.</span><span>既往病史与特殊身体状况说明<span class="fq__hint">选填。古法实操课程涉及高强度精神集中，如有相关病史请如实说明，学院将安排专项评估</span></span></div>
+          <textarea name="a_health" placeholder="如无请填「无」"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 二 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">贰</span><h3>申报层次与培养方向</h3><span>第 10–13 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">10.</span><span>申报层次<span class="fq__star">*</span></span></div>
+          <div class="fopts" id="levelOpts">
+            <label class="fopt"><input type="radio" name="a_level" value="本科" required><span>本科（古法方向 / 数理方向）</span></label>
+            <label class="fopt"><input type="radio" name="a_level" value="硕士"><span>硕士（学术型 / 专业型）</span></label>
+            <label class="fopt"><input type="radio" name="a_level" value="博士"><span>博士（申请考核制）</span></label>
+            <label class="fopt"><input type="radio" name="a_level" value="古法学徒制"><span>古法学徒制（传承人通道）</span></label>
+          </div>
+          <div class="fq__err">请选择申报层次</div>
+          <div class="fwarn" id="apprenticeWarn">已选择古法学徒制：本通道须由在册流派传承人推荐，请完整填写第六部分「流派推荐人」信息，培养周期由书院与推荐人商定，不设固定学制。</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">11.</span><span>培养方向<span class="fq__star">*</span></span></div>
+          <div class="fopts" id="trackOpts">
+            <label class="fopt"><input type="radio" name="a_track" value="古法魔法方向" required><span>古法魔法方向</span></label>
+            <label class="fopt"><input type="radio" name="a_track" value="数理魔法解析方向"><span>数理魔法解析方向</span></label>
+          </div>
+          <div class="fq__err">请选择培养方向</div>
+          <div class="fwarn" id="trackWarn">数理魔法解析方向按普通理工科标准招录，无需具备魔法感知能力，亦无需提交天赋测评报告；录取后不得转入古法魔法方向。</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">12.</span><span>是否已通过魔法感知能力测评<span class="fq__star">*</span></span></div>
+          <div class="fopts" id="senseOpts">
+            <label class="fopt"><input type="radio" name="a_sense" value="已通过" required><span>已通过</span></label>
+            <label class="fopt"><input type="radio" name="a_sense" value="已测评未通过"><span>已测评但未通过</span></label>
+            <label class="fopt"><input type="radio" name="a_sense" value="未测定"><span>尚未测定</span></label>
+            <label class="fopt"><input type="radio" name="a_sense" value="确认无感知能力"><span>确认无感知能力</span></label>
+          </div>
+          <div class="fq__err">请选择测评情况</div>
+          <div class="fwarn" id="senseWarn">注意：选择古法魔法方向须具备魔法感知能力并通过天赋测评。若确认无感知能力，请将培养方向调整为「数理魔法解析方向」。</div>
+        </div>
+        <div class="fq" id="talentBox">
+          <div class="fq__t"><span class="fq__n">13.</span><span>天赋测评情况<span class="fq__star">*</span><span class="fq__hint">古法魔法方向必填。测评等级以测评机构出具的正式报告为准</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="a_tal_org" placeholder="测评机构名称">
+            <input type="month" name="a_tal_date" placeholder="测评时间">
+            <select name="a_tal_grade">
+              <option value="">测评等级</option><option>甲级（优等）</option><option>乙级（良好）</option><option>丙级（合格）</option><option>特殊禀赋（需复核）</option>
+            </select>
+          </div>
+          <div class="fq__err">古法魔法方向须填写天赋测评情况</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">叁</span><h3>书院志愿与研究方向</h3><span>第 14–16 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">14.</span><span>第一志愿书院<span class="fq__star">*</span><span class="fq__hint">八所书院分别对应不同流派，培养方案相互独立</span></span></div>
+          <select name="a_col1" required>
+            <option value="">请选择书院</option>
+            <option>阵法书院（Ars Formatio）</option>
+            <option>炼金书院（Ars Alchemia）</option>
+            <option>仪式书院（Ars Ritualis）</option>
+            <option>医疗书院（Ars Medicina）</option>
+            <option>魔法书院（Ars Magica）</option>
+            <option>巫术书院（Ars Venefica）</option>
+            <option>占卜书院（Ars Divinatio）</option>
+            <option>神谕书院（Ars Oraculi）</option>
+          </select>
+          <div class="fq__err">请选择第一志愿书院</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">15.</span><span>第二志愿书院<span class="fq__hint">选填</span></span></div>
+          <select name="a_col2">
+            <option value="">请选择书院（选填）</option>
+            <option>阵法书院（Ars Formatio）</option>
+            <option>炼金书院（Ars Alchemia）</option>
+            <option>仪式书院（Ars Ritualis）</option>
+            <option>医疗书院（Ars Medicina）</option>
+            <option>魔法书院（Ars Magica）</option>
+            <option>巫术书院（Ars Venefica）</option>
+            <option>占卜书院（Ars Divinatio）</option>
+            <option>神谕书院（Ars Oraculi）</option>
+          </select>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">16.</span><span>是否接受书院间调剂<span class="fq__star">*</span></span></div>
+          <div class="fopts">
+            <label class="fopt"><input type="radio" name="a_adjust" value="接受" required><span>接受院内调剂</span></label>
+            <label class="fopt"><input type="radio" name="a_adjust" value="仅接受相近流派"><span>仅接受相近流派调剂</span></label>
+            <label class="fopt"><input type="radio" name="a_adjust" value="不接受"><span>不接受调剂</span></label>
+          </div>
+          <div class="fq__err">请选择是否接受调剂</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 四 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">肆</span><h3>学历与从业经历</h3><span>第 17–19 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">17.</span><span>最高学历<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--4">
+            <select name="a_edu" required>
+              <option value="">学历</option><option>高中 / 中专</option><option>专科</option><option>本科</option><option>硕士研究生</option><option>博士研究生</option><option>其他</option>
+            </select>
+            <input type="text" name="a_school" required placeholder="毕业院校全称">
+            <input type="text" name="a_major" required placeholder="专业 / 研究方向">
+            <input type="text" name="a_gpa" placeholder="GPA / 平均分（选填）">
+          </div>
+          <div class="fq__err">请完整填写学历、院校与专业</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">18.</span><span>学习或研修经历<span class="fq__hint">自最高学历起填写，可添加多行</span></span></div>
+          <div class="repeat" id="eduRepeat">
+            <div class="repeat__head"><span>起止年月</span><span>院校 / 机构</span><span>专业 / 方向</span><span>学历或身份</span><span></span></div>
+            <div class="repeat__row">
+              <input type="text" placeholder="2022.09—2026.06"><input type="text" placeholder="院校名称">
+              <input type="text" placeholder="专业"><input type="text" placeholder="本科 / 学徒 / 研修">
+              <button type="button" class="repeat__del" title="删除本行">×</button>
+            </div>
+          </div>
+          <button type="button" class="repeat__add" id="addEdu">＋ 添加一行经历</button>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">19.</span><span>工作经历 / 流派传承经历<span class="fq__hint">选填。古法传承经历请注明师承、流派与年限</span></span></div>
+          <textarea name="a_work" placeholder="例：2019 年起随 ×× 流派 ×× 先生研修祝祷文本，累计实操 480 学时"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">伍</span><h3>申报陈述</h3><span>第 20–21 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">20.</span><span>申报理由与研修计划<span class="fq__star">*</span><span class="fq__hint">800 字以内。博士与学徒制申请者请重点说明研究课题或传承方向</span></span></div>
+          <textarea name="a_stmt" id="stmtArea" maxlength="800" required placeholder="请说明选择本书院与本方向的理由、已有的基础、入学后的研修计划。"></textarea>
+          <div style="text-align:right;font-size:.78rem;color:var(--text-2);margin-top:6px"><span id="stmtCount">0</span> / 800</div>
+          <div class="fq__err">请填写申报理由与研修计划（不少于 50 字）</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">21.</span><span>意向责任导师<span class="fq__hint">选填。可在师资队伍栏目查询导师姓名与研究方向，入学后由书院统一分配</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="text" name="a_mentor1" placeholder="第一意向导师">
+            <input type="text" name="a_mentor2" placeholder="第二意向导师">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 六 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">陆</span><h3>流派推荐人（古法学徒制必填）</h3><span>第 22–23 项</span></div>
+      <div class="fsec__body">
+        <div class="fq" id="refBox">
+          <div class="fq__t"><span class="fq__n">22.</span><span>推荐人信息<span class="fq__hint">推荐人须为在册流派传承人或具有副高级以上职称的本院教师</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="a_refname" placeholder="推荐人姓名">
+            <input type="text" name="a_refsect" placeholder="所属流派 / 单位">
+            <input type="tel" name="a_reftel" placeholder="推荐人联系电话">
+          </div>
+          <div class="fq__err">古法学徒制通道须填写推荐人姓名与所属流派</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">23.</span><span>推荐意见摘要<span class="fq__hint">选填。可摘录推荐信核心内容，正式推荐信须另行寄送或上传</span></span></div>
+          <textarea name="a_refnote" placeholder="请简要摘录推荐意见"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 七 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">柒</span><h3>随附材料与承诺</h3><span>第 24–25 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">24.</span><span>随附材料清单<span class="fq__star">*</span><span class="fq__hint">勾选已备齐的材料，缺件须在受理后 10 个工作日内补交</span></span></div>
+          <div class="fcheck" id="docBox">
+            <label class="fopt"><input type="checkbox" name="a_doc" value="学历/学籍证明"><span>学历 / 学籍证明</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="成绩单"><span>官方成绩单</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="天赋测评报告"><span>天赋测评报告（古法方向）</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="推荐信两封"><span>推荐信两封</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="二级以上体检报告"><span>二级以上医院体检报告</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="无违纪记录证明"><span>无违纪记录证明</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="身份证件复印件"><span>身份证件复印件</span></label>
+            <label class="fopt"><input type="checkbox" name="a_doc" value="古法实操安全承诺书"><span>古法实操安全承诺书</span></label>
+          </div>
+          <div class="fq__err">请至少勾选一项材料</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">25.</span><span>知情与承诺<span class="fq__star">*</span></span></div>
+          <div class="fopts fopts--col">
+            <label class="fopt"><input type="checkbox" name="a_p" value="信息真实" required><span>本人承诺所填信息与所附材料真实有效，如有不实，学院有权取消申报、录取或入学资格。</span></label>
+            <label class="fopt"><input type="checkbox" name="a_p" value="遵守安全管理条例" required><span>本人已阅读《学院安全管理条例》与《古法实操风险告知书》，知悉实操环节存在的风险并自愿承担。</span></label>
+            <label class="fopt"><input type="checkbox" name="a_p" value="遵守保密条款" required><span>本人承诺遵守《馆藏与流派资料保密条款》，不对外传播在读期间接触的未公开资料。</span></label>
+            <label class="fopt"><input type="checkbox" name="a_p" value="同意信息使用" required><span>本人同意学院在招生、培养与档案管理范围内使用上述信息。</span></label>
+          </div>
+          <div class="fq__err">请勾选全部四项承诺</div>
+        </div>
+      </div>
+
+      <div class="fbar">
+        <div class="fbar__note">提交后请联系教务办公室确认材料寄送方式：+86-894-15868</div>
+        <div class="fbar__btns">
+          <button type="button" class="fbtn fbtn--line" id="admClear">清空重填</button>
+          <button type="button" class="fbtn fbtn--line" id="admPrint">打印申报表</button>
+          <button type="submit" class="fbtn fbtn--accent">提交入院申报</button>
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <!-- 回执 -->
+  <div class="receipt" id="admReceipt" role="status" aria-live="polite">
+    <div class="receipt__hd">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h2>申报已受理</h2>
+      <p>教务办公室将在 15 个工作日内完成材料审核</p>
+    </div>
+    <div class="receipt__bd">
+      <div style="font-size:.78rem;color:var(--text-2);letter-spacing:2px">受 理 编 号</div>
+      <div class="receipt__no" id="admNo">TSSS-2026-0000</div>
+      <dl class="receipt__grid">
+        <dt>提交时间</dt><dd id="admTime">—</dd>
+        <dt>申请人</dt><dd id="admName">—</dd>
+        <dt>申报层次</dt><dd id="admLevel">—</dd>
+        <dt>培养方向</dt><dd id="admTrack">—</dd>
+        <dt>第一志愿书院</dt><dd id="admCol">—</dd>
+        <dt>审核部门</dt><dd>教务办公室（招生与培养科）</dd>
+      </dl>
+      <h4 style="margin:26px 0 12px;font-size:.95rem;color:#222">受理流程</h4>
+      <ol class="steps">
+        <li class="on"><b>材料受理</b><span>系统生成受理编号，进入形式审查队列。</span></li>
+        <li><b>形式审查（5 个工作日）</b><span>核对证件、学历与材料完整性，缺件将通过电话通知补交。</span></li>
+        <li><b>专业审核（10 个工作日）</b><span>由第一志愿书院组织专家审阅申报陈述与测评材料。</span></li>
+        <li><b>考核通知</b><span>通过审核者将收到笔试 / 面试或天赋测评复检通知，具体安排以短信与邮件为准。</span></li>
+        <li><b>结果公示</b><span>拟录取名单在学院官网「通知公告」栏目公示 7 日。</span></li>
+      </ol>
+      <div class="seal">
+        本回执由圣殿科学学会学院教务办公室在线生成，加盖电子受理章。如对审核进度有疑问，请致电 +86-894-15868 或发送邮件至 tsss@jcu.edu.cn，并提供上述受理编号。<br>
+        地址：白宁省江川市江川大学学苑路 66 号　邮编：157749
+      </div>
+      <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="fbtn fbtn--main" id="admBack" type="button">返回修改</button>
+        <button class="fbtn fbtn--line" id="admPrint2" type="button">打印回执</button>
+        <a class="fbtn fbtn--line" href="announcements-3.html">返回招生信息</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>江川大学</h4>
+        <ul>
+          <li><a href="index.html">圣殿科学学会学院</a></li>
+          <li><a href="about.html">学院简介</a></li>
+          <li><a href="faculty.html">师资队伍</a></li>
+          <li><a href="research.html">科研成果</a></li>
+        </ul>
+      </div><div class="footer-col">
+        <h4>联系方式</h4>
+        <ul>
+          <li>地址：白宁省江川市江川大学学苑路66号</li>
+          <li>电话：+86-894-15868</li>
+          <li>邮箱：<a href="mailto:tsss@jcu.edu.cn">tsss@jcu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>友情链接</h4>
+        <ul>
+          <li><a href="#">《极点》期刊官网</a></li><li><a href="#">《起源》期刊官网</a></li><li><a href="#">圣殿科学学会官网</a></li><li><a href="#">江川基金会</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      版权所有 &copy; 江川大学　邮编：157749　|　备案号：流ICP备5X9376号-1　|　<a href="#">隐私政策</a>　微信公众号：江川大学圣殿科学学会学院
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('admForm');
+  if(!form) return;
+
+  /* ---- 动态行：学习经历 ---- */
+  var eduWrap = document.getElementById('eduRepeat');
+  document.getElementById('addEdu').addEventListener('click', function(){
+    var row = document.createElement('div');
+    row.className = 'repeat__row';
+    row.innerHTML = '<input type="text" placeholder="起止年月"><input type="text" placeholder="院校 / 机构">' +
+      '<input type="text" placeholder="专业 / 方向"><input type="text" placeholder="学历或身份">' +
+      '<button type="button" class="repeat__del" title="删除本行">×</button>';
+    eduWrap.appendChild(row);
+  });
+  eduWrap.addEventListener('click', function(e){
+    if(e.target.classList.contains('repeat__del')){
+      var rows = eduWrap.querySelectorAll('.repeat__row');
+      if(rows.length <= 1) return;
+      e.target.closest('.repeat__row').remove();
+    }
+  });
+
+  /* ---- 字数 ---- */
+  var stmt = document.getElementById('stmtArea'), sc = document.getElementById('stmtCount');
+  stmt.addEventListener('input', function(){ sc.textContent = stmt.value.length; });
+
+  /* ---- 条件必填 / 提示 ---- */
+  var talentBox = document.getElementById('talentBox');
+  var refBox = document.getElementById('refBox');
+  function cond(){
+    var level = (form.querySelector('[name=a_level]:checked')||{}).value || '';
+    var track = (form.querySelector('[name=a_track]:checked')||{}).value || '';
+    var sense = (form.querySelector('[name=a_sense]:checked')||{}).value || '';
+
+    document.getElementById('apprenticeWarn').classList.toggle('on', level === '古法学徒制');
+    document.getElementById('trackWarn').classList.toggle('on', track === '数理魔法解析方向');
+    document.getElementById('senseWarn').classList.toggle('on',
+      (track === '古法魔法方向' && (sense === '确认无感知能力' || sense === '已测评未通过')));
+
+    var needTalent = (track === '古法魔法方向');
+    talentBox.querySelectorAll('input,select').forEach(function(el){
+      if(el.name === 'a_tal_org' || el.name === 'a_tal_grade'){ if(needTalent) el.setAttribute('required',''); else el.removeAttribute('required'); }
+    });
+    var needRef = (level === '古法学徒制');
+    refBox.querySelectorAll('input').forEach(function(el){
+      if(el.name === 'a_refname' || el.name === 'a_refsect'){ if(needRef) el.setAttribute('required',''); else el.removeAttribute('required'); }
+    });
+  }
+  form.addEventListener('change', cond); cond();
+
+  /* ---- 校验 ---- */
+  function validate(){
+    var first = null;
+    form.querySelectorAll('.fq').forEach(function(q){ q.classList.remove('is-err'); });
+    form.querySelectorAll('.fq').forEach(function(q){
+      var reqs = q.querySelectorAll('[required]');
+      if(!reqs.length) return;
+      var ok = true;
+      reqs.forEach(function(el){
+        if(el.type === 'radio' || el.type === 'checkbox'){
+          if(q.querySelectorAll('[name="'+el.name+'"]:checked').length === 0) ok = false;
+        } else if(el.value.trim() === ''){ ok = false; }
+        else if(el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())){ ok = false; }
+      });
+      // 承诺项需全部勾选
+      if(q.querySelector('[name=a_p]') && q.querySelectorAll('[name=a_p]:checked').length < 4) ok = false;
+      if(q.id === 'stmtBox' || q.contains(document.getElementById('stmtArea'))){
+        if(stmt.value.trim().length < 50) ok = false;
+      }
+      if(!ok){ q.classList.add('is-err'); if(!first) first = q; }
+    });
+    if(first){ if(first.scrollIntoView) first.scrollIntoView({behavior:'smooth', block:'center'}); return false; }
+    return true;
+  }
+
+  function val(name){
+    var out = [];
+    form.querySelectorAll('[name="'+name+'"]:checked').forEach(function(e){ out.push(e.value); });
+    if(out.length) return out.join('、');
+    var el = form.querySelector('[name="'+name+'"]');
+    return el && el.value.trim() ? el.value.trim() : '—';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+    var now = new Date();
+    var no = 'TSSS-' + now.getFullYear() + '-' +
+      String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' +
+      String(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('admNo').textContent = no;
+    document.getElementById('admTime').textContent = now.toLocaleString('zh-CN');
+    document.getElementById('admName').textContent = val('a_name');
+    document.getElementById('admLevel').textContent = val('a_level');
+    document.getElementById('admTrack').textContent = val('a_track');
+    document.getElementById('admCol').textContent = val('a_col1');
+    form.style.display = 'none';
+    document.querySelector('.form-alert').style.display = 'none';
+    document.querySelector('.form-tip').style.display = 'none';
+    var r = document.getElementById('admReceipt'); r.style.display = 'block';
+    if(r.scrollIntoView) r.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('admBack').addEventListener('click', function(){
+    form.style.display = '';
+    document.querySelector('.form-alert').style.display = '';
+    document.querySelector('.form-tip').style.display = '';
+    document.getElementById('admReceipt').style.display = 'none';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  document.getElementById('admClear').addEventListener('click', function(){
+    if(!confirm('确定清空全部已填内容吗？')) return;
+    form.reset(); cond(); sc.textContent = '0';
+  });
+  document.getElementById('admPrint').addEventListener('click', function(){ window.print(); });
+  document.getElementById('admPrint2').addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

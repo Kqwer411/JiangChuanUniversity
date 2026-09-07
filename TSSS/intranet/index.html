@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校园内网登录</title>
+<style>
+  /* ========== 基础重置 ========== */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    background:#f0f2f5;                     /* 纯色背景 */
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;   /* 卡片居中 */
+  }
+
+  /* ========== 登录卡片 ========== */
+  .login-card{
+    width:420px;
+    padding:36px 40px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 6px 24px rgba(0,0,0,.08);
+  }
+
+  /* ========== 顶部标题区 ========== */
+  .login-title{font-size:22px;font-weight:700;color:#09113e;text-align:center;}
+
+  /* ========== Tab 切换栏 ========== */
+  .login-tabs{
+    display:flex;
+    margin-top:24px;
+    border-bottom:1px solid #e5e6eb;      /* 底部统一分隔线 */
+  }
+  .login-tab{
+    flex:1;                                /* 三等宽 */
+    padding:10px 0 12px;
+    background:none;border:none;
+    font-size:15px;color:#666;             /* 未选中 */
+    cursor:pointer;
+    position:relative;
+    transition:color .2s ease;
+  }
+  .login-tab.is-active{color:#09113e;font-weight:600;}   /* 选中：文字同学院主色 */
+  .login-tab.is-active::after{                            /* 选中：底部高亮条 */
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;
+    background:#09113e;border-radius:3px 3px 0 0;
+  }
+
+  /* ========== 表单 ========== */
+  .login-form{margin-top:24px;}            /* 与 Tab 栏间距 24px */
+  .field{margin-bottom:18px;}
+  .field label{display:block;margin-bottom:8px;font-size:14px;color:#333;}
+  .field input{
+    width:100%;height:42px;
+    padding:0 12px;
+    border:1px solid #dcdfe6;border-radius:6px;
+    font-size:14px;color:#1f2329;background:#fff;
+    outline:none;
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .field input:focus{border-color:#09113e;box-shadow:0 0 0 2px rgba(9,17,62,.12);}
+  .field-extra{display:none;}              /* 动态密钥：默认隐藏（仅管理员显示） */
+  .field-extra.is-show{display:block;}
+  .field:last-of-type{margin-bottom:24px;} /* 末字段与按钮间距 */
+
+  /* ========== 登录按钮 ========== */
+  .login-btn{
+    width:100%;height:44px;
+    border:none;border-radius:6px;
+    background:#09113e;color:#fff;
+    font-size:16px;cursor:pointer;
+    transition:background .2s ease;
+  }
+  .login-btn:hover{background:#11205c;}
+</style>
+</head>
+<body>
+<div class="login-card">
+  <h1 class="login-title">校园内网登录</h1>
+
+  <div class="login-tabs" role="tablist">
+    <button class="login-tab is-active" type="button" data-role="student" role="tab" aria-selected="true">学生</button>
+    <button class="login-tab" type="button" data-role="faculty" role="tab" aria-selected="false">教职工</button>
+    <button class="login-tab" type="button" data-role="admin" role="tab" aria-selected="false">管理员</button>
+  </div>
+
+  <form class="login-form" id="login-form" autocomplete="off" novalidate>
+    <div class="field">
+      <label for="f-account">账号</label>
+      <input id="f-account" name="account" type="text">
+    </div>
+    <div class="field">
+      <label for="f-password">密码</label>
+      <input id="f-password" name="password" type="password">
+    </div>
+    <div class="field field-extra" id="field-dynkey">
+      <label for="f-dynkey">动态密钥</label>
+      <input id="f-dynkey" name="dynkey" type="text">
+    </div>
+    <button class="login-btn" type="submit">登 录</button>
+  </form>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var tabs = document.querySelectorAll('.login-tab');
+  var dynKeyField = document.getElementById('field-dynkey');
+  var currentRole = 'student';   // 当前角色：student / faculty / admin
+
+  /* 角色中文名映射（提交时回显角色名） */
+  var ROLE_NAME = { student: '学生', faculty: '教职工', admin: '管理员' };
+
+  /* Tab 切换：仅切换激活样式与字段显示，不刷新页面 */
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      currentRole = tab.getAttribute('data-role');
+      /* 管理员显示「动态密钥」字段，学生/教职工隐藏 */
+      dynKeyField.classList.toggle('is-show', currentRole === 'admin');
+    });
+  });
+
+  /* 表单提交：阻止默认行为，弹出当前角色与账号；不做真实校验 */
+  document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var account = document.getElementById('f-account').value;
+    alert(ROLE_NAME[currentRole] + '登录：账号 ' + account);
+  });
+})();
+</script>
+</body>
+</html>

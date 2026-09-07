@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江川大学图书馆</title>
+<style>
+
+/* ===== 江川大学图书馆 · 单文件门户 · 全局样式 ===== */
+:root{
+  --green:#1A4A3A;      /* 主色 墨绿 */
+  --blue:#1B3A5C;       /* 辅色 深蓝 */
+  --amber:#E8A838;      /* 强调 橙黄 */
+  --bg:#F5F2EC;         /* 页面背景 浅米灰 */
+  --card:#FFFFFF;
+  --line:#D4DCD4;       /* 卡片边框 灰绿 */
+  --text:#2C3A2C;
+  --muted:#6B7A6B;
+  --navtext:#F5F2EC;
+  --footerbg:#0F2A1F;
+  --foottext:#C5C9C5;
+  --login:#29B6F6;
+  --login-dark:#0288D1;
+  --st-ok:#43A047;
+  --st-out:#FB8C00;
+  --st-lost:#E53935;
+  --st-broken:#8E24AA;
+  --input-line:#B8C4B8;
+  --shadow:0 2px 4px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;border-radius:0 !important}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;font-size:1rem}
+a{color:var(--green);text-decoration:none}
+a:hover{color:var(--amber)}
+img{max-width:100%;display:block}
+h1{font-size:2.2rem;margin:0 0 12px;color:var(--green);line-height:1.3}
+h2{font-size:1.8rem;margin:0 0 10px;color:var(--green);line-height:1.3}
+h3{font-size:1.4rem;margin:0 0 8px;color:var(--green);line-height:1.3}
+p{margin:0 0 14px}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== 顶部导航 ===== */
+.site-header{background:var(--green);border-bottom:3px solid var(--amber)}
+.site-header .container{display:flex;align-items:center;height:64px;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand__mark{width:38px;height:38px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;border:1px solid rgba(255,255,255,.25)}
+.brand__name{color:var(--navtext);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.main-nav{display:flex;align-items:center;gap:0;flex:1;overflow-x:auto}
+.main-nav a{color:var(--navtext);font-weight:500;font-size:1rem;padding:0 14px;height:64px;display:flex;align-items:center;position:relative;white-space:nowrap}
+.main-nav a:hover{color:var(--amber)}
+.main-nav a.active{color:var(--amber)}
+.main-nav a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:2px;background:var(--amber)}
+.nav-login{margin-left:auto;flex-shrink:0}
+.btn-login{display:inline-flex;align-items:center;background:var(--login);color:#fff;padding:8px 20px;font-weight:600;font-size:.95rem}
+.btn-login:hover{background:var(--login-dark);color:#fff}
+.nav-toggle{display:none;background:none;border:1px solid rgba(255,255,255,.4);color:var(--navtext);padding:6px 12px;font-size:1.1rem;cursor:pointer}
+
+/* ===== 面包屑 ===== */
+.breadcrumb{font-size:.88rem;color:var(--muted);padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:0}
+.breadcrumb a{color:var(--muted)}
+.breadcrumb a:hover{color:var(--green)}
+.breadcrumb span{color:var(--green);font-weight:500}
+
+/* ===== 内容布局 ===== */
+main.container{padding:24px 20px 56px;min-height:60vh}
+.page-title{border-left:5px solid var(--amber);padding-left:14px;margin-bottom:20px}
+.page-title h1{margin:0}
+
+/* 首页 hero */
+.hero{background:var(--bg);padding:48px 0 40px;border-bottom:1px solid var(--line)}
+.hero__inner{text-align:center;max-width:760px;margin:0 auto}
+.hero__sub{color:var(--muted);font-size:1rem;margin-bottom:4px}
+.hero__title{font-size:2.4rem;color:var(--green);margin:0 0 6px}
+.hero__slogan{color:var(--blue);font-size:1.1rem;margin-bottom:24px}
+.hero__search{display:flex;gap:0;max-width:640px;margin:0 auto 12px}
+.hero__search input{flex:1}
+.hero__links{font-size:.92rem}
+
+/* 输入框 / 表单 */
+input[type=text],input[type=email],input[type=password],input[type=number],input[type=date],select,textarea{
+  border:1px solid var(--input-line);padding:10px 14px;font-size:1rem;font-family:inherit;background:#fff;color:var(--text);width:100%
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--green);outline-offset:-1px;border-color:var(--green)}
+label{display:block;font-size:14px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.field{margin-bottom:16px}
+.field .err{color:var(--st-lost);font-size:.85rem;margin-top:4px;display:none}
+.field.invalid .err{display:block}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--st-lost)}
+.req{color:var(--st-lost)}
+
+/* 按钮 */
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--green);color:#fff;padding:10px 24px;font-size:1rem;font-weight:600;border:none;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--amber);color:#fff}
+.btn-blue{background:var(--login)}
+.btn-blue:hover{background:var(--login-dark);color:#fff}
+.btn-ghost{background:transparent;color:var(--green);border:1px solid var(--green)}
+.btn-ghost:hover{background:var(--green);color:#fff}
+.btn-sm{padding:6px 16px;font-size:.92rem}
+.btn-block{width:100%}
+
+/* 卡片 */
+.card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px}
+.card h3{margin-top:0}
+
+/* 网格 */
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-6{grid-template-columns:repeat(6,1fr)}
+.grid-8{grid-template-columns:repeat(8,1fr)}
+
+/* 区块标题 */
+.section-title{font-size:1.5rem;color:var(--green);margin:36px 0 16px;padding-left:12px;border-left:4px solid var(--amber)}
+
+/* 快捷入口（首页，1:1 直角小卡） */
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:460px;margin:0 auto}
+.home-cols{display:grid;grid-template-columns:minmax(0,480px) 1fr;gap:32px;align-items:start}
+.quick-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;aspect-ratio:1/1;text-align:center;transition:transform .15s}
+.quick-card:hover{transform:translateY(-3px);border-color:var(--amber)}
+.quick-card__icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--green)}
+.quick-card__icon svg{width:34px;height:34px}
+.quick-card__label{font-weight:600;color:var(--green);font-size:.95rem}
+
+/* 二级页面布局：左侧导航 25% + 主内容 75% */
+.layout{display:flex;gap:28px;align-items:flex-start}
+.side{width:25%;flex-shrink:0}
+.side-nav{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.side-nav__title{background:var(--green);color:#fff;font-weight:700;padding:14px 18px;font-size:1rem}
+.side-nav a{display:block;padding:12px 18px;color:var(--text);border-bottom:1px solid var(--line);font-size:.95rem}
+.side-nav a:last-child{border-bottom:none}
+.side-nav a:hover{background:var(--bg);color:var(--green)}
+.side-nav a.active{color:var(--amber);font-weight:700;background:#FBF7EF;border-left:3px solid var(--amber)}
+.content{flex:1;min-width:0}
+.content main.container{max-width:none;padding:0}
+
+/* 筛选栏（馆藏资源左侧） */
+.filter-group{margin-bottom:20px}
+.filter-group h4{font-size:.95rem;color:var(--green);margin:0 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.filter-item{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.92rem;cursor:pointer}
+.filter-item input{margin:0}
+
+/* 表格 */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{border:1px solid var(--line);padding:12px 16px;text-align:left;vertical-align:top}
+th{background:var(--green);color:#fff;font-weight:600}
+tbody tr:nth-child(even){background:#F8F6F2}
+tbody tr:nth-child(odd){background:#FFFFFF}
+
+/* 状态标签 */
+.tag{display:inline-block;padding:2px 10px;font-size:.82rem;font-weight:600;color:#fff;line-height:1.5}
+.tag-ok{background:var(--st-ok)}
+.tag-out{background:var(--st-out)}
+.tag-lost{background:var(--st-lost)}
+.tag-broken{background:var(--st-broken)}
+.tag-public{background:var(--st-ok)}
+.tag-internal{background:var(--blue)}
+.tag-restricted{background:var(--st-lost)}
+
+/* 列表分隔线 */
+.list-line{border-bottom:1px solid var(--line);padding:12px 0}
+.list-line:last-child{border-bottom:none}
+
+/* 图书卡片 */
+.book{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.book:last-child{border-bottom:none}
+.book__cover{width:84px;height:126px;background:#EAE6DC;border:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem}
+.book__info{flex:1;min-width:0}
+.book__title{font-weight:700;color:var(--green);font-size:1.05rem}
+.book__author{color:var(--blue);font-size:.92rem;margin:2px 0}
+.book__meta{color:var(--muted);font-size:.85rem;margin:2px 0}
+.book__row{margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.book__borrower{color:var(--st-lost);font-size:.85rem;margin-top:4px;font-weight:600}
+
+/* 新闻列表 */
+.news-item{padding:14px 0;border-bottom:1px solid var(--line)}
+.news-item:last-child{border-bottom:none}
+.news-item__date{color:var(--muted);font-size:.85rem}
+.news-item__title{font-weight:600;color:var(--green)}
+.news-item__summary{color:var(--text);font-size:.92rem;margin-top:4px}
+
+/* 特藏条目 */
+.special-item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.special-item .code{font-family:Consolas,monospace;color:var(--blue);font-weight:600;flex-shrink:0}
+.special-item .ttl{flex:1}
+.special-item.locked{cursor:pointer}
+.special-item.locked:hover .ttl{color:var(--amber)}
+
+/* 研讨室卡片 */
+.room{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:18px}
+.room__no{font-weight:700;color:var(--green);font-size:1.1rem}
+.room__special{display:inline-block;background:var(--blue);color:#fff;font-size:.78rem;padding:2px 8px;margin-left:8px}
+
+/* Tab */
+.tabs{display:flex;border-bottom:2px solid var(--green);margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:10px 22px;cursor:pointer;color:var(--text);font-weight:600;border:none;background:transparent;font-size:1rem;font-family:inherit}
+.tab:hover{color:var(--green)}
+.tab.active{background:var(--green);color:#fff}
+
+/* 折叠面板（FAQ） */
+.acc-item{border:1px solid var(--line);margin-bottom:10px;background:var(--card)}
+.acc-head{padding:14px 18px;cursor:pointer;font-weight:600;color:var(--green);display:flex;justify-content:space-between;align-items:center}
+.acc-head:hover{background:var(--bg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .25s}
+.acc-body__inner{padding:0 18px 14px}
+
+/* 登录页 */
+.auth-wrap{max-width:440px;margin:0 auto}
+.auth-card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:32px}
+.role-tabs{display:flex;margin-bottom:20px;border-bottom:2px solid var(--green)}
+.role-tab{flex:1;padding:10px 0;text-align:center;cursor:pointer;font-weight:600;color:var(--text);background:transparent;border:none;font-size:1rem;font-family:inherit}
+.role-tab.active{background:var(--green);color:#fff}
+.key-display{background:var(--bg);border:1px solid var(--line);padding:12px;text-align:center;margin-bottom:16px}
+.key-display__num{font-family:Consolas,monospace;font-size:1.6rem;color:var(--green);font-weight:700;letter-spacing:4px}
+.key-display__hint{font-size:.82rem;color:var(--muted)}
+
+/* 空状态 / 提示 */
+.empty-state{padding:32px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line)}
+
+/* Toast */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--blue);color:#fff;padding:12px 22px;font-size:.95rem;opacity:0;pointer-events:none;transition:.25s;z-index:200;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast--warn{background:var(--st-out)}
+.toast--error{background:var(--st-lost)}
+
+/* Modal */
+.modal-mask{position:fixed;inset:0;background:rgba(15,42,31,.55);display:none;align-items:center;justify-content:center;z-index:300;padding:20px}
+.modal-mask.show{display:flex}
+.modal{background:#fff;max-width:440px;width:100%;padding:28px;border-top:4px solid var(--amber);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.modal h3{color:var(--green);margin:0 0 12px}
+.modal p{margin:0 0 20px;color:var(--text)}
+.modal .btn{width:100%}
+
+/* 回到顶部 */
+#to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;background:var(--green);color:#fff;border:none;font-size:1.4rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:var(--shadow);z-index:150}
+#to-top:hover{background:var(--amber)}
+#to-top.show{display:flex}
+
+/* 页脚 */
+.site-footer{background:var(--footerbg);color:var(--foottext);border-top:1px solid var(--green);margin-top:56px}
+.site-footer .container{padding:32px 20px 20px}
+.footer-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;font-size:.85rem}
+.footer-col h4{color:#fff;font-size:.92rem;margin:0 0 12px;font-weight:600}
+.footer-col a{color:var(--foottext)}
+.footer-col a:hover{color:var(--amber)}
+.footer-col ul{list-style:none;margin:0;padding:0}
+.footer-col li{margin-bottom:8px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:24px;padding-top:16px;font-size:.8rem;color:var(--foottext);text-align:center}
+
+/* 响应式 */
+@media(max-width:1023px){
+  .nav-toggle{display:block}
+  .main-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--green);flex-direction:column;align-items:stretch;padding:8px 0;border-top:1px solid rgba(255,255,255,.15)}
+  .main-nav.open{display:flex}
+  .main-nav a{height:auto;padding:12px 20px}
+  .main-nav a.active::after{display:none}
+  .site-header{position:relative}
+  .nav-login{display:none}
+  .grid-3,.grid-4,.grid-6,.grid-8{grid-template-columns:repeat(2,1fr)}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .layout{flex-direction:column}
+  .side{width:100%}
+  .footer-cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:767px){
+  .grid-2,.grid-3,.grid-4,.grid-6,.grid-8{grid-template-columns:1fr}
+  .footer-cols{grid-template-columns:1fr}
+  h1{font-size:1.8rem}
+  .hero__title{font-size:2rem}
+  .hero__search{flex-direction:column;gap:10px}
+}
+@media(max-width:860px){
+  .home-cols{grid-template-columns:1fr}
+}
+
+/* ===== 图书详情页 ===== */
+.book-detail{max-width:1200px}
+.book-type-tag{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:.85rem;padding:4px 12px;letter-spacing:1px}
+.book-detail__title{margin:12px 0 18px;font-size:2rem}
+.book-actions{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);margin-bottom:22px}
+.book-action{background:transparent;color:var(--green);border:none;border-bottom:2px solid transparent;padding:10px 16px;font-size:.95rem;cursor:pointer;font-family:inherit}
+.book-action:hover{border-bottom-color:var(--amber)}
+.book-action:focus{outline:none;border-bottom-color:var(--amber)}
+.detail-table{width:100%;border-collapse:collapse;font-size:.98rem;margin-bottom:8px}
+.detail-table th,.detail-table td{border:1px solid var(--line);padding:12px 16px;text-align:left;vertical-align:top}
+.detail-table th{background:var(--bg);color:var(--green);font-weight:600;width:140px;white-space:nowrap}
+.detail-table td{color:var(--text)}
+.imp-notice{background:#FFF8E1;border:1px solid #FFE082;font-size:.85rem;padding:12px 16px;margin:22px 0;color:#6b5a00}
+.imp-notice strong{color:#9a7b00}
+.holding-card{border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);margin-top:6px}
+.holding-card__head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;cursor:pointer}
+.holding-card__head:hover{background:var(--bg)}
+.holding-card__lib{font-weight:700;color:var(--green);font-size:1.05rem}
+.holding-card__call{color:var(--muted);font-size:.92rem;margin-top:4px}
+.holding-toggle{background:transparent;border:1px solid var(--line);color:var(--green);padding:6px 16px;cursor:pointer;font-family:inherit;font-size:.9rem;flex-shrink:0}
+.holding-card__detail{overflow:hidden;max-height:0;opacity:0;transform:translateX(24px);transition:max-height .3s ease,opacity .3s ease,transform .3s ease;padding:0 18px}
+.holding-card.open .holding-card__detail{max-height:260px;opacity:1;transform:translateX(0);padding:0 18px 18px}
+.holding-card__row{color:var(--text);font-size:.92rem;margin-top:8px}
+.request-login{background:var(--bg);font-size:.95rem;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.request-login span{flex:1;min-width:160px}
+
+/* 详情页专用弹窗 */
+.modal-lg{max-width:560px}
+.modal__head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+.modal__head h3{margin:0;color:var(--green)}
+.modal__close{background:transparent;border:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--muted)}
+.modal__close:hover{color:var(--green)}
+.export-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.export-grid .btn{font-size:.92rem;padding:10px 8px;width:100%}
+.permalink-box{display:flex;gap:8px;margin-bottom:18px}
+.permalink-box input{flex:1;font-size:.9rem;background:var(--bg)}
+.cite-row{border-bottom:1px solid var(--line);padding:12px 0}
+.cite-row:last-child{border-bottom:none}
+.cite-row__name{font-weight:600;color:var(--green);font-size:.92rem;margin-bottom:4px}
+.cite-row__text{font-size:.9rem;color:var(--text);margin-bottom:8px;word-break:break-word}
+.cite-row__copy{font-size:.85rem;padding:4px 14px}
+.qr-box{border:1px dashed var(--line);background:var(--bg);padding:18px;text-align:center;margin-bottom:14px}
+.qr-box canvas{width:200px;height:200px;background:#fff;border:1px solid var(--line)}
+.qr-note{font-size:.8rem;color:var(--muted);margin-top:10px}
+.qr-link{display:flex;gap:8px;margin-top:8px}
+.qr-link input{flex:1;font-size:.88rem;background:var(--bg)}
+.email-field{margin-bottom:12px}
+.email-field input,.email-field textarea{margin-bottom:0}
+.email-field textarea{min-height:160px;font-family:inherit;line-height:1.6}
+.link-list a{display:block;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
+.link-list a:last-child{border-bottom:none}
+.modal-actions{display:flex;gap:10px;margin-top:16px}
+.modal-actions .btn{flex:1;width:auto}
+@media(max-width:520px){
+  .export-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<button id="to-top" aria-label="回到顶部">↑</button>
+<script>
+
+/* =========================================================
+   江川大学图书馆 · 单文件门户  SPA 脚本
+   纯前端、零外部依赖、history.pushState 路由。
+   全部数据（账号 / 书目 / 历史 / 特藏 / 新闻等）硬编码于此。
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ===================== 数据 ===================== */
+
+  var ACCOUNTS = {
+    '17958330': { id: '17958330', name: '陈奇', role: 'staff', pwd: '77399396' },
+    's9479697': { id: 's9479697', name: '林幽幻', role: 'student', pwd: '24979594' },
+    'admin':    { id: 'admin',    name: '系统管理员', role: 'admin', pwd: '' }
+  };
+  var ADMIN_KEY = '774921'; // 管理员动态密钥（硬编码验证值，每30秒刷新显示）
+
+  var BORROW_CHEN = [
+    { title:'灵界通道构造论', author:'佚名', borrow:'2022-03-15', back:'2022-04-20', method:'线上预约', status:'已归还' },
+    { title:'阵法基座与能量节点', author:'周叙', borrow:'2022-03-20', back:'2022-05-10', method:'线下借阅', status:'已归还' },
+    { title:'古代献祭仪式考', author:'佚名', borrow:'2022-03-25', back:'2022-04-22', method:'线上预约', status:'已归还' },
+    { title:'献祭仪式参数修正草案', author:'（内部资料）', borrow:'2022-04-01', back:'—', method:'线上预约', status:'遗失' },
+    { title:'通灵与意识操控边界研究', author:'苏清晏', borrow:'2022-04-10', back:'2022-05-15', method:'线下借阅', status:'已归还' },
+    { title:'能量回路与节点共振', author:'季时纾', borrow:'2022-05-05', back:'2022-06-20', method:'线上预约', status:'已归还' },
+    { title:'伪神崇拜与灵能污染', author:'陈奇（自藏）', borrow:'2022-06-12', back:'2022-07-18', method:'线下借阅', status:'已归还' },
+    { title:'秘境空间稳定性评估', author:'谢聿之', borrow:'2022-08-20', back:'2022-09-25', method:'线上预约', status:'已归还' },
+    { title:'古籍修复与保护技术', author:'图书馆编', borrow:'2023-01-10', back:'2023-02-14', method:'线下借阅', status:'已归还' },
+    { title:'高阶阵法理论', author:'孟昭珩', borrow:'2023-06-15', back:'2023-08-01', method:'线上预约', status:'已归还' },
+    { title:'跨界灵能研究综述', author:'沈知可', borrow:'2024-09-01', back:'2025-03-01（预计）', method:'线上预约', status:'已借出' },
+    { title:'量子与灵能的并行性', author:'双修中心', borrow:'2025-01-15', back:'2025-02-20', method:'自助借还', status:'已归还' }
+  ];
+
+  var BORROW_LIN = [
+    { title:'占卜与通灵基础', author:'苏清晏', borrow:'2022-02-10', back:'2022-03-01', method:'线下借阅', status:'已归还' },
+    { title:'星象与命运推演', author:'苏清晏', borrow:'2022-03-01', back:'2022-03-28', method:'线上预约', status:'已归还' },
+    { title:'古灵界通道石刻抄本', author:'佚名', borrow:'2022-04-05', back:'2022-05-15', method:'线上预约', status:'已归还' },
+    { title:'灵界铭文考', author:'孟昭珩', borrow:'2022-04-12', back:'—', method:'线上预约', status:'破损' },
+    { title:'神谕与占卜交叉研究', author:'季时纾', borrow:'2022-05-20', back:'2022-06-25', method:'线下借阅', status:'已归还' },
+    { title:'秘境原生元素观测', author:'谢聿之', borrow:'2022-07-08', back:'2022-08-12', method:'线上预约', status:'已归还' },
+    { title:'古代魔法文明断代史', author:'陈奇', borrow:'2023-02-14', back:'2023-03-20', method:'线下借阅', status:'已归还' },
+    { title:'灵能场域与个人精神力', author:'苏清晏', borrow:'2023-09-01', back:'2024-03-01（预计）', method:'线上预约', status:'已借出' }
+  ];
+
+  var BOOKING_CHEN = [
+    { date:'2022-03-18', room:'#8', time:'14:00-21:00', purpose:'阵法课题小组研讨', note:'' },
+    { date:'2022-04-03', room:'#8', time:'09:00-22:00', purpose:'阵法课题小组研讨', note:'「仪式参数校验……预留后手」（半行被删除的文字碎片）' },
+    { date:'2022-04-10', room:'#8', time:'13:00-20:00', purpose:'阵法课题小组研讨', note:'' }
+  ];
+  var BOOKING_LIN = [
+    { date:'2022-04-02', room:'#7', time:'14:00-18:00', purpose:'占卜文献研读', note:'' },
+    { date:'2022-04-09', room:'#8', time:'10:00-17:00', purpose:'查阅古灵界通道石刻抄本', note:'' }
+  ];
+  var RECOMMEND_LIN = [
+    { name:'灵界铭文考', type:'图书', date:'2022-03-25', status:'已采购' }
+  ];
+
+  var BORROW_HISTORY = { '17958330': BORROW_CHEN, 's9479697': BORROW_LIN };
+  var BOOKING_HISTORY = { '17958330': BOOKING_CHEN, 's9479697': BOOKING_LIN };
+  var RECOMMEND_HISTORY = { 's9479697': RECOMMEND_LIN };
+
+  // 书目目录（普通检索可见；hidden 仅高级检索精确匹配可见）
+  var BOOKS = [
+    { id:'b01', title:'灵界通道构造论', author:'佚名', category:'古籍', publisher:'圣殿手稿社', year:1988, location:'资料档案室', status:'ok', borrower:'陈奇（17958330）·2022-03-15' },
+    { id:'b02', title:'星象与命运推演', author:'苏清晏', category:'图书', publisher:'江川大学出版社', year:2019, location:'川流藏书馆', status:'out', returnDate:'2026-09-10', borrower:'林幽幻（s9479697）·2022-03-01' },
+    { id:'b03', title:'高阶阵法理论', author:'孟昭珩', category:'图书', publisher:'灵能出版社', year:2021, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2023-06-15' },
+    { id:'b04', title:'古灵界通道石刻抄本', author:'佚名', category:'古籍', publisher:'圣殿手稿社', year:1955, location:'资料档案室', status:'broken', borrower:'林幽幻（s9479697）·2022-04-05' },
+    { id:'b05', title:'量子与灵能的并行性', author:'双修中心', category:'图书', publisher:'江川大学出版社', year:2024, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2025-01-15' },
+    { id:'b06', title:'灵能场域与个人精神力', author:'苏清晏', category:'期刊', publisher:'灵学研究社', year:2023, location:'川流藏书馆', status:'out', returnDate:'2026-08-30', borrower:'林幽幻（s9479697）·2023-09-01' },
+    { id:'b07', title:'阵法基座与能量节点', author:'周叙', category:'图书', publisher:'灵能出版社', year:2017, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2022-03-20' },
+    { id:'b08', title:'古代献祭仪式考', author:'佚名', category:'图书', publisher:'圣殿手稿社', year:1990, location:'资料档案室', status:'ok', borrower:'陈奇（17958330）·2022-03-25' },
+    { id:'b09', title:'献祭仪式参数修正草案', author:'（内部资料）', category:'图书', publisher:'圣殿科学学会', year:2018, location:'资料档案室', status:'lost', borrower:'陈奇（17958330）·2022-04-01' },
+    { id:'b10', title:'通灵与意识操控边界研究', author:'苏清晏', category:'图书', publisher:'灵学研究社', year:2020, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2022-04-10' },
+    { id:'b11', title:'能量回路与节点共振', author:'季时纾', category:'图书', publisher:'灵能出版社', year:2019, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2022-05-05' },
+    { id:'b12', title:'伪神崇拜与灵能污染', author:'陈奇（自藏）', category:'图书', publisher:'自印本', year:2016, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2022-06-12' },
+    { id:'b13', title:'秘境空间稳定性评估', author:'谢聿之', category:'图书', publisher:'江川大学出版社', year:2021, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2022-08-20' },
+    { id:'b14', title:'古籍修复与保护技术', author:'图书馆编', category:'图书', publisher:'江川大学出版社', year:2022, location:'川流藏书馆', status:'ok', borrower:'陈奇（17958330）·2023-01-10' },
+    { id:'b15', title:'跨界灵能研究综述', author:'沈知可', category:'期刊', publisher:'灵学研究社', year:2023, location:'川流藏书馆', status:'out', returnDate:'2026-09-20', borrower:'陈奇（17958330）·2024-09-01' },
+    { id:'b16', title:'占卜与通灵基础', author:'苏清晏', category:'图书', publisher:'灵学研究社', year:2018, location:'川流藏书馆', status:'ok', borrower:'林幽幻（s9479697）·2022-02-10' },
+    { id:'b17', title:'灵界铭文考', author:'孟昭珩', category:'图书', publisher:'圣殿手稿社', year:1992, location:'资料档案室', status:'broken', borrower:'林幽幻（s9479697）·2022-04-12' },
+    { id:'b18', title:'神谕与占卜交叉研究', author:'季时纾', category:'图书', publisher:'灵能出版社', year:2020, location:'川流藏书馆', status:'ok', borrower:'林幽幻（s9479697）·2022-05-20' },
+    { id:'b19', title:'秘境原生元素观测', author:'谢聿之', category:'图书', publisher:'江川大学出版社', year:2021, location:'川流藏书馆', status:'ok', borrower:'林幽幻（s9479697）·2022-07-08' },
+    { id:'b20', title:'古代魔法文明断代史', author:'陈奇', category:'图书', publisher:'自印本', year:2015, location:'川流藏书馆', status:'ok', borrower:'林幽幻（s9479697）·2023-02-14' },
+    { id:'b21', title:'江川大学学位论文数据库', author:'图书馆编', category:'电子资源', publisher:'江川大学出版社', year:2025, location:'川流藏书馆', status:'ok' },
+    { id:'b22', title:'灵学研究全文数据库', author:'灵学研究社', category:'电子资源', publisher:'灵学研究社', year:2024, location:'川流藏书馆', status:'ok' },
+    { id:'b23', title:'寂古秘录·残章', author:'佚名', category:'古籍特藏', publisher:'圣殿手稿社', year:1897, location:'资料档案室', status:'internal', hidden:true }
+  ];
+
+  var SPECIAL = [
+    { code:'TSS-ARCH-001', title:'圣殿科学学会创院档案（1953-1965）', status:'公开' },
+    { code:'TSS-ARCH-002', title:'第八号研讨室地基结构勘察报告（2001）', status:'内部' },
+    { code:'TSS-ARCH-003', title:'献祭仪式参数修正草案（2022）', status:'受限' },
+    { code:'TSS-ARCH-004', title:'古灵界通道观测记录（1978-1995）', status:'内部' },
+    { code:'TSS-ARCH-005', title:'阵法基座能量节点分布图', status:'受限' }
+  ];
+
+  var NEWS = [
+    { date:'2026-06-20', title:'2026年暑假期间图书馆开放时间调整', summary:'暑假期间川流藏书馆开放时间调整为 08:30-18:00，资料档案室另行安排，请留意馆内通知。' },
+    { date:'2026-07-01', title:'资料档案室新到馆藏目录已上线', summary:'圣殿科学学会学院资料档案室新增文献目录现已开放检索，欢迎师生查阅。' },
+    { date:'2022-04-15', title:'关于8号研讨室地面维护修缮的通知', summary:'8号研讨室因地面维护，暂停对外开放，恢复时间另行通知。' }
+  ];
+
+  var STAFF = [
+    { name:'陆明远', title:'馆长', email:'lmy@jcu.edu.cn', subject:'全面管理' },
+    { name:'沈知可', title:'副馆长 / 学科馆员', email:'szk@jcu.edu.cn', subject:'灵能学、跨界研究' },
+    { name:'苏清晏', title:'参考咨询馆员', email:'sqy@jcu.edu.cn', subject:'占卜与通灵、星象学' },
+    { name:'季时纾', title:'采编馆员', email:'jss@jcu.edu.cn', subject:'阵法理论、神谕研究' },
+    { name:'谢聿之', title:'特藏与古籍馆员', email:'xsz@jcu.edu.cn', subject:'古籍修复、秘境文献' },
+    { name:'孟昭珩', title:'信息素养培训馆员', email:'mzh@jcu.edu.cn', subject:'铭文学、信息检索' },
+    { name:'周叙', title:'系统与技术支持', email:'zx@jcu.edu.cn', subject:'图书馆系统、数据库' },
+    { name:'陈澜', title:'流通服务馆员', email:'cl@jcu.edu.cn', subject:'借阅服务、空间管理' }
+  ];
+
+  var NEW_BOOKS = [
+    { title:'量子与灵能的并行性', author:'双修中心', publisher:'江川大学出版社', year:2024, note:'探讨现代量子理论与古典灵能框架的交叉。' },
+    { title:'跨界灵能研究综述', author:'沈知可', publisher:'灵学研究社', year:2023, note:'系统梳理近十年跨界灵能研究进展。' },
+    { title:'灵学研究全文数据库', author:'灵学研究社', publisher:'灵学研究社', year:2024, note:'收录灵学领域核心期刊与学位论文。' },
+    { title:'江川大学学位论文数据库', author:'图书馆编', publisher:'江川大学出版社', year:2025, note:'本校历年学位论文数字化典藏。' },
+    { title:'古籍修复与保护技术', author:'图书馆编', publisher:'江川大学出版社', year:2022, note:'古籍修复流程与实操指南。' },
+    { title:'秘境空间稳定性评估', author:'谢聿之', publisher:'江川大学出版社', year:2021, note:'秘境空间测绘与稳定性评估方法。' }
+  ];
+
+  var ERESOURCES = [
+    { name:'CNKI 中国知网学术总库', cat:'综合', desc:'中文学术期刊、博硕论文、会议论文全文。' },
+    { name:'EBSCO 学术数据库', cat:'综合', desc:'外文学术期刊、商业、教育类文献。' },
+    { name:'JCR 期刊引证报告', cat:'评价', desc:'期刊影响因子与分区查询。' },
+    { name:'江川大学学位论文数据库', cat:'本校', desc:'本校历年学位论文数字化典藏。' },
+    { name:'灵学研究全文数据库', cat:'专题', desc:'灵学领域核心期刊与学位论文。' },
+    { name:'Web of Science 核心合集', cat:'综合', desc:'国际权威引文索引数据库。' },
+    { name:'万方数据知识服务平台', cat:'综合', desc:'中文期刊、学位、会议、标准文献。' },
+    { name:'超星电子书', cat:'图书', desc:'海量中文电子图书在线阅读。' }
+  ];
+
+  var FACILITIES = [
+    { name:'自助借还机', desc:'位于川流藏书馆一层大厅，支持自助借书、还书、续借，全天候可用。' },
+    { name:'复印打印', desc:'馆内设有文印区，支持校园卡自助复印、打印与扫描。' },
+    { name:'Wi-Fi', desc:'全馆覆盖校园无线网，凭统一身份认证账号登录使用。' },
+    { name:'充电桩', desc:'研讨区与自习区配备手机与笔记本充电桩，免费使用。' }
+  ];
+
+  var STUDY_ROOMS = [
+    { no:'#1', name:'研讨室A', cap:'6人', fac:'白板、投影', special:false },
+    { no:'#2', name:'研讨室B', cap:'6人', fac:'白板、投影', special:false },
+    { no:'#3', name:'研讨室C', cap:'8人', fac:'白板、电视', special:false },
+    { no:'#4', name:'研讨室D', cap:'8人', fac:'白板、电视', special:false },
+    { no:'#5', name:'研讨室E', cap:'4人', fac:'白板', special:false },
+    { no:'#6', name:'研讨室F', cap:'4人', fac:'白板', special:false },
+    { no:'#7', name:'圣殿学院研讨室G', cap:'6人', fac:'白板、投影、古籍柜', special:true },
+    { no:'#8', name:'圣殿学院研讨室H', cap:'6人', fac:'白板、投影、古籍柜', special:true }
+  ];
+
+  var FAQ = [
+    { q:'如何办理借书证？', a:'本校师生凭校园一卡通（统一身份认证账号）即可直接借阅，无需单独办理借书证。校外读者请至咨询台办理临时阅览证。' },
+    { q:'逾期归还如何罚款？', a:'川流藏书馆逾期费为 0.20 元/册/天，资料档案室为 0.50 元/册/天，上限 20 元/册。遗失或严重破损按原书价 3 倍赔偿。' },
+    { q:'如何续借图书？', a:'登录【我的图书馆】后，在借阅记录中点击续借；每册可续借 1 次，续期 30 天。到期前 3 天起可申请，逾期图书不可续借。' },
+    { q:'研讨室如何预约？', a:'目前研讨室预约系统正在升级维护，新预约暂不支持提交，历史预约记录可在登录后【我的图书馆—预约历史】中查阅。' }
+  ];
+
+  var FEEDBACK_TYPES = ['意见改进', '建议', '遇到问题', '其他'];
+
+  // 开放时间
+  var OPENING_HOURS = [
+    { lib:'川流藏书馆', rows:[['周一至周五','08:30-22:00'],['周六','09:00-18:00'],['周日','闭馆']] },
+    { lib:'资料档案室', rows:[['周一至周五','09:00-17:00'],['周末','闭馆']] }
+  ];
+
+  /* ===================== 导航 / 侧栏配置 ===================== */
+
+  var NAV = [
+    { key: 'index', label: '首页' },
+    { key: 'collection', label: '馆藏资源' },
+    { key: 'spaces', label: '空间与设施' },
+    { key: 'borrowing', label: '借阅服务' },
+    { key: 'learning', label: '学习与教学' },
+    { key: 'research', label: '科研支持' },
+    { key: 'contact', label: '联系我们' },
+    { key: 'about', label: '关于我们' }
+  ];
+
+  var SIDEBARS = {
+    borrowing: [
+      { key: 'borrowing', label: '借阅服务' },
+      { key: 'borrowing-rules', label: '借阅规则' },
+      { key: 'borrowing-reserve', label: '图书预约' },
+      { key: 'borrowing-renewal', label: '续借' },
+      { key: 'borrowing-interloan', label: '馆际互借' },
+      { key: 'borrowing-document-delivery', label: '文献传递' },
+      { key: 'borrowing-library-card', label: '读者证办理' },
+      { key: 'borrowing-fines', label: '逾期与罚款' },
+      { key: 'borrowing-self-service', label: '自助借还' },
+      { key: 'borrowing-recommend', label: '图书荐购' }
+    ],
+    learning: [
+      { key: 'learning', label: '学习与教学' },
+      { key: 'learning-support', label: '研究及学习支援' },
+      { key: 'learning-copyright', label: '版权及教材制作' },
+      { key: 'learning-helpdesk', label: '服务台热线' },
+      { key: 'learning-quiz', label: '图书馆档案资料大考验' },
+      { key: 'learning-videos', label: '图书馆指导短片' },
+      { key: 'learning-workshops', label: '图书馆工作坊' },
+      { key: 'learning-remote', label: '远程登入图书馆电子资源' },
+      { key: 'learning-subject', label: '学科指引' }
+    ],
+    research: [
+      { key: 'research', label: '科研支持' },
+      { key: 'research-support', label: '研究支援' },
+      { key: 'research-citation', label: '引证资料' },
+      { key: 'research-repository', label: '学术典藏' },
+      { key: 'research-openaccess', label: '开放存取' },
+      { key: 'research-orcid', label: '建立ORCID iD' },
+      { key: 'research-predatory', label: '掠夺性出版' },
+      { key: 'research-publishing', label: '出版与学术交流' },
+      { key: 'research-assessment', label: '研究评估工具及核心期刊' },
+      { key: 'research-impact', label: '研究影响' },
+      { key: 'research-scite', label: 'scite_ (AI学术研究工具)' },
+      { key: 'research-transformative', label: '转换协议' }
+    ],
+    // 关于我们：共 11 项，首项即落地页内容（本馆概况），不再重复「关于我们」标题
+    about: [
+      { key: 'about-intro', label: '本馆概况' },
+      { key: 'opening-hours', label: '开放时间' },
+      { key: 'floor-maps', label: '楼层导览' },
+      { key: 'quick-guide', label: '快速导览' },
+      { key: 'gifts-donations', label: '图书捐赠' },
+      { key: 'news', label: '最新消息' },
+      { key: 'policies-regulations', label: '政策及规例' },
+      { key: 'projects-partners', label: '计划组别及伙伴' },
+      { key: 'reports-statistics', label: '报告及统计数字' },
+      { key: 'user-survey', label: '读者意见调查结果' },
+      { key: 'vision-mission', label: '愿景及使命' }
+    ],
+    contact: [
+      { key: 'contact', label: '联系方式' },
+      { key: 'contact-staff', label: '馆员名册' },
+      { key: 'contact-feedback', label: '意见反馈' },
+      { key: 'contact-faq', label: '常见问题' },
+      { key: 'contact-damaged', label: '破损图书阅览指引' }
+    ]
+  };
+
+  // 一级栏目 → 侧栏
+  var GROUP_OF = {
+    borrowing:'borrowing', 'borrowing-rules':'borrowing', 'borrowing-reserve':'borrowing',
+    'borrowing-renewal':'borrowing', 'borrowing-interloan':'borrowing', 'borrowing-document-delivery':'borrowing',
+    'borrowing-library-card':'borrowing', 'borrowing-fines':'borrowing', 'borrowing-self-service':'borrowing',
+    'borrowing-recommend':'borrowing',
+    learning:'learning', 'learning-support':'learning', 'learning-copyright':'learning', 'learning-helpdesk':'learning',
+    'learning-quiz':'learning', 'learning-videos':'learning', 'learning-workshops':'learning',
+    'learning-remote':'learning', 'learning-subject':'learning',
+    research:'research', 'research-support':'research', 'research-citation':'research', 'research-repository':'research',
+    'research-openaccess':'research', 'research-orcid':'research', 'research-predatory':'research',
+    'research-publishing':'research', 'research-assessment':'research', 'research-impact':'research',
+    'research-scite':'research', 'research-transformative':'research',
+    'about-intro':'about', 'opening-hours':'about', 'floor-maps':'about', 'quick-guide':'about',
+    'gifts-donations':'about', news:'about', 'policies-regulations':'about', 'projects-partners':'about',
+    'reports-statistics':'about', 'user-survey':'about', 'vision-mission':'about',
+    contact:'contact', 'contact-staff':'contact', 'contact-feedback':'contact', 'contact-faq':'contact',
+    'contact-damaged':'contact',
+    'book':'collection'
+  };
+
+  // 路由别名：/about 直接落地本馆概况；并兼容旧路由
+  var ALIAS = {
+    about: 'about-intro',
+    'about-opening-hours': 'opening-hours',
+    'about-floor-maps': 'floor-maps',
+    'about-tour': 'quick-guide',
+    'about-gifts': 'gifts-donations',
+    'about-news': 'news',
+    'about-policies': 'policies-regulations',
+    'about-partners': 'projects-partners',
+    'about-reports': 'reports-statistics',
+    'about-survey': 'user-survey',
+    'about-vision': 'vision-mission'
+  };
+
+  // 页面标题 / 面包屑
+  var META = {
+    index:{ title:'首页', crumbs:['首页'] },
+    collection:{ title:'馆藏资源检索', crumbs:['首页','馆藏资源'] },
+    'collection-search':{ title:'检索结果', crumbs:['首页','馆藏资源','检索结果'] },
+    'collection-advanced':{ title:'高级检索', crumbs:['首页','馆藏资源','高级检索'] },
+    'special-collection':{ title:'特藏资源', crumbs:['首页','馆藏资源','特藏资源'] },
+    eresources:{ title:'电子资源', crumbs:['首页','馆藏资源','电子资源'] },
+    'new-books':{ title:'新书通报', crumbs:['首页','馆藏资源','新书通报'] },
+    spaces:{ title:'空间与设施', crumbs:['首页','空间与设施'] },
+    booking:{ title:'研讨室预约', crumbs:['首页','空间与设施','研讨室预约'] },
+    borrowing:{ title:'借阅服务', crumbs:['首页','借阅服务'] },
+    'borrowing-rules':{ title:'借阅规则', crumbs:['首页','借阅服务','借阅规则'] },
+    'borrowing-reserve':{ title:'图书预约', crumbs:['首页','借阅服务','图书预约'] },
+    'borrowing-renewal':{ title:'续借', crumbs:['首页','借阅服务','续借'] },
+    'borrowing-interloan':{ title:'馆际互借', crumbs:['首页','借阅服务','馆际互借'] },
+    'borrowing-document-delivery':{ title:'文献传递', crumbs:['首页','借阅服务','文献传递'] },
+    'borrowing-library-card':{ title:'读者证办理', crumbs:['首页','借阅服务','读者证办理'] },
+    'borrowing-fines':{ title:'逾期与罚款', crumbs:['首页','借阅服务','逾期与罚款'] },
+    'borrowing-self-service':{ title:'自助借还', crumbs:['首页','借阅服务','自助借还'] },
+    'borrowing-recommend':{ title:'图书荐购', crumbs:['首页','借阅服务','图书荐购'] },
+    learning:{ title:'学习与教学', crumbs:['首页','学习与教学'] },
+    'learning-support':{ title:'研究及学习支援', crumbs:['首页','学习与教学','研究及学习支援'] },
+    'learning-copyright':{ title:'版权及教材制作', crumbs:['首页','学习与教学','版权及教材制作'] },
+    'learning-helpdesk':{ title:'服务台热线', crumbs:['首页','学习与教学','服务台热线'] },
+    'learning-quiz':{ title:'图书馆档案资料大考验', crumbs:['首页','学习与教学','图书馆档案资料大考验'] },
+    'learning-videos':{ title:'图书馆指导短片', crumbs:['首页','学习与教学','图书馆指导短片'] },
+    'learning-workshops':{ title:'图书馆工作坊', crumbs:['首页','学习与教学','图书馆工作坊'] },
+    'learning-remote':{ title:'远程登入图书馆电子资源', crumbs:['首页','学习与教学','远程登入图书馆电子资源'] },
+    'learning-subject':{ title:'学科指引', crumbs:['首页','学习与教学','学科指引'] },
+    research:{ title:'科研支持', crumbs:['首页','科研支持'] },
+    'research-support':{ title:'研究支援', crumbs:['首页','科研支持','研究支援'] },
+    'research-citation':{ title:'引证资料', crumbs:['首页','科研支持','引证资料'] },
+    'research-repository':{ title:'学术典藏', crumbs:['首页','科研支持','学术典藏'] },
+    'research-openaccess':{ title:'开放存取', crumbs:['首页','科研支持','开放存取'] },
+    'research-orcid':{ title:'建立ORCID iD', crumbs:['首页','科研支持','建立ORCID iD'] },
+    'research-predatory':{ title:'掠夺性出版', crumbs:['首页','科研支持','掠夺性出版'] },
+    'research-publishing':{ title:'出版与学术交流', crumbs:['首页','科研支持','出版与学术交流'] },
+    'research-assessment':{ title:'研究评估工具及核心期刊', crumbs:['首页','科研支持','研究评估工具及核心期刊'] },
+    'research-impact':{ title:'研究影响', crumbs:['首页','科研支持','研究影响'] },
+    'research-scite':{ title:'scite_ (AI学术研究工具)', crumbs:['首页','科研支持','scite_ (AI学术研究工具)'] },
+    'research-transformative':{ title:'转换协议', crumbs:['首页','科研支持','转换协议'] },
+    'about-intro':{ title:'本馆概况', crumbs:['首页','关于我们','本馆概况'] },
+    'opening-hours':{ title:'开放时间', crumbs:['首页','关于我们','开放时间'] },
+    'floor-maps':{ title:'楼层导览', crumbs:['首页','关于我们','楼层导览'] },
+    'quick-guide':{ title:'快速导览', crumbs:['首页','关于我们','快速导览'] },
+    'gifts-donations':{ title:'图书捐赠', crumbs:['首页','关于我们','图书捐赠'] },
+    news:{ title:'最新消息', crumbs:['首页','关于我们','最新消息'] },
+    'policies-regulations':{ title:'政策及规例', crumbs:['首页','关于我们','政策及规例'] },
+    'projects-partners':{ title:'计划组别及伙伴', crumbs:['首页','关于我们','计划组别及伙伴'] },
+    'reports-statistics':{ title:'报告及统计数字', crumbs:['首页','关于我们','报告及统计数字'] },
+    'user-survey':{ title:'读者意见调查结果', crumbs:['首页','关于我们','读者意见调查结果'] },
+    'vision-mission':{ title:'愿景及使命', crumbs:['首页','关于我们','愿景及使命'] },
+    'book':{ title:'图书详情', crumbs:['首页','馆藏资源','检索结果','图书详情'] },
+    contact:{ title:'联系方式', crumbs:['首页','联系我们'] },
+    'contact-staff':{ title:'馆员名册', crumbs:['首页','联系我们','馆员名册'] },
+    'contact-feedback':{ title:'意见反馈', crumbs:['首页','联系我们','意见反馈'] },
+    'contact-faq':{ title:'常见问题', crumbs:['首页','联系我们','常见问题'] },
+    'contact-damaged':{ title:'破损图书阅览指引', crumbs:['首页','联系我们','破损图书阅览指引'] },
+    login:{ title:'统一身份认证', crumbs:['首页','登录'] },
+    'my-library':{ title:'我的图书馆', crumbs:['首页','我的图书馆'] }
+  };
+
+  /* ===================== 工具 ===================== */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $all(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function getState() {
+    try { var raw = sessionStorage.getItem('library_user'); return raw ? JSON.parse(raw) : null; }
+    catch (e) { return null; }
+  }
+  function setState(u) { try { sessionStorage.setItem('library_user', JSON.stringify(u)); } catch (e) {} }
+  function clearState() { try { sessionStorage.removeItem('library_user'); } catch (e) {} }
+  function isAdmin() { var u = getState(); return !!(u && u.role === 'admin'); }
+  function roleLabel(r) { return r === 'admin' ? '管理员' : r === 'staff' ? '教职工' : r === 'student' ? '学生' : ''; }
+  function statusTag(st) {
+    switch (st) {
+      case 'ok': return '<span class="tag tag-ok">可借</span>';
+      case 'out': return '<span class="tag tag-out">已借出</span>';
+      case 'lost': return '<span class="tag tag-lost">遗失</span>';
+      case 'broken': return '<span class="tag tag-broken">破损</span>';
+      case 'internal': return '<span class="tag tag-internal">内部阅览</span>';
+      default: return '<span class="tag">' + esc(st) + '</span>';
+    }
+  }
+  function tagByCn(s) {
+    if (s === '遗失') return 'tag-lost';
+    if (s === '破损') return 'tag-broken';
+    if (s === '已借出') return 'tag-out';
+    if (s === '公开') return 'tag-public';
+    if (s === '内部') return 'tag-internal';
+    if (s === '受限') return 'tag-restricted';
+    return 'tag-ok';
+  }
+
+  function bookRow(b, showBorrower) {
+    var extra = '';
+    if (b.status === 'out' && b.returnDate) extra += '<div class="book__meta">预计归还：' + esc(b.returnDate) + '</div>';
+    if (b.status === 'broken') extra += '<div class="book__meta"><a href="#/contact-damaged" data-nav="contact-damaged">联系馆员 →</a></div>';
+    var borrower = '';
+    if (showBorrower && b.borrower) borrower = '<div class="book__borrower">曾借阅者：' + esc(b.borrower) + '</div>';
+    return '<div class="book">' +
+      '<div class="book__cover">封面</div>' +
+      '<div class="book__info">' +
+        '<a class="book__title book__title--link" href="#/book?id=' + encodeURIComponent(b.id) + '" data-nav="book" data-id="' + esc(b.id) + '">' + esc(b.title) + '</a>' +
+        '<div class="book__author">' + esc(b.author) + '</div>' +
+        '<div class="book__meta">' + esc(b.category) + ' · ' + esc(b.publisher) + ' · ' + esc(b.year) + ' · ' + esc(b.location) + '</div>' +
+        '<div class="book__row">' + statusTag(b.status) + extra + borrower + '</div>' +
+      '</div></div>';
+  }
+
+  /* ===================== 图书详情页 数据 / 工具 ===================== */
+  function bookById(id) {
+    for (var i = 0; i < BOOKS.length; i++) { if (BOOKS[i].id === id) return BOOKS[i]; }
+    return null;
+  }
+  function deriveIsbn(b) {
+    var seed = String(b.id).replace(/[^0-9]/g, '') || '0';
+    var core = ('000000' + seed).slice(-6);
+    var base = '9787' + core + '0';
+    var sum = 0;
+    for (var i = 0; i < 12; i++) { sum += parseInt(base.charAt(i), 10) * (i % 2 === 0 ? 1 : 3); }
+    var cd = (10 - (sum % 10)) % 10;
+    return base + cd;
+  }
+  function deriveCallNo(b) {
+    var map = { '古籍': 'PL', '古籍特藏': 'PL', '图书': 'PL', '期刊': 'AP', '电子资源': 'ER' };
+    var p = map[b.category] || 'PL';
+    var yr = String(b.year || '----');
+    var auth = (b.author || '佚名').charAt(0);
+    return p + ' ' + yr + ' .' + auth;
+  }
+  function holdingStatus(b) {
+    if (b.status === 'ok') return '在架';
+    if (b.status === 'out') return '已借出';
+    if (b.status === 'lost') return '遗失';
+    if (b.status === 'broken') return '破损';
+    return '内部阅览';
+  }
+  function holdingTag(st) {
+    var cls = ({ '在架': 'tag-ok', '已借出': 'tag-out', '遗失': 'tag-lost', '破损': 'tag-broken', '内部阅览': 'tag-internal' })[st] || 'tag-ok';
+    return '<span class="tag ' + cls + '">' + esc(st) + '</span>';
+  }
+  function compileBook(b) {
+    if (!b) return null;
+    var st = holdingStatus(b);
+    return {
+      id: b.id, title: b.title, otherTitle: b.otherTitle || '', author: b.author,
+      responsible: b.responsible || b.author, subject: b.subject || b.category,
+      series: b.series || '', publisher: b.publisher, year: b.year,
+      isbn: b.isbn || deriveIsbn(b), version: b.version || '初版',
+      format: b.format || '纸质图书', language: b.language || '中文',
+      callNo: b.callNo || deriveCallNo(b), holdingLoc: b.location,
+      holdingDesc: b.holding || 'MMW Book (4/F)',
+      copies: 1, available: (b.status === 'ok') ? 1 : 0, reservations: (b.status === 'out') ? 1 : 0,
+      status: st, permalink: 'https://library.jcu.edu.cn/book/' + (b.permalinkId || b.id),
+      borrower: b.borrower
+    };
+  }
+  function citations(d) {
+    var a = d.author, t = d.title, p = d.publisher, y = d.year, loc = d.holdingLoc;
+    return [
+      { name: 'APA (第7版)', text: a + '. (' + y + '). ' + t + ' (' + d.version + '). ' + p + '.' },
+      { name: 'APA (第6版)', text: a + '. (' + y + '). ' + t + '. ' + p + '.' },
+      { name: 'Chicago/Turabian (第18版)', text: a + '. ' + t + '. ' + loc + ': ' + p + ', ' + y + '.' },
+      { name: 'MLA (第9版)', text: a + '. ' + t + '. ' + p + ', ' + y + '.' },
+      { name: '哈佛格式', text: a + ' (' + y + '). ' + t + '. ' + p + '.' }
+    ];
+  }
+
+  /* ===================== 弹窗系统（详情页专用） ===================== */
+  function openModal(title, bodyHtml) {
+    var mask = document.createElement('div');
+    mask.className = 'modal-mask modal-detail';
+    mask.innerHTML = '<div class="modal modal-lg"><div class="modal__head"><h3>' + esc(title) + '</h3><button class="modal__close" type="button" aria-label="关闭">×</button></div><div class="modal__body">' + bodyHtml + '</div></div>';
+    document.body.appendChild(mask);
+    mask.addEventListener('click', function (e) { if (e.target === mask) removeModal(mask); });
+    mask.querySelector('.modal__close').addEventListener('click', function () { removeModal(mask); });
+    requestAnimationFrame(function () { mask.classList.add('show'); });
+    return mask;
+  }
+  function removeModal(mask) { if (mask && mask.parentNode) mask.parentNode.removeChild(mask); }
+  function closeAllModals() { $all('.modal-mask.modal-detail').forEach(function (m) { if (m.parentNode) m.parentNode.removeChild(m); }); }
+
+  function copyText(text) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { toast('已复制到剪贴板'); }, function () { fallbackCopy(text); });
+        return;
+      }
+    } catch (e) {}
+    fallbackCopy(text);
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      toast('已复制到剪贴板');
+    } catch (e) { toast('复制失败', 'error'); }
+  }
+  function downloadText(filename, text, mime) {
+    try {
+      var blob = new Blob([text], { type: (mime || 'text/plain') + ';charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    } catch (e) { toast('下载失败', 'error'); }
+  }
+  function buildRIS(d) {
+    return [
+      'TY  - BOOK', 'TI  - ' + d.title, 'AU  - ' + d.author, 'PY  - ' + d.year,
+      'PB  - ' + d.publisher, 'SN  - ' + d.isbn, 'LA  - ' + d.language,
+      'CN  - ' + d.subject, 'UR  - ' + d.permalink, 'ER  - '
+    ].join('\r\n');
+  }
+  function buildCSV(d) {
+    var header = ['题名', '作者', '出版社', '出版日期', 'ISBN', '索书号', '馆藏地', '语言'];
+    var row = [d.title, d.author, d.publisher, d.year, d.isbn, d.callNo, d.holdingLoc, d.language];
+    function csv(s) { s = String(s == null ? '' : s); if (/[",\n]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"'; return s; }
+    return '﻿' + header.join(',') + '\n' + row.map(csv).join(',');
+  }
+  function buildExcel(d) { return buildCSV(d); }
+
+  /* ===================== 详情页弹窗内容 ===================== */
+  function openExportModal(d) {
+    var fmtBtns = [
+      { t: '引文格式', fn: function () { openCitationModal(d); } },
+      { t: 'RefWorks', fn: function () { toast('功能开发中'); } },
+      { t: 'EndNote', fn: function () { toast('功能开发中'); } },
+      { t: 'EasyBib', fn: function () { toast('功能开发中'); } },
+      { t: '导出 RIS', fn: function () { downloadText(d.title + '.ris', buildRIS(d), 'application/x-research-info-systems'); toast('RIS 文件已下载'); } },
+      { t: 'Excel', fn: function () { downloadText(d.title + '.csv', buildExcel(d), 'text/csv'); toast('Excel/CSV 文件已下载'); } }
+    ];
+    var btns = fmtBtns.map(function (b, i) { return '<button class="btn" type="button" data-fmt="' + i + '">' + b.t + '</button>'; }).join('');
+    var body =
+      '<div style="font-weight:600;margin-bottom:10px">导出格式：</div>' +
+      '<div class="export-grid">' + btns + '</div>' +
+      '<div style="font-weight:600;margin:6px 0 8px">永久链接：</div>' +
+      '<div class="permalink-box"><input type="text" readonly value="' + esc(d.permalink) + '"><button class="btn btn-ghost" type="button" id="exp-copy">复制永久链接到剪贴板</button></div>' +
+      '<div class="modal-actions"><button class="btn" type="button" id="exp-print">打印</button><button class="btn btn-ghost" type="button" id="exp-email">电邮</button></div>';
+    var mask = openModal('导出', body);
+    mask.querySelectorAll('[data-fmt]').forEach(function (el) {
+      el.addEventListener('click', function () { fmtBtns[parseInt(el.getAttribute('data-fmt'), 10)].fn(); });
+    });
+    $('#exp-copy', mask).addEventListener('click', function () { copyText(d.permalink); });
+    $('#exp-print', mask).addEventListener('click', function () { window.print(); });
+    $('#exp-email', mask).addEventListener('click', function () { openEmailModal(d); });
+  }
+  function openCitationModal(d) {
+    var cite = citations(d);
+    var rows = cite.map(function (c, i) {
+      return '<div class="cite-row"><div class="cite-row__name">' + esc(c.name) + '</div>' +
+        '<div class="cite-row__text">' + esc(c.text) + '</div>' +
+        '<button class="btn btn-ghost cite-row__copy" type="button" data-cite="' + i + '">复制</button></div>';
+    }).join('');
+    var mask = openModal('引文格式', rows);
+    mask.querySelectorAll('[data-cite]').forEach(function (el) {
+      el.addEventListener('click', function () { copyText(cite[parseInt(el.getAttribute('data-cite'), 10)].text); });
+    });
+  }
+  function openLinksModal(d) {
+    var wc = 'https://www.worldcat.org/search?q=' + encodeURIComponent('isbn:' + d.isbn);
+    var amz = 'https://www.amazon.com/s?k=' + encodeURIComponent(d.title);
+    var body = '<div class="link-list">' +
+      '<a href="' + wc + '" target="_blank" rel="noopener">WorldCat ↗</a>' +
+      '<a href="' + amz + '" target="_blank" rel="noopener">Amazon ↗</a>' +
+      '</div>';
+    openModal('外部链接', body);
+  }
+  function openQrModal(d) {
+    var body = '<div class="qr-box"><canvas id="qr-canvas" width="200" height="200"></canvas>' +
+      '<div class="qr-note">使用手机扫描二维码查看本书详情</div></div>' +
+      '<div style="font-weight:600;margin:6px 0 8px">链接：</div>' +
+      '<div class="qr-link"><input type="text" readonly value="' + esc(d.permalink) + '"><button class="btn btn-ghost" type="button" id="qr-copy">复制链接</button></div>';
+    var mask = openModal('二维码', body);
+    var cv = $('#qr-canvas', mask);
+    if (cv && cv.getContext) drawQrPlaceholder(cv, d.permalink);
+    $('#qr-copy', mask).addEventListener('click', function () { copyText(d.permalink); });
+  }
+  function openEmailModal(d) {
+    var u = getState();
+    var email = u ? (u.id + '@jcu.edu.cn') : '';
+    var subject = '书目信息：' + d.title;
+    var content = d.title + '\n' + d.permalink + '\n\n题名：' + d.title + '\n作者：' + d.author +
+      '\n出版社：' + d.publisher + '\n出版日期：' + d.year + '\nISBN：' + d.isbn;
+    var body = '<div class="email-field field"><label>收件人</label><input type="email" id="em-to" value="' + esc(email) + '"></div>' +
+      '<div class="email-field field"><label>主题</label><input type="text" id="em-subject" value="' + esc(subject) + '"></div>' +
+      '<div class="email-field field"><label>内容</label><textarea id="em-body">' + esc(content) + '</textarea></div>' +
+      '<div class="modal-actions"><button class="btn" type="button" id="em-send">发送</button><button class="btn btn-ghost" type="button" id="em-cancel">取消</button></div>';
+    var mask = openModal('发送书目信息', body);
+    $('#em-cancel', mask).addEventListener('click', function () { removeModal(mask); });
+    $('#em-send', mask).addEventListener('click', function () {
+      var to = $('#em-to', mask).value.trim();
+      if (!to) { toast('请先登录或填写收件人', 'warn'); return; }
+      removeModal(mask);
+      toast('邮件已发送');
+    });
+  }
+  function drawQrPlaceholder(canvas, text) {
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var n = 25, size = 200, cell = size / n;
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, size, size);
+    var seed = 2166136261 >>> 0;
+    for (var i = 0; i < text.length; i++) { seed ^= text.charCodeAt(i); seed = (seed * 16777619) >>> 0; }
+    function rnd() { seed ^= seed << 13; seed >>>= 0; seed ^= seed >> 17; seed ^= seed << 5; seed >>>= 0; return seed / 4294967296; }
+    function inFinder(x, y) { return (x < 8 && y < 8) || (x >= n - 8 && y < 8) || (x < 8 && y >= n - 8); }
+    ctx.fillStyle = '#111';
+    for (var y = 0; y < n; y++) { for (var x = 0; x < n; x++) { if (inFinder(x, y)) continue; if (rnd() > 0.5) ctx.fillRect(Math.round(x * cell), Math.round(y * cell), Math.ceil(cell), Math.ceil(cell)); } }
+    function finder(ox, oy) { ctx.fillStyle = '#111'; ctx.fillRect(ox, oy, 7 * cell, 7 * cell); ctx.fillStyle = '#fff'; ctx.fillRect(ox + cell, oy + cell, 5 * cell, 5 * cell); ctx.fillStyle = '#111'; ctx.fillRect(ox + 2 * cell, oy + 2 * cell, 3 * cell, 3 * cell); }
+    finder(0, 0); finder((n - 7) * cell, 0); finder(0, (n - 7) * cell);
+  }
+
+
+  /* ===================== Toast / Modal ===================== */
+  var toastTimer = null;
+  function toast(msg, type) {
+    var t = $('#toast');
+    if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+    t.className = 'toast' + (type ? ' toast--' + type : '');
+    t.textContent = msg;
+    t.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+  function showModal(title, bodyHtml) {
+    var mask = $('#modal-mask');
+    if (!mask) {
+      mask = document.createElement('div'); mask.id = 'modal-mask'; mask.className = 'modal-mask';
+      mask.innerHTML = '<div class="modal"><h3 id="modal-title"></h3><p id="modal-body"></p><button class="btn" id="modal-ok">我知道了</button></div>';
+      document.body.appendChild(mask);
+      mask.addEventListener('click', function (e) { if (e.target === mask) closeModal(); });
+      var ok = $('#modal-ok'); if (ok) ok.addEventListener('click', closeModal);
+    }
+    $('#modal-title').textContent = title;
+    $('#modal-body').innerHTML = bodyHtml || '';
+    mask.classList.add('show');
+  }
+  function closeModal() { var m = $('#modal-mask'); if (m) m.classList.remove('show'); }
+
+  /* ===================== 检索 ===================== */
+  function normalSearch(q) {
+    q = (q || '').trim().toLowerCase();
+    if (!q) return BOOKS.filter(function (b) { return !b.hidden; });
+    return BOOKS.filter(function (b) {
+      if (b.hidden) return false;
+      return (b.title + b.author + b.category).toLowerCase().indexOf(q) >= 0;
+    });
+  }
+  function advancedSearch(f) {
+    var allFilled = f.title && f.author && f.category && f.publisher && f.year && (f.location && f.location !== '全部');
+    if (allFilled) {
+      return BOOKS.filter(function (b) {
+        return String(b.title) === f.title &&
+               String(b.author) === f.author &&
+               String(b.category) === f.category &&
+               String(b.publisher) === f.publisher &&
+               String(b.year) === f.year &&
+               String(b.location) === f.location;
+      });
+    }
+    return BOOKS.filter(function (b) {
+      if (b.hidden) return false;
+      if (f.title && b.title.toLowerCase().indexOf(f.title.toLowerCase()) < 0) return false;
+      if (f.author && b.author.toLowerCase().indexOf(f.author.toLowerCase()) < 0) return false;
+      if (f.category && b.category.toLowerCase().indexOf(f.category.toLowerCase()) < 0) return false;
+      if (f.publisher && b.publisher.toLowerCase().indexOf(f.publisher.toLowerCase()) < 0) return false;
+      if (f.year && String(b.year).indexOf(f.year) < 0) return false;
+      if (f.location && f.location !== '全部' && b.location !== f.location) return false;
+      var any = f.title || f.author || f.category || f.publisher || f.year || (f.location && f.location !== '全部');
+      return !!any;
+    });
+  }
+  function renderBookList(container, list, showBorrower) {
+    if (!container) return;
+    if (!list.length) { container.innerHTML = '<div class="empty-state">未找到匹配结果。请调整关键词或检索条件。</div>'; return; }
+    container.innerHTML = list.map(function (b) { return bookRow(b, showBorrower); }).join('');
+  }
+
+  /* ===================== 页脚 / 页头渲染 ===================== */
+  function navActive(navKey, cur) {
+    if (navKey === cur) return true;
+    if (GROUP_OF[cur] === navKey) return true;
+    return String(cur).indexOf(navKey + '-') === 0;
+  }
+  function renderHeader(cur) {
+    var links = NAV.map(function (n) {
+      var cls = navActive(n.key, cur) ? ' class="active"' : '';
+      return '<a href="#/' + n.key + '" data-nav="' + n.key + '"' + cls + '>' + n.label + '</a>';
+    }).join('');
+    var u = getState();
+    var loginHtml = u
+      ? '<a href="#/my-library" data-nav="my-library" class="btn-login">' + esc(u.name) + '</a>'
+      : '<a href="#/login" data-nav="login" class="btn-login">登录</a>';
+    return '<header class="site-header"><div class="container">' +
+      '<div class="brand"><div class="brand__mark">江</div><div class="brand__name">江川大学图书馆</div></div>' +
+      '<nav class="main-nav" id="main-nav">' + links + '</nav>' +
+      '<div class="nav-login">' + loginHtml + '</div>' +
+      '<button class="nav-toggle" id="nav-toggle" aria-label="导航菜单">☰</button>' +
+      '</div></header>';
+  }
+
+  function renderFooter() {
+    return '<footer class="site-footer"><div class="container">' +
+      '<div class="footer-cols">' +
+      '<div class="footer-col"><h4>江川大学图书馆</h4><ul>' +
+        '<li>地址：白宁省江川市江川大学学苑路66号</li>' +
+        '<li>电话：+86-894-15868 转 6201</li>' +
+        '<li>邮箱：library@jcu.edu.cn</li>' +
+      '</ul></div>' +
+      '<div class="footer-col"><h4>服务链接</h4><ul>' +
+        '<li><a href="#/contact-faq" data-nav="contact-faq">常见问题</a></li>' +
+        '<li><a href="#/contact-feedback" data-nav="contact-feedback">意见反馈</a></li>' +
+        '<li><a href="#/contact-staff" data-nav="contact-staff">馆员名录</a></li>' +
+        '<li><a href="#/contact-damaged" data-nav="contact-damaged">破损图书指引</a></li>' +
+      '</ul></div>' +
+      '<div class="footer-col"><h4>版权信息</h4><ul>' +
+        '<li>© 2025 江川大学图书馆</li>' +
+        '<li>备案号：流ICP备5X9376号-1</li>' +
+      '</ul></div>' +
+      '</div>' +
+      '<div class="footer-bottom">© 2025 江川大学图书馆 · 流ICP备5X9376号-1</div>' +
+      '</div></footer>';
+  }
+
+  function renderBreadcrumb(crumbs) {
+    if (!crumbs || !crumbs.length) return '';
+    var html = crumbs.map(function (c, i) {
+      if (i === crumbs.length - 1) return '<span>' + esc(c) + '</span>';
+      return '<a href="#/' + (i === 0 ? 'index' : '') + '" data-nav="index">' + esc(c) + '</a>';
+    }).join(' &gt; ');
+    return '<div class="breadcrumb"><div class="container">' + html + '</div></div>';
+  }
+
+  function renderSidebar(cur, group) {
+    var items = SIDEBARS[group];
+    if (!items) return '';
+    var html = items.map(function (it) {
+      var cls = it.key === cur ? ' class="active"' : '';
+      return '<a href="#/' + it.key + '" data-nav="' + it.key + '"' + cls + '>' + it.label + '</a>';
+    }).join('');
+    var title = group === 'borrowing' ? '借阅服务' : group === 'learning' ? '学习与教学' : group === 'research' ? '科研支持' : group === 'about' ? '关于我们' : '联系我们';
+    return '<aside class="side"><nav class="side-nav"><div class="side-nav__title">' + title + '</div>' + html + '</nav></aside>';
+  }
+
+  /* ===================== 页面正文 ===================== */
+  var PAGES = {};
+
+  // ---- 首页 ----
+  PAGES.index = function () {
+    var quick = [
+      { key: 'collection', label: '馆藏目录', icon: 'book' },
+      { key: 'eresources', label: '数据库A-Z', icon: 'db' },
+      { key: 'booking', label: '空间预约', icon: 'cal' },
+      { key: 'borrowing-recommend', label: '图书荐购', icon: 'pen' },
+      { key: 'new-books', label: '新书通报', icon: 'news' },
+      { key: 'my-library', label: '我的图书馆', icon: 'user' },
+      { key: 'borrowing-rules', label: '借阅规则', icon: 'rule' },
+      { key: 'contact-faq', label: '常见问题', icon: 'help' },
+      { key: 'special-collection', label: '特藏资源', icon: 'archive' }
+    ];
+    var icons = {
+      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
+      db: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg>',
+      cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="1"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>',
+      pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+      news: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h13v16H4zM17 9h3v9a2 2 0 0 1-2 2"/><path d="M7 8h6M7 12h6M7 16h4"/></svg>',
+      user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>',
+      rule: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+      help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9.5a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4"/><circle cx="12" cy="17.5" r=".6" fill="currentColor"/></svg>',
+      archive: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v3H3zM5 9v10h14V9M9 13h6"/></svg>'
+    };
+    var quickHtml = quick.map(function (q) {
+      return '<a class="quick-card" href="#/' + q.key + '" data-nav="' + q.key + '">' +
+        '<span class="quick-card__icon">' + icons[q.icon] + '</span>' +
+        '<span class="quick-card__label">' + q.label + '</span></a>';
+    }).join('');
+
+    var newsHtml = NEWS.map(function (n) {
+      return '<div class="news-item"><div class="news-item__date">' + esc(n.date) + '</div>' +
+        '<div class="news-item__title">' + esc(n.title) + '</div>' +
+        '<div class="news-item__summary">' + esc(n.summary) + '</div></div>';
+    }).join('');
+
+    var hot = BOOKS.filter(function (b) { return !b.hidden; }).slice(0, 6);
+    var hotHtml = hot.map(function (b) {
+      return '<div class="book"><div class="book__cover">封面</div><div class="book__info">' +
+        '<div class="book__title">' + esc(b.title) + '</div>' +
+        '<div class="book__author">' + esc(b.author) + '</div>' +
+        '<div class="book__row">' + statusTag(b.status) + '</div></div></div>';
+    }).join('');
+
+    var openHtml = OPENING_HOURS.map(function (o) {
+      var rows = o.rows.map(function (r) { return '<div class="list-line">' + esc(r[0]) + '：' + esc(r[1]) + '</div>'; }).join('');
+      return '<div class="card"><h3>' + esc(o.lib) + '</h3>' + rows + '</div>';
+    }).join('');
+
+    var linksHtml = ['馆藏目录检索', '电子资源', '新书通报', '馆际互借', '研究支援'].map(function (l, i) {
+      var keys = ['collection', 'eresources', 'new-books', 'borrowing-interloan', 'research-support'];
+      return '<div class="list-line"><a href="#/' + keys[i] + '" data-nav="' + keys[i] + '">' + l + ' →</a></div>';
+    }).join('');
+
+    return '<section class="hero"><div class="hero__inner">' +
+      '<div class="hero__sub">江川大学图书馆官网</div>' +
+      '<div class="hero__title">川流藏书馆·江川大学图书馆</div>' +
+      '<div class="hero__slogan">检索馆藏资源</div>' +
+      '<div class="hero__search"><input type="text" id="hero-q"><button class="btn" id="hero-search">检索</button></div>' +
+      '<div class="hero__links"><a href="#/collection-advanced" data-nav="collection-advanced">高级检索</a></div>' +
+      '</div></section>' +
+      '<main class="container">' +
+      '<div class="home-cols">' +
+      '<section><h2 class="section-title">快捷入口</h2><div class="quick-grid">' + quickHtml + '</div></section>' +
+      '<section><h2 class="section-title">新闻公告</h2>' +
+      '<div class="grid grid-2">' +
+      '<div class="card">' + newsHtml + '</div>' +
+      '<div class="card"><h3>热门图书</h3>' + hotHtml + '</div></div>' +
+      '</section>' +
+      '</div>' +
+      '<h2 class="section-title">今日开放时间</h2>' +
+      '<div class="grid grid-2">' + openHtml + '</div>' +
+      '<h2 class="section-title">常用链接</h2>' +
+      '<div class="card">' + linksHtml + '</div>' +
+      '</main>';
+  };
+
+  // ---- 馆藏资源检索 ----
+  PAGES.collection = function () {
+    return '<main class="container">' +
+      '<div class="page-title"><h1>馆藏资源检索</h1></div>' +
+      '<div class="card" style="margin-bottom:20px">' +
+        '<div class="hero__search" style="margin:0 0 12px"><input type="text" id="coll-q"><button class="btn" id="coll-search">检索</button></div>' +
+        '<div style="font-size:.92rem"><a href="#/collection-advanced" data-nav="collection-advanced">高级检索</a></div>' +
+        '<div class="filter-chips" style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">' +
+          ['全部','图书','期刊','古籍','电子资源'].map(function (c) {
+            return '<button class="btn btn-ghost btn-sm chip" data-cat="' + c + '">' + c + '</button>';
+          }).join('') +
+        '</div>' +
+      '</div>' +
+      '<div class="layout">' +
+        '<aside class="side"><div class="side-nav">' +
+          '<div class="side-nav__title">筛选</div>' +
+          '<div class="filter-group" style="padding:16px 18px"><h4>馆藏地</h4>' +
+            '<label class="filter-item"><input type="checkbox" data-floc="川流藏书馆"> 川流藏书馆</label>' +
+            '<label class="filter-item"><input type="checkbox" data-floc="资料档案室"> 资料档案室</label>' +
+          '</div>' +
+          '<div class="filter-group" style="padding:0 18px 16px"><h4>状态</h4>' +
+            '<label class="filter-item"><input type="checkbox" data-fstat="ok"> 可借</label>' +
+            '<label class="filter-item"><input type="checkbox" data-fstat="out"> 已借出</label>' +
+            '<label class="filter-item"><input type="checkbox" data-fstat="lost"> 遗失</label>' +
+            '<label class="filter-item"><input type="checkbox" data-fstat="broken"> 破损</label>' +
+          '</div>' +
+        '</div></aside>' +
+        '<div class="content"><div id="result-count" style="color:var(--muted);font-size:.92rem;margin-bottom:10px"></div><div id="results"></div></div>' +
+      '</div></main>';
+  };
+
+  // ---- 普通检索结果 ----
+  PAGES['collection-search'] = function (query) {
+    var q = query && query.q ? query.q : '';
+    var list = normalSearch(q);
+    var body = list.length
+      ? list.map(function (b) { return bookRow(b, isAdmin()); }).join('')
+      : '<div class="empty-state">未找到匹配结果。</div>';
+    return '<main class="container">' +
+      '<div class="page-title"><h1>检索结果</h1></div>' +
+      '<div class="card" style="margin-bottom:20px"><div class="hero__search" style="margin:0"><input type="text" id="search-q" value="' + esc(q) + '"><button class="btn" id="search-go">检索</button></div></div>' +
+      '<div style="color:var(--muted);font-size:.92rem;margin-bottom:10px">共找到 ' + list.length + ' 条结果</div>' +
+      '<div id="results">' + body + '</div>' +
+      '</main>';
+  };
+
+  // ---- 图书详情 ----
+  PAGES['book'] = function (query) {
+    var raw = bookById(query && query.id);
+    if (!raw) {
+      return '<main class="container"><div class="empty-state">未找到该图书，或链接已失效。<br><a href="#/collection" data-nav="collection">返回馆藏资源检索 →</a></div></main>';
+    }
+    var d = compileBook(raw);
+    var rows = [
+      ['题名', d.title],
+      ['其他题名', d.otherTitle || '—'],
+      ['作者', d.author],
+      ['责任者', d.responsible],
+      ['主题', d.subject],
+      ['丛书', d.series || '—'],
+      ['出版社', d.publisher],
+      ['出版日期', d.year],
+      ['标识符', 'ISBN: ' + d.isbn],
+      ['版本', d.version],
+      ['格式', d.format],
+      ['语言', d.language]
+    ];
+    var detailRows = rows.map(function (r) { return '<tr><th>' + esc(r[0]) + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('');
+    var stTag = holdingTag(d.status);
+    var availTag = (d.available > 0) ? '<span class="tag tag-ok">可借</span>' : '<span class="tag tag-out">不可借</span>';
+    var holdingsHtml =
+      '<section id="holding-section" style="margin-top:8px">' +
+        '<h2 class="section-title">馆藏位置</h2>' +
+        '<div class="holding-card" id="holding-card">' +
+          '<div class="holding-card__head">' +
+            '<div><div class="holding-card__lib">' + esc(d.holdingLoc) + '</div>' +
+            '<div class="holding-card__call">索书号：' + esc(d.callNo) + '</div></div>' +
+            '<button class="holding-toggle" id="holding-toggle" type="button">展开 ▸</button>' +
+          '</div>' +
+          '<div class="holding-card__detail">' +
+            '<div class="holding-card__row">馆藏：' + esc(d.holdingDesc) + '</div>' +
+            '<div class="holding-card__row">(' + d.copies + '册，' + d.available + '本可借，' + d.reservations + '个预约)</div>' +
+            '<div class="holding-card__row">状态：' + stTag + ' ' + availTag + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+    var requestHtml =
+      '<section style="margin-top:24px"><div class="request-login">' +
+        '<span>请登录以查看请求选项。</span>' +
+        '<a class="btn btn-blue" id="book-login" href="#/login" data-nav="login">登录</a>' +
+      '</div></section>';
+    var impHtml =
+      '<div class="imp-notice"><strong>重要提示：</strong>本馆不会购买或提供任何可能触犯中华人民共和国法律，包括《中华人民共和国国家安全法》及《中华人民共和国数据安全法》的资料。</div>';
+    return '<main class="container book-detail">' +
+      '<span class="book-type-tag">[' + esc(d.category) + ']</span>' +
+      '<h1 class="book-detail__title">' + esc(d.title) + '</h1>' +
+      '<div class="book-actions">' +
+        '<button class="book-action" id="act-top" type="button">回到顶部</button>' +
+        '<button class="book-action" id="act-export" type="button">导出</button>' +
+        '<button class="book-action" id="act-holding" type="button">获取馆藏</button>' +
+        '<button class="book-action" id="act-detail" type="button">详情</button>' +
+        '<button class="book-action" id="act-links" type="button">链接</button>' +
+        '<button class="book-action" id="act-qr" type="button">二维码</button>' +
+      '</div>' +
+      '<div id="detail-info">' +
+        '<table class="detail-table"><tbody>' + detailRows + '</tbody></table>' +
+      '</div>' +
+      impHtml +
+      holdingsHtml +
+      requestHtml +
+      '</main>';
+  };
+
+  // ---- 高级检索 ----
+  PAGES['collection-advanced'] = function () {
+    return '<main class="container">' +
+      '<div class="page-title"><h1>高级检索</h1></div>' +
+      '<div class="card" style="margin-bottom:20px">' +
+        '<p style="color:var(--muted)">请填写检索条件。全部字段精确匹配可检索到特藏书目（含内部文献）。</p>' +
+        '<form id="adv-form">' +
+          '<div class="grid grid-2">' +
+            '<div class="field"><label>书名</label><input name="booktitle" type="text"></div>' +
+            '<div class="field"><label>作者</label><input name="author" type="text"></div>' +
+            '<div class="field"><label>分类</label><input name="category" type="text"></div>' +
+            '<div class="field"><label>出版社</label><input name="publisher" type="text"></div>' +
+            '<div class="field"><label>出版年份</label><input name="year" type="text"></div>' +
+            '<div class="field"><label>馆藏地点</label><select name="location">' +
+              '<option>全部</option><option>川流藏书馆</option><option>资料档案室</option>' +
+            '</select></div>' +
+          '</div>' +
+          '<button class="btn" type="submit">检索</button>' +
+        '</form>' +
+      '</div>' +
+      '<div id="result-count" style="color:var(--muted);font-size:.92rem;margin-bottom:10px"></div>' +
+      '<div id="results"></div>' +
+      '</main>';
+  };
+
+  // ---- 特藏资源 ----
+  PAGES['special-collection'] = function () {
+    var items = SPECIAL.map(function (s) {
+      var locked = s.status === '受限';
+      var cls = 'special-item' + (locked ? ' locked' : '');
+      return '<div class="' + cls + '" data-locked="' + (locked ? '1' : '0') + '">' +
+        '<span class="code">' + esc(s.code) + '</span>' +
+        '<span class="ttl">' + esc(s.title) + '</span>' +
+        '<span class="tag ' + tagByCn(s.status) + '">' + esc(s.status) + '</span></div>';
+    }).join('');
+    return '<main class="container">' +
+      '<div class="page-title"><h1>特藏资源</h1></div>' +
+      '<p style="color:var(--muted)">本馆特藏目录仅供在线查阅标题与卷宗编号，正文不可在线阅览。受限卷宗需申请调阅。</p>' +
+      '<div class="card">' + items + '</div></main>';
+  };
+
+  // ---- 电子资源 ----
+  PAGES.eresources = function () {
+    var rows = ERESOURCES.map(function (e) {
+      return '<tr><td>' + esc(e.name) + '</td><td>' + esc(e.cat) + '</td><td>' + esc(e.desc) + '</td></tr>';
+    }).join('');
+    return '<main class="container"><div class="page-title"><h1>电子资源（数据库A-Z）</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>数据库名称</th><th>类别</th><th>简介</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div></div></main>';
+  };
+
+  // ---- 新书通报 ----
+  PAGES['new-books'] = function () {
+    var rows = NEW_BOOKS.map(function (n) {
+      return '<tr><td>' + esc(n.title) + '</td><td>' + esc(n.author) + '</td><td>' + esc(n.publisher) + '</td><td>' + esc(n.year) + '</td><td>' + esc(n.note) + '</td></tr>';
+    }).join('');
+    return '<main class="container"><div class="page-title"><h1>新书通报</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>书名</th><th>作者</th><th>出版社</th><th>年份</th><th>简介</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div></div></main>';
+  };
+
+  // ---- 空间与设施 ----
+  PAGES.spaces = function () {
+    var fac = FACILITIES.map(function (f) {
+      return '<div class="list-line"><strong>' + esc(f.name) + '</strong>：' + esc(f.desc) + '</div>';
+    }).join('');
+    return '<main class="container"><div class="page-title"><h1>空间与设施</h1></div>' +
+      '<div class="card">' + fac + '</div>' +
+      '<div style="margin-top:20px"><a class="btn" href="#/booking" data-nav="booking">研讨室预约 →</a></div></main>';
+  };
+
+  // ---- 研讨室预约 ----
+  PAGES.booking = function () {
+    var rooms = STUDY_ROOMS.map(function (r) {
+      return '<div class="room"><div class="room__no">' + esc(r.no) + ' ' + esc(r.name) +
+        (r.special ? '<span class="room__special">圣殿学院专属研讨室</span>' : '') + '</div>' +
+        '<div class="book__meta">容量：' + esc(r.cap) + '　设施：' + esc(r.fac) + '</div></div>';
+    }).join('');
+    var hist = '';
+    var u = getState();
+    var h = u ? BOOKING_HISTORY[u.id] : null;
+    if (h && h.length) {
+      hist = '<h2 class="section-title">我的预约历史</h2><div class="card">' + h.map(bookingRowHTML).join('') + '</div>';
+    }
+    return '<main class="container"><div class="page-title"><h1>研讨室预约</h1></div>' +
+      '<div class="grid grid-3">' + rooms + '</div>' +
+      '<div class="card" style="margin-top:20px"><form id="booking-form">' +
+        '<div class="grid grid-2">' +
+          '<div class="field"><label>日期</label><input type="date" name="date"></div>' +
+          '<div class="field"><label>时间段</label><select name="time"><option>09:00-12:00</option><option>14:00-18:00</option><option>18:00-22:00</option></select></div>' +
+          '<div class="field"><label>房间</label><select name="room">' + STUDY_ROOMS.map(function (r) { return '<option>' + esc(r.no) + '</option>'; }).join('') + '</select></div>' +
+          '<div class="field"><label>用途</label><input type="text" name="purpose"></div>' +
+        '</div>' +
+        '<button class="btn" type="submit">提交预约</button>' +
+      '</form></div>' + hist + '</main>';
+  };
+
+  function bookingRowHTML(r) {
+    var frag = r.note ? '<div class="book__borrower">' + esc(r.note) + '</div>' : '';
+    return '<div class="list-line"><strong>研讨室 ' + esc(r.room) + ' · ' + esc(r.date) + '</strong>' +
+      '<div class="book__meta">时间段：' + esc(r.time) + '　用途：' + esc(r.purpose) + '</div>' + frag + '</div>';
+  }
+
+  // ---- 借阅服务（hub + 子页）----
+  PAGES.borrowing = function () {
+    return '<main class="container"><div class="page-title"><h1>借阅服务</h1></div>' +
+      '<p>本馆借阅服务涵盖图书借阅、预约、续借、馆际互借、文献传递、读者证办理、逾期罚款、自助借还与图书荐购，请从左侧选择相应服务。</p>' +
+      '<div class="card"><div class="grid grid-3">' +
+        ['借阅规则','图书预约','续借','馆际互借','文献传递','读者证办理','逾期与罚款','自助借还','图书荐购'].map(function (t, i) {
+          var keys = ['borrowing-rules','borrowing-reserve','borrowing-renewal','borrowing-interloan','borrowing-document-delivery','borrowing-library-card','borrowing-fines','borrowing-self-service','borrowing-recommend'];
+          return '<div class="list-line"><a href="#/' + keys[i] + '" data-nav="' + keys[i] + '">' + t + ' →</a></div>';
+        }).join('') +
+      '</div></div></main>';
+  };
+
+  PAGES['borrowing-rules'] = function () {
+    return '<main class="container"><div class="page-title"><h1>借阅规则</h1></div>' +
+      '<div class="grid grid-2">' +
+      '<div class="card"><h3>川流藏书馆借阅规则</h3>' +
+        '<div class="table-wrap"><table><thead><tr><th>项目</th><th>规定</th></tr></thead><tbody>' +
+        '<tr><td>借阅册数</td><td>本科生 10 册 / 研究生 20 册 / 教职工 30 册</td></tr>' +
+        '<tr><td>借期</td><td>普通图书 30 天，期刊 7 天</td></tr>' +
+        '<tr><td>续借次数</td><td>每册 1 次，续期 30 天</td></tr>' +
+        '<tr><td>逾期罚款</td><td>0.20 元/册/天，上限 20 元/册</td></tr>' +
+        '</tbody></table></div></div>' +
+      '<div class="card"><h3>资料档案室借阅规则</h3>' +
+        '<div class="table-wrap"><table><thead><tr><th>项目</th><th>规定</th></tr></thead><tbody>' +
+        '<tr><td>借阅册数</td><td>教职工 5 册 / 学生 3 册（馆内阅览为主）</td></tr>' +
+        '<tr><td>借期</td><td>特藏图书 7 天，内部资料仅限馆内阅览</td></tr>' +
+        '<tr><td>续借次数</td><td>特藏图书不可续借</td></tr>' +
+        '<tr><td>逾期罚款</td><td>0.50 元/册/天，上限 20 元/册</td></tr>' +
+        '</tbody></table></div></div>' +
+      '</div></main>';
+  };
+
+  PAGES['borrowing-reserve'] = function () {
+    return '<main class="container"><div class="page-title"><h1>图书预约</h1></div>' +
+      '<p>当图书处于已借出状态时，读者可在线预约。图书归还后，系统将按预约顺序通知读者到馆借阅，保留期为 3 天。</p>' +
+      '<div class="card"><div class="hero__search" style="margin:0"><input type="text" id="reserve-title"><button class="btn" id="reserve-search">查询</button></div>' +
+      '<div id="reserve-result" style="margin-top:14px"></div></div></main>';
+  };
+
+  PAGES['borrowing-renewal'] = function () {
+    return '<main class="container"><div class="page-title"><h1>续借</h1></div>' +
+      '<h3>自助续借方式</h3>' +
+      '<p>登录【我的图书馆】后，在借阅记录中点击「续借」即可自助办理；也可持校园卡至自助借还机操作。</p>' +
+      '<h3>续借条件</h3>' +
+      '<div class="card"><div class="list-line">每册可续借 1 次，续期 30 天。</div>' +
+      '<div class="list-line">到期前 3 天起可申请续借。</div>' +
+      '<div class="list-line">逾期图书、已被预约图书不可续借。</div>' +
+      '<div class="list-line">资料档案室特藏图书不可续借。</div></div></main>';
+  };
+
+  PAGES['borrowing-interloan'] = function () {
+    return '<main class="container"><div class="page-title"><h1>馆际互借</h1></div>' +
+      '<p>本馆与省内外多所高校图书馆建立馆际互借协作关系，读者可申请借阅本馆未收藏的图书文献。</p>' +
+      '<div class="card"><h3>办理流程</h3>' +
+      '<div class="list-line">1. 在馆际互借系统提交申请，填写所需文献信息。</div>' +
+      '<div class="list-line">2. 馆员审核后向协作馆发出请求。</div>' +
+      '<div class="list-line">3. 文献到馆后短信/邮件通知读者。</div>' +
+      '<div class="list-line">4. 读者持校园卡至总服务台借阅，按协作馆规定期限归还。</div></div></main>';
+  };
+
+  PAGES['borrowing-document-delivery'] = function () {
+    return '<main class="container"><div class="page-title"><h1>文献传递</h1></div>' +
+      '<p>读者可通过文献传递服务获取本馆未收藏的期刊论文、会议论文、学位论文等文献的电子副本。</p>' +
+      '<div class="card"><h3>服务说明</h3>' +
+      '<div class="list-line">校内读者免费，校外读者按成本收费。</div>' +
+      '<div class="list-line">单篇文献传递一般 1-3 个工作日完成。</div>' +
+      '<div class="list-line">请通过邮箱 library@jcu.edu.cn 提交申请。</div></div></main>';
+  };
+
+  PAGES['borrowing-library-card'] = function () {
+    return '<main class="container"><div class="page-title"><h1>读者证办理</h1></div>' +
+      '<p>本校师生凭校园一卡通（统一身份认证账号）即可直接借阅，无需单独办理借书证。</p>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>读者类型</th><th>办证方式</th><th>有效期</th></tr></thead><tbody>' +
+      '<tr><td>本校学生</td><td>入学自动开通</td><td>在学期间</td></tr>' +
+      '<tr><td>本校教职工</td><td>入职自动开通</td><td>在职期间</td></tr>' +
+      '<tr><td>校外读者</td><td>咨询台办理临时阅览证</td><td>按申请核准</td></tr>' +
+      '</tbody></table></div></div></main>';
+  };
+
+  PAGES['borrowing-fines'] = function () {
+    return '<main class="container"><div class="page-title"><h1>逾期与罚款</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>馆舍</th><th>逾期费率</th><th>上限</th><th>遗失赔偿</th></tr></thead><tbody>' +
+      '<tr><td>川流藏书馆</td><td>0.20 元/册/天</td><td>20 元/册</td><td>原书价 3 倍</td></tr>' +
+      '<tr><td>资料档案室</td><td>0.50 元/册/天</td><td>20 元/册</td><td>原书价 3 倍或按特藏估价</td></tr>' +
+      '</tbody></table></div></div>' +
+      '<p style="margin-top:14px">罚款可于总服务台或线上缴纳，逾期未还图书将暂停借阅权限。</p></main>';
+  };
+
+  PAGES['borrowing-self-service'] = function () {
+    return '<main class="container"><div class="page-title"><h1>自助借还</h1></div>' +
+      '<p>川流藏书馆一层大厅设有自助借还机，支持自助借书、还书、续借与查询。</p>' +
+      '<div class="card"><h3>使用步骤</h3>' +
+      '<div class="list-line">1. 放置校园卡至读卡区。</div>' +
+      '<div class="list-line">2. 选择「借书 / 还书 / 续借」。</div>' +
+      '<div class="list-line">3. 将图书放至感应区，确认书目信息。</div>' +
+      '<div class="list-line">4. 完成操作并打印凭条。</div></div></main>';
+  };
+
+  PAGES['borrowing-recommend'] = function () {
+    var hist = '';
+    var u = getState();
+    var h = u ? RECOMMEND_HISTORY[u.id] : null;
+    if (h && h.length) {
+      hist = '<h2 class="section-title">我的荐购历史</h2><div class="card">' +
+        h.map(function (r) { return '<div class="list-line"><strong>' + esc(r.name) + '</strong>（' + esc(r.type) + '）' +
+          '<div class="book__meta">推荐日期：' + esc(r.date) + '　处理状态：' + esc(r.status) + '</div></div>'; }).join('') + '</div>';
+    }
+    return '<main class="container"><div class="page-title"><h1>图书荐购</h1></div>' +
+      '<p>欢迎向本馆推荐采购图书或期刊。荐购图书经审核后纳入采购计划，采购完成后将通知荐购人。</p>' +
+      '<div class="card"><form id="recommend-form">' +
+        '<div class="grid grid-2">' +
+          '<div class="field"><label>书名 / 期刊名<span class="req">*</span></label><input name="title" type="text"><div class="err">请填写书名或期刊名</div></div>' +
+          '<div class="field"><label>作者</label><input name="author" type="text"></div>' +
+          '<div class="field"><label>出版社</label><input name="publisher" type="text"></div>' +
+          '<div class="field"><label>ISBN / ISSN</label><input name="isbn" type="text"></div>' +
+        '</div>' +
+        '<div class="field"><label>推荐理由</label><textarea name="reason" rows="3"></textarea></div>' +
+        '<div class="field"><label>推荐人信息<span class="req">*</span></label><input name="requester" type="text"><div class="err">请填写推荐人信息</div></div>' +
+        '<button class="btn" type="submit">提交</button>' +
+      '</form></div>' + hist + '</main>';
+  };
+
+  // ---- 学习与教学 ----
+  function stdPage(title, paras, list) {
+    return '<main class="container"><div class="page-title"><h1>' + title + '</h1></div>' +
+      (paras || []).map(function (p) { return '<p>' + p + '</p>'; }).join('') +
+      (list ? '<div class="card">' + list.map(function (l) { return '<div class="list-line">' + l + '</div>'; }).join('') + '</div>' : '') +
+      '</main>';
+  }
+
+  PAGES.learning = function () {
+    return stdPage('学习与教学',
+      ['图书馆为教学与自主学习提供全方位支援，涵盖研究学习支援、版权咨询、服务台热线、工作坊与学科指引等。'],
+      ['研究及学习支援：为课程与作业提供文献检索指导。', '图书馆工作坊：定期举办信息素养与检索技能培训。', '远程登入图书馆电子资源：校外亦可通过统一身份认证访问数据库。']);
+  };
+  PAGES['learning-support'] = function () { return stdPage('研究及学习支援', ['图书馆馆员可为读者提供一对一研究咨询，协助制定检索策略、查找专题文献并评估信息来源。'], ['学科文献检索辅导', '专题文献综述协助', '论文写作引用格式指导', '数据管理与研究数据支持']); };
+  PAGES['learning-copyright'] = function () { return stdPage('版权及教材制作', ['图书馆为教师提供教材制作与课程资料合规使用的咨询与支持，协助处理版权许可与合理使用问题。'], ['课程指定阅读资料合规审核', '版权许可申请协助', '开放教育资源（OER）推荐', '教材数字化与电子教参制作']); };
+  PAGES['learning-helpdesk'] = function () { return stdPage('服务台热线', ['图书馆服务台为读者提供借阅、咨询与技术支持的一站式服务，可现场、电话或邮件联系。'], ['电话：+86-894-15868 转 6201', '邮箱：library@jcu.edu.cn', '服务时间：周一至周五 08:30-17:00']); };
+  PAGES['learning-quiz'] = function () { return stdPage('图书馆档案资料大考验', ['图书馆每年举办「档案资料大考验」趣味问答活动，帮助读者熟悉馆藏布局、检索方法与特藏资源。'], ['参与对象：全校师生', '活动形式：线上答题与馆内寻宝', '奖品：图书馆文创与购书券']); };
+  PAGES['learning-videos'] = function () { return stdPage('图书馆指导短片', ['图书馆制作系列指导短片，涵盖馆藏检索、电子资源使用、自助借还与引用格式等主题。'], ['馆藏目录检索入门', '数据库远程访问指南', '自助借还机操作演示', '参考文献著录规范']); };
+  PAGES['learning-workshops'] = function () { return stdPage('图书馆工作坊', ['图书馆每学期开设多场工作坊，提升读者的信息素养与研究技能。'], ['信息检索入门与进阶', 'EndNote / Zotero 引用管理', '学术诚信与查重', '数据可视化与图表制作']); };
+  PAGES['learning-remote'] = function () { return stdPage('远程登入图书馆电子资源', ['读者在校外可通过统一身份认证远程访问本馆已购电子资源。'], ['使用统一身份认证账号登录', '访问数据库时选择「机构登录」并选取江川大学', '仅限本人学术研究使用，不得批量下载或转售']); };
+  PAGES['learning-subject'] = function () { return stdPage('学科指引', ['图书馆为各学科编制专题指引，汇总核心数据库、期刊与参考工具。'], ['灵能学与跨界研究', '古典魔法文明与铭文学', '阵法理论与能量节点', '古籍修复与文献保护']); };
+
+  // ---- 科研支持 ----
+  PAGES.research = function () {
+    return stdPage('科研支持', ['图书馆为科研人员提供从立项、研究到成果出版与评估的全流程支持。'], ['研究支援：文献检索与情报分析', '引证资料与学术典藏', '开放存取与出版交流', '研究影响评估']);
+  };
+  PAGES['research-support'] = function () { return stdPage('研究支援', ['图书馆学科馆员可为研究人员提供文献调研、查收查引与学科情报分析服务。'], ['文献检索策略制定', '查收查引报告出具', '学科前沿动态推送', '研究数据管理咨询']); };
+  PAGES['research-citation'] = function () { return stdPage('引证资料', ['图书馆提供引证分析工具与数据，协助研究者了解文献被引情况与研究影响力。'], ['Web of Science 被引检索', 'Scopus 引文分析', 'JCR 期刊影响因子查询', 'h 指数与影响力指标解读']); };
+  PAGES['research-repository'] = function () { return stdPage('学术典藏', ['江川大学学术典藏库收录本校师生研究成果，提供长期保存与开放获取。'], ['学术论文与会议论文典藏', '学位论文数字化存档', '预印本与工作论文存档', 'DOI 与长期引用链接']); };
+  PAGES['research-openaccess'] = function () { return stdPage('开放存取', ['图书馆倡导开放科学，协助研究者以开放获取方式发表成果，扩大研究可见度。'], ['开放获取期刊甄别', '机构知识库自助提交', '开放许可（CC）咨询', '论文处理费（APC）支持']); };
+  PAGES['research-orcid'] = function () { return stdPage('建立ORCID iD', ['ORCID iD 是研究者的唯一身份标识，图书馆协助师生注册并与校内系统关联。'], ['注册 ORCID iD', '关联江川大学与出版平台', '在投稿与基金申请中使用 ORCID']); };
+  PAGES['research-predatory'] = function () { return stdPage('掠夺性出版', ['图书馆提供识别掠夺性期刊与会议的指导，帮助研究者规避学术陷阱。'], ['掠夺性期刊特征识别', '期刊真伪查询工具', '投稿前审查咨询']); };
+  PAGES['research-publishing'] = function () { return stdPage('出版与学术交流', ['图书馆为研究者提供出版选刊、学术交流与成果推广支持。'], ['目标期刊遴选建议', '学术会议资讯', '研究成果宣传与推广']); };
+  PAGES['research-assessment'] = function () { return stdPage('研究评估工具及核心期刊', ['图书馆提供研究评估相关工具与核心期刊目录，辅助绩效评估与成果申报。'], ['核心期刊目录查询', '学科分区与排名工具', '成果统计与报表导出']); };
+  PAGES['research-impact'] = function () { return stdPage('研究影响', ['图书馆协助研究者度量与提升研究的社会影响与学术影响。'], ['引文影响力分析', '替代计量（Altmetrics）', '媒体与社会传播监测']); };
+  PAGES['research-scite'] = function () { return stdPage('scite_ (AI学术研究工具)', ['scite_ 利用人工智能分析文献引用语境，帮助研究者判断研究结论是被支持、反驳还是提及。'], ['Smart Citations 引用语境分析', '研究结论可靠性核查', '相关文献发现与推荐']); };
+  PAGES['research-transformative'] = function () { return stdPage('转换协议', ['图书馆通过转换协议（Transformative Agreement）为师生争取开放获取出版权益。'], ['转换协议覆盖期刊查询', '开放获取出版费用减免', '协议期刊投稿指引']); };
+
+  // ---- 关于我们（落地页即本馆概况，共 11 个子页）----
+  PAGES['about-intro'] = function () {
+    return '<main class="container"><div class="page-title"><h1>本馆概况</h1></div>' +
+      '<p>江川大学图书馆由<strong>川流藏书馆</strong>与<strong>圣殿科学学会学院资料档案室</strong>双馆构成，是学校文献资源中心与知识服务中心。图书馆前身为一九五三年设立的江川大学藏书楼，历经数次扩建与馆舍迁移，现有阅览座位约二千二百席。</p>' +
+      '<h3>双馆体系</h3>' +
+      '<p>川流藏书馆侧重通用流通文献与电子资源，提供开架借阅、电子阅览、研讨间与静音自习等空间；资料档案室侧重古籍特藏与学术档案的保藏、修复与阅览，实行闭架调阅、专室阅览。两馆通借通还，读者凭统一身份认证账号即可跨馆使用。</p>' +
+      '<h3>教学支持</h3>' +
+      '<p>图书馆面向教学提供信息素养培训、课程指定阅读、学科指引与工作坊，帮助师生提升文献检索与学术规范能力，并为各学院开设的方法类课程提供文献检索模块授课支持。</p>' +
+      '<h3>科研支持</h3>' +
+      '<p>图书馆提供学科服务、查收查引、研究数据管理与引用管理工具支持，助力科研全流程；并通过转换协议与开放存取政策，为校内成果发表争取出版权益。</p>' +
+      '<h3>馆藏与服务概览</h3>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody>' +
+      '<tr><td>馆舍</td><td>川流藏书馆（主馆，五层）、圣殿科学学会学院资料档案室</td></tr>' +
+      '<tr><td>纸质文献</td><td>约 180 万册（含古籍特藏 3.2 万册）</td></tr>' +
+      '<tr><td>电子资源</td><td>电子图书约 260 万种、数据库 120 余个</td></tr>' +
+      '<tr><td>阅览座位</td><td>约 2200 席（含静音自习区 400 席）</td></tr>' +
+      '<tr><td>研讨空间</td><td>研讨室 8 间（含圣殿学院专属 2 间）</td></tr>' +
+      '<tr><td>服务时间</td><td>川流藏书馆 08:30-22:00；资料档案室 09:00-17:00</td></tr>' +
+      '</tbody></table></div></div></main>';
+  };
+  PAGES['opening-hours'] = function () {
+    var rows = OPENING_HOURS.map(function (o) {
+      return o.rows.map(function (r) { return '<tr><td>' + esc(o.lib) + '</td><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>'; }).join('');
+    }).join('');
+    return '<main class="container"><div class="page-title"><h1>开放时间</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>馆舍</th><th>日期</th><th>开放时间</th></tr></thead><tbody>' + rows + '</tbody></table></div></div></main>';
+  };
+  PAGES['floor-maps'] = function () { return stdPage('楼层导览', ['川流藏书馆共五层，各层功能分区如下。'], ['1F 总服务台、自助借还区、新书展示区', '2F 社会科学阅览区、电子阅览区', '3F 自然科学阅览区、研讨间', '4F 期刊阅览区、静音自习区', '5F 特藏阅览区、古籍修复室']); };
+  PAGES['quick-guide'] = function () { return stdPage('快速导览', ['新读者可通过以下导览快速了解图书馆服务与馆藏布局。'], ['入馆须知：凭统一身份认证账号或校园卡刷闸入馆，馆内禁止饮食与喧哗', '馆藏目录检索指引：由首页检索框或【馆藏资源】进入，支持书名、作者、分类检索', '借阅流程：检索定位 → 按索书号取书 → 自助借还机或总服务台办理', '电子资源访问指南：校内网直接访问，校外经远程登入通道使用', '借阅与续借流程：登录【我的图书馆】查看到期日并办理续借', '研讨室预约说明：由【空间与设施】进入研讨室预约，预约系统升级期间暂停新提交']); };
+  PAGES['gifts-donations'] = function () { return stdPage('图书捐赠', ['图书馆欢迎社会各界捐赠图书文献，充实馆藏并惠及读者。'], ['捐赠范围：正式出版的图书、期刊、古籍与地方文献', '捐赠流程：填写捐赠登记并办理移交', '入藏标准：经采编审核后入藏或转赠', '联系方式：library@jcu.edu.cn']); };
+  PAGES['news'] = function () {
+    var rows = NEWS.map(function (n) { return '<div class="news-item"><div class="news-item__date">' + esc(n.date) + '</div><div class="news-item__title">' + esc(n.title) + '</div><div class="news-item__summary">' + esc(n.summary) + '</div></div>'; }).join('');
+    return '<main class="container"><div class="page-title"><h1>最新消息</h1></div><div class="card">' + rows + '</div></main>';
+  };
+  PAGES['policies-regulations'] = function () { return stdPage('政策及规例', ['图书馆依据相关规章提供读者服务，主要政策如下。'], ['图书馆读者管理办法', '借阅规则与逾期罚款办法', '电子资源合理使用规范', '读者隐私与个人信息保护', '研讨室使用守则']); };
+  PAGES['projects-partners'] = function () { return stdPage('计划组别及伙伴', ['图书馆与校内外机构开展广泛合作，共同推进文献保障与服务创新。'], ['高校图书馆馆际协作', '出版机构资源共建', '学会与行业协会合作', '校友与捐赠伙伴']); };
+  PAGES['reports-statistics'] = function () {
+    return '<main class="container"><div class="page-title"><h1>报告及统计数字</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>指标</th><th>数据</th></tr></thead><tbody>' +
+      '<tr><td>馆藏纸质文献</td><td>约 180 万册</td></tr>' +
+      '<tr><td>电子图书</td><td>约 260 万种</td></tr>' +
+      '<tr><td>数据库</td><td>120 余个</td></tr>' +
+      '<tr><td>年入馆人次</td><td>约 95 万人次</td></tr>' +
+      '<tr><td>年文献借阅量</td><td>约 40 万册次</td></tr>' +
+      '</tbody></table></div></div></main>';
+  };
+  PAGES['user-survey'] = function () {
+    return '<main class="container"><div class="page-title"><h1>读者意见调查结果</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>项目</th><th>满意度</th></tr></thead><tbody>' +
+      '<tr><td>馆藏资源丰富度</td><td>88%</td></tr>' +
+      '<tr><td>借阅服务效率</td><td>92%</td></tr>' +
+      '<tr><td>阅览环境</td><td>85%</td></tr>' +
+      '<tr><td>馆员服务态度</td><td>95%</td></tr>' +
+      '</tbody></table></div></div></main>';
+  };
+  PAGES['vision-mission'] = function () { return stdPage('愿景及使命', ['愿景：成为江川大学教学科研的知识引擎与学术社区的精神家园。'], ['使命：为教学、学习与研究提供丰富、便捷、专业的文献资源与服务。', '价值观：开放、专业、服务、创新。']); };
+
+  // ---- 联系我们 ----
+  PAGES.contact = function () {
+    return '<main class="container"><div class="page-title"><h1>联系方式</h1></div>' +
+      '<div class="card"><div class="list-line"><strong>地址</strong>：白宁省江川市江川大学学苑路66号</div>' +
+      '<div class="list-line"><strong>电话</strong>：+86-894-15868 转 6201</div>' +
+      '<div class="list-line"><strong>邮箱</strong>：library@jcu.edu.cn</div>' +
+      '<div class="list-line"><strong>服务时间</strong>：周一至周五 08:30-17:00</div></div></main>';
+  };
+  PAGES['contact-staff'] = function () {
+    var rows = STAFF.map(function (s) { return '<tr><td>' + esc(s.name) + '</td><td>' + esc(s.title) + '</td><td>' + esc(s.email) + '</td><td>' + esc(s.subject) + '</td></tr>'; }).join('');
+    return '<main class="container"><div class="page-title"><h1>馆员名册</h1></div>' +
+      '<div class="card"><div class="table-wrap"><table><thead><tr><th>姓名</th><th>职位</th><th>邮箱</th><th>负责学科</th></tr></thead><tbody>' + rows + '</tbody></table></div></div></main>';
+  };
+  PAGES['contact-feedback'] = function () {
+    return '<main class="container"><div class="page-title"><h1>意见反馈</h1></div>' +
+      '<div class="card"><form id="feedback-form">' +
+        '<div class="field"><label>姓名<span class="req">*</span></label><input name="name" type="text"><div class="err">请输入您的姓名</div></div>' +
+        '<div class="field"><label>电邮<span class="req">*</span></label><input name="email" type="email"><div class="err">请输入有效的电子邮箱</div></div>' +
+        '<div class="field"><label>反馈分类<span class="req">*</span></label><select name="type">' +
+          '<option value="">请选择</option>' + FEEDBACK_TYPES.map(function (t) { return '<option>' + t + '</option>'; }).join('') +
+        '</select><div class="err">请选择反馈分类</div></div>' +
+        '<div class="field"><label>意见内容<span class="req">*</span></label><textarea name="content" rows="4"></textarea><div class="err">请输入意见内容</div></div>' +
+        '<button class="btn" type="submit">提交</button>' +
+      '</form></div></main>';
+  };
+  PAGES['contact-faq'] = function () {
+    var items = FAQ.map(function (f) {
+      return '<div class="acc-item"><div class="acc-head">' + esc(f.q) + '<span>＋</span></div><div class="acc-body"><div class="acc-body__inner">' + esc(f.a) + '</div></div></div>';
+    }).join('');
+    return '<main class="container"><div class="page-title"><h1>常见问题</h1></div>' + items + '</main>';
+  };
+  PAGES['contact-damaged'] = function () {
+    return '<main class="container"><div class="page-title"><h1>破损图书阅览指引</h1></div>' +
+      '<p>部分馆藏图书因年代久远或物理损坏，暂未开放对外借阅。如需查阅破损图书，请按以下流程操作：</p>' +
+      '<div class="card">' +
+        '<div class="list-line">1. 在检索结果中找到状态为「破损」的图书。</div>' +
+        '<div class="list-line">2. 点击「联系馆员」，填写查阅申请。</div>' +
+        '<div class="list-line">3. 馆员将在 3 个工作日内审核并回复。</div>' +
+        '<div class="list-line">4. 审核通过后，可预约到馆阅览。</div>' +
+      '</div>' +
+      '<p style="margin-top:14px"><strong>联系方式</strong>：邮箱 library@jcu.edu.cn / 电话 +86-894-15868 转 6201</p></main>';
+  };
+
+  // ---- 登录 ----
+  PAGES.login = function () {
+    return '<main class="container"><div class="auth-wrap">' +
+      '<div class="auth-card">' +
+        '<h1 style="text-align:center">统一身份认证</h1>' +
+        '<p style="text-align:center;color:var(--muted)">江川大学图书馆</p>' +
+        '<div class="role-tabs">' +
+          '<button class="role-tab active" data-role="student">学生</button>' +
+          '<button class="role-tab" data-role="staff">教职工</button>' +
+          '<button class="role-tab" data-role="admin">管理员</button>' +
+        '</div>' +
+        '<form id="login-form">' +
+          '<div class="field"><label>账号</label><input name="uid" type="text"></div>' +
+          '<div class="field" id="pwd-field"><label>密码</label><input name="pwd" type="password"></div>' +
+          '<div class="field" id="key-field" style="display:none">' +
+            '<label>动态密钥</label>' +
+            '<div class="key-display"><div class="key-display__num" id="admin-key">------</div><div class="key-display__hint" id="key-countdown"></div></div>' +
+            '<input name="key" type="text">' +
+          '</div>' +
+          '<button class="btn btn-block" type="submit">登录</button>' +
+        '</form>' +
+      '</div></div></main>';
+  };
+
+  // ---- 我的图书馆 ----
+  PAGES['my-library'] = function () {
+    var u = getState();
+    if (!u) {
+      return '<main class="container"><div class="page-title"><h1>我的图书馆</h1></div>' +
+        '<div class="empty-state">请先<a href="#/login" data-nav="login">登录</a>后再查阅个人借阅、预约与荐购记录。</div></main>';
+    }
+    var borrow = BORROW_HISTORY[u.id] || [];
+    var booking = BOOKING_HISTORY[u.id] || [];
+    var recommend = RECOMMEND_HISTORY[u.id] || [];
+    function bRows(list) {
+      if (!list.length) return '<div class="empty-state">暂无记录。</div>';
+      return '<div class="table-wrap"><table><thead><tr><th>书名</th><th>作者</th><th>借阅日期</th><th>归还日期</th><th>借阅方式</th><th>状态</th></tr></thead><tbody>' +
+        list.map(function (r) { return '<tr><td>' + esc(r.title) + '</td><td>' + esc(r.author) + '</td><td>' + esc(r.borrow) + '</td><td>' + esc(r.back) + '</td><td>' + esc(r.method) + '</td><td><span class="tag ' + tagByCn(r.status) + '">' + esc(r.status) + '</span></td></tr>'; }).join('') +
+        '</tbody></table></div>';
+    }
+    function kRows(list) {
+      if (!list.length) return '<div class="empty-state">暂无记录。</div>';
+      return '<div class="table-wrap"><table><thead><tr><th>日期</th><th>房间号</th><th>时间段</th><th>用途</th><th>备注</th></tr></thead><tbody>' +
+        list.map(function (r) { return '<tr><td>' + esc(r.date) + '</td><td>' + esc(r.room) + '</td><td>' + esc(r.time) + '</td><td>' + esc(r.purpose) + '</td><td>' + esc(r.note || '—') + '</td></tr>'; }).join('') +
+        '</tbody></table></div>';
+    }
+    function rRows(list) {
+      if (!list.length) return '<div class="empty-state">暂无记录。</div>';
+      return '<div class="table-wrap"><table><thead><tr><th>名称</th><th>类型</th><th>推荐日期</th><th>处理状态</th></tr></thead><tbody>' +
+        list.map(function (r) { return '<tr><td>' + esc(r.name) + '</td><td>' + esc(r.type) + '</td><td>' + esc(r.date) + '</td><td>' + esc(r.status) + '</td></tr>'; }).join('') +
+        '</tbody></table></div>';
+    }
+    return '<main class="container"><div class="page-title"><h1>我的图书馆</h1></div>' +
+      '<div class="card" style="margin-bottom:20px">欢迎，<strong>' + esc(u.name) + '</strong>（' + roleLabel(u.role) + '）　<button class="btn btn-ghost btn-sm" id="btn-logout">登出</button></div>' +
+      '<div class="tabs">' +
+        '<button class="tab active" data-panel="panel-borrow">借阅历史</button>' +
+        '<button class="tab" data-panel="panel-booking">预约历史</button>' +
+        '<button class="tab" data-panel="panel-recommend">荐购历史</button>' +
+      '</div>' +
+      '<div class="tab-panel" id="panel-borrow">' + bRows(borrow) + '</div>' +
+      '<div class="tab-panel" id="panel-booking" style="display:none">' + kRows(booking) + '</div>' +
+      '<div class="tab-panel" id="panel-recommend" style="display:none">' + rRows(recommend) + '</div>' +
+      '</main>';
+  };
+
+  /* ===================== 渲染 ===================== */
+  function pageBody(key, query) {
+    var p = PAGES[key];
+    if (p) return p(query);
+    return '<main class="container"><div class="empty-state">页面不存在。</div></main>';
+  }
+
+  var app = null;
+  function render(key, query) {
+    if (ALIAS[key]) key = ALIAS[key];
+    key = PAGES[key] ? key : 'index';
+    app = app || document.getElementById('app');
+    var meta = META[key] || { title: key, crumbs: ['首页'] };
+    if (key === 'book') {
+      var _bb = bookById(query && query.id);
+      if (_bb) { meta = { title: _bb.title, crumbs: ['首页', '馆藏资源', '检索结果', _bb.title] }; }
+    }
+    var group = GROUP_OF[key];
+    var body = pageBody(key, query);
+    document.title = meta.title + ' - 江川大学图书馆';
+    var html = renderHeader(key) + renderBreadcrumb(meta.crumbs);
+    if (group && !isTopLevel(key) && key !== 'book') {
+      html += '<div class="container"><div class="layout">' + renderSidebar(key, group) + '<div class="content">' + body + '</div></div></div>';
+    } else {
+      html += body;
+    }
+    html += renderFooter();
+    app.innerHTML = html;
+    closeAllModals();
+    closeModal();
+    bindPage(key);
+    window.scrollTo(0, 0);
+  }
+
+  function isTopLevel(key) {
+    // 一级落地页本身不需要包裹侧栏（index 单独处理，其余一级栏目页也进侧栏以展示子项）
+    return false;
+  }
+
+  /* ===================== 交互绑定 ===================== */
+  function bindPage(key) {
+    var u = getState();
+
+    // 导航高亮已由 renderHeader 处理
+
+    // 首页 hero 检索
+    var heroQ = $('#hero-q');
+    var heroBtn = $('#hero-search');
+    if (heroQ && heroBtn) {
+      heroBtn.addEventListener('click', function () { goSearch(heroQ.value); });
+      heroQ.addEventListener('keydown', function (e) { if (e.key === 'Enter') goSearch(heroQ.value); });
+    }
+
+    // 馆藏检索
+    if (key === 'collection') bindCollection();
+
+    // 检索结果页
+    if (key === 'collection-search') bindSearch();
+
+    // 高级检索
+    if (key === 'collection-advanced') bindAdvanced();
+
+    // 特藏
+    if (key === 'special-collection') bindSpecial();
+
+    // 预约
+    if (key === 'booking') bindBooking();
+
+    // 图书预约（reserve）
+    if (key === 'borrowing-reserve') bindReserve();
+
+    // 荐购
+    if (key === 'borrowing-recommend') bindRecommend();
+
+    // 反馈
+    if (key === 'contact-feedback') bindFeedback();
+
+    // 登录
+    if (key === 'login') bindLogin();
+
+    // 我的图书馆
+    if (key === 'my-library') bindMyLibrary();
+
+    // FAQ 折叠
+    if (key === 'contact-faq') bindAccordion();
+
+    // 图书详情
+    if (key === 'book') bindBook();
+  }
+
+  function goSearch(q) {
+    navigate('collection-search', { q: q });
+  }
+
+  function bindCollection() {
+    var results = $('#results');
+    var qInput = $('#coll-q');
+    var chips = $all('.chip');
+    var curCat = '全部';
+    var locFilters = {}; var statFilters = {};
+    function render() {
+      var q = qInput ? qInput.value : '';
+      var list = normalSearch(q).filter(function (b) {
+        if (curCat !== '全部' && b.category !== curCat) return false;
+        var locOn = Object.keys(locFilters).some(function (k) { return locFilters[k]; });
+        if (locOn && !locFilters[b.location]) return false;
+        var statOn = Object.keys(statFilters).some(function (k) { return statFilters[k]; });
+        if (statOn && !statFilters[b.status]) return false;
+        return true;
+      });
+      renderBookList(results, list, isAdmin());
+      var rc = $('#result-count'); if (rc) rc.textContent = '共找到 ' + list.length + ' 条结果';
+    }
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        chips.forEach(function (x) { x.classList.remove('active'); x.classList.add('btn-ghost'); });
+        c.classList.add('active'); c.classList.remove('btn-ghost');
+        curCat = c.getAttribute('data-cat');
+        render();
+      });
+    });
+    $all('input[data-floc]').forEach(function (inp) {
+      inp.addEventListener('change', function () { locFilters[inp.getAttribute('data-floc')] = inp.checked; render(); });
+    });
+    $all('input[data-fstat]').forEach(function (inp) {
+      inp.addEventListener('change', function () { statFilters[inp.getAttribute('data-fstat')] = inp.checked; render(); });
+    });
+    if (qInput) qInput.addEventListener('input', render);
+    render();
+  }
+
+  function bindSearch() {
+    var input = $('#search-q');
+    var btn = $('#search-go');
+    if (btn && input) {
+      btn.addEventListener('click', function () { goSearch(input.value); });
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') goSearch(input.value); });
+    }
+  }
+
+  function bindAdvanced() {
+    var form = $('#adv-form');
+    if (!form) return;
+    var results = $('#results');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      function val(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; }
+      var f = { title: val('booktitle'), author: val('author'), category: val('category'), publisher: val('publisher'), year: val('year'), location: val('location') };
+      var any = f.title || f.author || f.category || f.publisher || f.year || (f.location && f.location !== '全部');
+      if (!any) { toast('请至少填写一项检索条件', 'warn'); return; }
+      var list = advancedSearch(f);
+      renderBookList(results, list, isAdmin());
+      var rc = $('#result-count'); if (rc) rc.textContent = list.length ? '共找到 ' + list.length + ' 条结果' : '';
+    });
+  }
+
+  function bindSpecial() {
+    $all('.special-item.locked').forEach(function (el) {
+      el.addEventListener('click', function () { toast('该卷宗需申请调阅', 'warn'); });
+    });
+  }
+
+  function bindBooking() {
+    var form = $('#booking-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        showModal('预约系统升级维护中', '预约系统正在升级维护，暂不支持新提交预约。<br>历史预约记录请登录【我的图书馆】查阅。');
+      });
+    }
+  }
+
+  function bindReserve() {
+    var btn = $('#reserve-search');
+    var input = $('#reserve-title');
+    var out = $('#reserve-result');
+    if (btn && input && out) {
+      btn.addEventListener('click', function () {
+        var t = input.value.trim();
+        if (!t) { out.innerHTML = '<span style="color:var(--st-lost)">请输入书名。</span>'; return; }
+        var found = BOOKS.filter(function (b) { return !b.hidden && b.title.toLowerCase().indexOf(t.toLowerCase()) >= 0; });
+        if (found.length && found[0].status === 'ok') {
+          out.innerHTML = '<span style="color:var(--st-ok)">该书可预约。</span> <button class="btn btn-sm" id="do-reserve">预约此书</button>';
+          var dr = $('#do-reserve'); if (dr) dr.addEventListener('click', function () { toast('预约成功'); });
+        } else if (found.length) {
+          out.innerHTML = '<span style="color:var(--st-out)">该书已被预约 / 暂不可预约。</span>';
+        } else {
+          out.innerHTML = '<span style="color:var(--st-lost)">未找到该书。</span>';
+        }
+      });
+    }
+  }
+
+  function bindRecommend() {
+    var form = $('#recommend-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = true;
+      $all('.field', form).forEach(function (f) {
+        var inp = f.querySelector('input,textarea');
+        if (!inp) return;
+        if (inp.name === 'title' || inp.name === 'requester') {
+          if (!inp.value.trim()) { f.classList.add('invalid'); ok = false; } else f.classList.remove('invalid');
+        }
+      });
+      if (!ok) return;
+      toast('推荐已提交');
+      form.reset();
+    });
+  }
+
+  function bindFeedback() {
+    var form = $('#feedback-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = true;
+      $all('.field', form).forEach(function (f) {
+        var inp = f.querySelector('input,textarea,select');
+        if (!inp) return;
+        var v = inp.value.trim();
+        var bad = !v;
+        if (inp.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) bad = true;
+        if (bad) { f.classList.add('invalid'); ok = false; } else f.classList.remove('invalid');
+      });
+      if (!ok) return;
+      showModal('提交成功', '感谢您的反馈！');
+      form.reset();
+    });
+  }
+
+  var keyTimer = null;
+  function bindLogin() {
+    startDynamicKey();
+    var form = $('#login-form');
+    if (!form) return;
+    var roleTabs = $all('.role-tab');
+    var keyField = $('#key-field');
+    var pwdField = $('#pwd-field');
+    var curRole = 'student';
+    function syncRole(r) {
+      curRole = r;
+      roleTabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-role') === r); });
+      if (keyField) keyField.style.display = (r === 'admin') ? '' : 'none';
+      if (pwdField) pwdField.style.display = (r === 'admin') ? 'none' : '';
+    }
+    roleTabs.forEach(function (t) { t.addEventListener('click', function () { syncRole(t.getAttribute('data-role')); }); });
+    syncRole('student');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var id = form.querySelector('[name="uid"]').value.trim();
+      var pwd = form.querySelector('[name="pwd"]').value;
+      var keyEl = form.querySelector('[name="key"]');
+      var key = keyEl ? keyEl.value.trim() : '';
+      if (curRole === 'admin') {
+        if (id !== 'admin') { toast('管理员账号不正确', 'error'); return; }
+        if (key !== ADMIN_KEY) { toast('动态密钥不正确', 'error'); return; }
+        setState({ id: 'admin', name: '系统管理员', role: 'admin' });
+        navigate('my-library');
+        return;
+      }
+      var acc = ACCOUNTS[id];
+      if (!acc || acc.role !== curRole) { toast('账号或角色不正确', 'error'); return; }
+      if (acc.pwd !== pwd) { toast('密码不正确', 'error'); return; }
+      setState({ id: acc.id, name: acc.name, role: acc.role });
+      navigate('my-library');
+    });
+  }
+
+  function startDynamicKey() {
+    var keyEl = $('#admin-key');
+    if (!keyEl) return;
+    if (keyTimer) clearInterval(keyTimer);
+    function tick() {
+      keyEl.textContent = ADMIN_KEY;
+      var cdEl = $('#key-countdown');
+      if (cdEl) { var s = new Date().getSeconds(); var remain = 30 - (s % 30); cdEl.textContent = remain + ' 秒后刷新'; }
+    }
+    tick();
+    keyTimer = setInterval(tick, 1000);
+  }
+
+  function bindMyLibrary() {
+    var btn = $('#btn-logout');
+    if (btn) btn.addEventListener('click', function () { clearState(); navigate('index'); });
+    $all('.tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        $all('.tab').forEach(function (t) { t.classList.remove('active'); });
+        $all('.tab-panel').forEach(function (p) { p.style.display = 'none'; });
+        tab.classList.add('active');
+        var pid = tab.getAttribute('data-panel');
+        var p = document.getElementById(pid);
+        if (p) p.style.display = '';
+      });
+    });
+  }
+
+  function bindAccordion() {
+    $all('.acc-item').forEach(function (item) {
+      var head = item.querySelector('.acc-head');
+      if (!head) return;
+      var body = item.querySelector('.acc-body');
+      head.addEventListener('click', function () {
+        var open = item.classList.toggle('open');
+        body.style.maxHeight = open ? body.scrollHeight + 'px' : '0px';
+        var sign = head.querySelector('span'); if (sign) sign.textContent = open ? '－' : '＋';
+      });
+    });
+  }
+
+  function bindBook() {
+    var ph = parseHash();
+    var d = compileBook(bookById(ph.query && ph.query.id));
+    if (!d) return;
+    var top = $('#act-top'); if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    var exp = $('#act-export'); if (exp) exp.addEventListener('click', function () { openExportModal(d); });
+    var hold = $('#act-holding'); if (hold) hold.addEventListener('click', function () { var el = $('#holding-section'); if (el) el.scrollIntoView({ behavior: 'smooth' }); });
+    var det = $('#act-detail'); if (det) det.addEventListener('click', function () { var el = $('#detail-info'); if (el) el.style.display = (el.style.display === 'none') ? '' : 'none'; });
+    var lnk = $('#act-links'); if (lnk) lnk.addEventListener('click', function () { openLinksModal(d); });
+    var qr = $('#act-qr'); if (qr) qr.addEventListener('click', function () { openQrModal(d); });
+    var card = $('#holding-card');
+    if (card) {
+      var head = card.querySelector('.holding-card__head');
+      (head || card).addEventListener('click', function () {
+        var open = card.classList.toggle('open');
+        var tog = $('#holding-toggle'); if (tog) tog.textContent = open ? '收起 ▾' : '展开 ▸';
+      });
+    }
+    var login = $('#book-login'); if (login) login.addEventListener('click', function (e) { e.preventDefault(); navigate('login'); });
+  }
+
+  /* ===================== 路由 ===================== */
+  function parseHash() {
+    var h = location.hash || '';
+    var s = h.replace(/^#\/?/, '');
+    var q = null;
+    var qi = s.indexOf('?');
+    if (qi >= 0) {
+      var qs = s.slice(qi + 1);
+      s = s.slice(0, qi);
+      q = {};
+      qs.split('&').forEach(function (kv) {
+        var p = kv.split('='); if (p.length === 2) q[decodeURIComponent(p[0])] = decodeURIComponent(p[1]);
+      });
+    }
+    return { key: s || 'index', query: q };
+  }
+
+  function navigate(key, query) {
+    if (ALIAS[key]) key = ALIAS[key];
+    var url = '#/' + key;
+    if (query) {
+      var parts = [];
+      for (var k in query) { if (query.hasOwnProperty(k) && query[k] != null && query[k] !== '') parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(query[k])); }
+      if (parts.length) url += '?' + parts.join('&');
+    }
+    history.pushState({ key: key, query: query || null }, '', url);
+    render(key, query);
+  }
+
+  // 暴露导航钩子（供测试与调试）
+  window.__nav = navigate;
+
+  window.addEventListener('popstate', function (e) {
+    var s = e.state || parseHash();
+    render(s.key, s.query);
+  });
+
+  // 事件委托：导航链接 / 导航开关 / 回到顶部
+  document.addEventListener('click', function (e) {
+    var nav = e.target.closest ? e.target.closest('a[data-nav]') : null;
+    if (nav) {
+      e.preventDefault();
+      var k = nav.getAttribute('data-nav');
+      var idAttr = nav.getAttribute('data-id');
+      if (idAttr) { navigate(k, { id: idAttr }); }
+      else { navigate(k, null); }
+      return;
+    }
+    if (e.target.closest && e.target.closest('#nav-toggle')) {
+      var m = $('#main-nav'); if (m) m.classList.toggle('open');
+      return;
+    }
+    if (e.target.closest && e.target.closest('#to-top')) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+  });
+
+  // 回到顶部按钮
+  function initToTop() {
+    var btn = $('#to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('show', window.scrollY > 400);
+    });
+  }
+
+  /* ===================== 启动 ===================== */
+  var initial = parseHash();
+  render(initial.key, initial.query);
+  initToTop();
+})();
+
+</script>
+</body>
+</html>

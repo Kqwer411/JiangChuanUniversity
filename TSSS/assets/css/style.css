@@ -1,0 +1,453 @@
+/* =========================================================
+   圣殿科学学会学院官网 — 公共样式（骨架版）
+   设计语言参考：CUHK 文学院官网（cuhk-arts-theme）
+     · 主色 深海军蓝 #09113e（顶部栏 / 二级导航 / 页脚 / 标题）
+     · 点缀 橙红 #ff4300（链接 / 高亮 / 细线，克制使用）
+     · 字体 Poppins（拉丁）+ 思源黑体 Noto Sans SC（中文），标题加粗紧字距
+   风格：极简公办高校学院官网，低饱和，无花哨动效，无 ARG 解谜元素
+   架构参考：CUHK 文学院官网「层级架构」（栏目→子页面→正文）
+   ========================================================= */
+
+/* ---------- 设计变量（CUHK 文学院配色） ---------- */
+:root{
+  --navy:#09113e;       /* 主色：深海军蓝，CUHK 主色调 */
+  --navy-2:#11205c;     /* 主色悬浮 */
+  --accent:#ff4300;     /* 点缀：橙红，仅用于链接/高亮/细线 */
+  --text:#4e4e4e;       /* 正文 */
+  --text-2:#828282;     /* 辅助说明：小字灰 */
+  --bg:#ffffff;
+  --bg-soft:#f5f5f5;    /* 浅灰区块（CUHK #f5f5f5） */
+  --line:#e0e0e0;       /* 描边（CUHK #e0e0e0） */
+  --ph:#f5f5f5;         /* 图片占位底 */
+  --ph-line:#c4c4c4;    /* 图片占位虚线 */
+  --maxw:1200px;
+  --gap:28px;
+  --radius:3px;
+}
+
+/* ---------- 基础重置 ---------- */
+*,*::before,*::after{box-sizing:border-box;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  /* 拉丁文 Poppins + 中文思源黑体；中文实际以 Noto Sans SC 渲染 */
+  font-family:"Poppins","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+  font-size:1rem;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+a{color:var(--navy);text-decoration:none;}
+a:hover{color:var(--accent);}
+img{max-width:100%;display:block;}
+ul{margin:0;padding:0;list-style:none;}
+h1,h2,h3,h4{color:var(--navy);font-weight:700;line-height:1.25;margin:0;letter-spacing:-.3px;}
+p{margin:0 0 1em;}
+
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px;width:100%;}
+
+/* ---------- 图片 / 图标占位框（统一标注【待填入图片】） ---------- */
+.ph{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ph);
+  border:1px dashed var(--ph-line);
+  color:var(--text-2);
+  font-size:.8125rem;letter-spacing:.04em;
+  border-radius:var(--radius);
+  min-height:120px;
+  text-align:center;
+}
+.ph--banner{width:100%;min-height:200px;border-radius:0;font-size:.875rem;}
+.ph--logo{width:52px;height:52px;min-height:0;flex:0 0 52px;}
+
+/* ---------- 学院标识条（父校 + 学院并列） ---------- */
+.college-bar{background:#fff;border-bottom:1px solid var(--line);}
+.college-bar .container{display:flex;align-items:center;padding-top:18px;padding-bottom:18px;}
+.college-bar__orgs{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.org-block{display:flex;align-items:center;gap:12px;}
+.org-block__text{display:flex;flex-direction:column;gap:2px;line-height:1.2;}
+.org-block__cn{font-weight:700;color:var(--ink);font-size:1.5rem;letter-spacing:-.5px;}
+.org-block__en{font-size:.75rem;color:var(--text-2);letter-spacing:.08em;}
+.college-name{font-size:1.5rem;letter-spacing:-.5px;}
+.college-bar__divider{width:1px;align-self:stretch;background:var(--line);margin:2px 0;}
+.org-block--link{text-decoration:none;color:inherit;cursor:pointer;transition:opacity .2s ease;}
+.org-block--link:hover{opacity:.82;}
+.org-block--link:hover .org-block__cn{color:var(--accent);}
+
+/* ---------- 学院横幅 banner（CUHK hero-banner 风：深蓝标题带 + 图片占位） ---------- */
+.college-banner{background:var(--navy);}
+.college-banner__inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:30px;padding-bottom:30px;flex-wrap:wrap;}
+.college-banner__kicker{display:block;color:var(--accent);font-size:.8125rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+.college-banner__title{color:#fff;font-size:2.5rem;font-weight:700;letter-spacing:-1px;line-height:1.1;}
+.college-banner__figure{flex:0 0 320px;min-height:140px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.32);color:#9fb0d0;}
+
+/* ---------- 二级导航（mega menu，体现 CUHK 层级架构：栏目→子页面） ---------- */
+.subnav{background:var(--navy);border-top:3px solid var(--accent);}
+.subnav__bar{display:flex;align-items:center;}
+.subnav__toggle{display:none;}
+.megamenu{display:flex;flex:1;flex-wrap:wrap;list-style:none;margin:0;padding:0;}
+.megamenu > li{position:relative;}
+.megamenu > li > a{
+  display:block;color:#e8eef5;padding:15px 22px;font-size:.9375rem;font-weight:500;
+  border-right:1px solid rgba(255,255,255,.08);white-space:nowrap;
+}
+.megamenu > li > a:hover,.megamenu > li > a.is-active{background:var(--navy-2);color:#fff;}
+.megapanel{
+  display:none;position:absolute;top:100%;left:0;min-width:230px;
+  background:#fff;border:1px solid var(--line);
+  box-shadow:0 8px 20px rgba(9,17,62,.15);z-index:60;
+}
+.megapanel a{
+  display:block;padding:11px 16px;color:var(--navy);font-size:.875rem;
+  border-bottom:1px solid var(--line);border-left:3px solid transparent;
+}
+.megapanel a:last-child{border-bottom:none;}
+.megapanel a:hover{background:var(--bg-soft);border-left-color:var(--accent);}
+.megamenu > li:hover > .megapanel{display:block;}
+
+/* ---------- 左侧栏目导航（二级子页面，层级架构核心） ---------- */
+.sidenav{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.sidenav__title{background:var(--navy);color:#fff;padding:13px 16px;font-weight:700;font-size:1rem;}
+.sidenav ul li a{display:block;padding:11px 16px;color:var(--text);font-size:.9rem;border-bottom:1px solid var(--line);border-left:3px solid transparent;}
+.sidenav ul li:last-child a{border-bottom:none;}
+.sidenav ul li a:hover{background:var(--bg-soft);color:var(--navy);}
+.sidenav ul li a.is-active{border-left-color:var(--accent);color:var(--navy);font-weight:600;background:var(--bg-soft);}
+
+/* ---------- 正文左右分栏 ---------- */
+.layout{display:flex;gap:var(--gap);padding-top:30px;padding-bottom:44px;align-items:flex-start;}
+.layout__main{flex:1 1 auto;min-width:0;}
+.layout__side{flex:0 0 250px;}
+
+/* ---------- 面包屑 ---------- */
+.breadcrumb{font-size:.8125rem;color:var(--text-2);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-2);}
+.breadcrumb a:hover{color:var(--accent);}
+
+/* ---------- 内容板块（标题 + 留白正文） ---------- */
+.block{margin-bottom:32px;}
+.block__title{
+  font-size:1.375rem;padding-bottom:10px;margin-bottom:16px;
+  border-bottom:1px solid var(--line);position:relative;
+}
+.block__title::before{content:"";position:absolute;left:0;bottom:-1px;width:54px;height:3px;background:var(--accent);}
+.block__subtitle{margin:-8px 0 18px;font-size:.8125rem;color:var(--text-2);letter-spacing:.02em;}
+.letter-sign{text-align:right;color:var(--ink);margin-top:6px;}
+.letter-sign strong{font-weight:700;}
+.block__body{min-height:80px;}
+
+/* ---------- 侧栏组件 ---------- */
+.widget{background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:20px;overflow:hidden;}
+.widget__title{background:var(--bg-soft);padding:12px 16px;font-size:1rem;font-weight:700;color:var(--navy);border-bottom:1px solid var(--line);border-left:3px solid var(--accent);}
+.widget__body{padding:14px 16px;font-size:.875rem;color:var(--text-2);min-height:48px;}
+.widget__body ul li{padding:6px 0;border-bottom:1px dashed var(--line);}
+.widget__body ul li:last-child{border-bottom:none;}
+.widget__body a{color:var(--navy);}
+.widget__body a:hover{color:var(--accent);}
+
+/* ---------- 首页栏目卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:#fff;border-top:3px solid var(--navy);}
+.card h3{font-size:1.0625rem;margin:0;}
+.card:hover{border-top-color:var(--accent);}
+
+/* ---------- 师资队伍照片网格 ---------- */
+.people-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+
+/* ---------- 底部校公共页脚（CUHK 深色页脚） ---------- */
+.site-footer{background:var(--navy);color:#c3cde0;font-size:.875rem;margin-top:auto;}
+.site-footer a{color:#c3cde0;}
+.site-footer a:hover{color:var(--accent);}
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:38px 0;}
+.footer-col h4{color:#fff;font-size:1rem;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.14);}
+.footer-col li{padding:5px 0;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:16px 0;font-size:.8125rem;color:#94a2bd;text-align:center;}
+
+/* =========================================================
+   首页首屏与版块（参考 CUHK 文学院首页格局：全宽 editorial 标题 + 图文块 + 身份导览 + 科研亮点）
+   强化呼吸感与设计感；仍仅骨架（标题 + 留白 + 占位），无 ARG 内容
+   ========================================================= */
+
+/* Hero：巨型 editorial 标题 + 留白 + 图片占位（参考 CUHK hero-banner-1） */
+.hero{background:var(--bg-soft);border-bottom:1px solid var(--line);}
+.hero__inner{display:flex;align-items:center;gap:clamp(32px,5vw,64px);padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(48px,7vw,84px);flex-wrap:wrap;}
+.hero__text{flex:1 1 420px;min-width:0;}
+.hero__kicker{display:block;color:var(--accent);font-weight:600;font-size:.875rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;}
+.hero__title{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:700;line-height:1.04;letter-spacing:-1.5px;color:var(--navy);}
+.hero__cta{display:inline-block;margin-top:30px;background:var(--navy);color:#fff;padding:13px 28px;border-radius:var(--radius);font-weight:600;font-size:.95rem;letter-spacing:.02em;transition:background .25s ease,transform .25s ease;}
+.hero__cta:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.hero__en{margin-top:20px;font-family:"Poppins","Noto Sans SC",sans-serif;font-size:1.0625rem;font-weight:500;letter-spacing:.02em;color:var(--text-2);}
+.hero__media{flex:0 0 clamp(320px,38vw,460px);min-height:clamp(300px,42vw,440px);border-radius:6px;}
+
+/* 院长寄语 / Landing block（CUHK landing-block：左图右文 + 按钮） */
+.landing{padding:clamp(48px,6vw,72px) 0;}
+.landing__inner{display:flex;gap:clamp(32px,5vw,56px);align-items:center;flex-wrap:wrap;}
+.landing__media{flex:0 0 clamp(300px,40vw,440px);min-height:300px;border-radius:6px;}
+.landing__text{flex:1 1 360px;min-width:0;}
+.landing__title{font-size:clamp(1.5rem,3vw,1.9rem);margin-bottom:16px;}
+.landing__desc{min-height:84px;color:var(--text);}
+.landing__btn{display:inline-block;margin-top:20px;color:var(--navy);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:3px;transition:color .2s ease;}
+.landing__btn:hover{color:var(--accent);}
+
+/* 我是… 身份导览（CUHK guidance：标签切换 + 链接列表） */
+.guidance{padding:clamp(48px,6vw,72px) 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.section-h{font-size:clamp(1.5rem,3vw,1.9rem);margin-bottom:28px;}
+.guidance__tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+.gtab{background:#fff;border:1px solid var(--line);padding:11px 24px;border-radius:30px;font-size:.95rem;font-weight:500;color:var(--navy);cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease;}
+.gtab.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.gtab:hover{color:var(--accent);}
+.guidance__panel{display:none;}
+.guidance__panel.is-active{display:block;}
+.qa{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 40px;}
+.qa__item{border-bottom:1px solid var(--line);}
+.qa__q{position:relative;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:16px 30px 16px 0;font-family:inherit;font-size:1rem;font-weight:600;color:var(--navy);transition:color .2s ease;}
+.qa__q:hover{color:var(--accent);}
+.qa__icon{position:absolute;right:4px;top:50%;width:14px;height:14px;transform:translateY(-50%);}
+.qa__icon::before,.qa__icon::after{content:"";position:absolute;background:var(--accent);border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.qa__icon::before{left:1px;top:6px;width:12px;height:2px;}
+.qa__icon::after{left:6px;top:1px;width:2px;height:12px;}
+.qa__item.is-open .qa__icon::after{opacity:0;transform:scaleY(0);}
+.qa__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
+.qa__item.is-open .qa__a{grid-template-rows:1fr;}
+.qa__a-inner{overflow:hidden;padding:0 4px;}
+.qa__item.is-open .qa__a-inner{display:flex;flex-direction:column;justify-content:center;min-height:120px;margin:2px 0 18px;padding:24px 30px;background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;}
+.qa__a-inner p{margin:0;padding:0 24px 0 0;color:var(--text);line-height:1.95;font-size:.97rem;text-align:justify;text-justify:inter-ideograph;}
+
+/* 科研亮点（CUHK collaborate-research：大陈述句 + 配图） */
+.rhighlight{padding:clamp(48px,6vw,72px) 0;}
+.rhighlight__inner{display:flex;gap:clamp(32px,5vw,56px);align-items:center;flex-wrap:wrap;}
+.rhighlight__text{flex:1 1 360px;min-width:0;}
+.rhighlight__media{flex:0 0 clamp(300px,40vw,440px);min-height:300px;border-radius:6px;}
+.rhighlight__statement{min-height:90px;font-size:clamp(1.1rem,2.4vw,1.35rem);line-height:1.7;color:var(--navy);font-weight:500;margin:18px 0 24px;}
+
+/* 首页学院活动（gallery：5 图 + 文字占位） */
+.home-gallery{padding:clamp(48px,6vw,72px) 0;}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.gallery-item{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:transform .25s ease,box-shadow .25s ease,border-top-color .25s ease;border-top:3px solid var(--navy);}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(9,17,62,.1);border-top-color:var(--accent);}
+.gallery-item .ph{border:none;border-radius:0;min-height:150px;border-bottom:1px solid var(--line);}
+.gallery-item__body{padding:16px 16px 18px;}
+.gallery-item__body h3{font-size:1.0625rem;margin:0 0 6px;}
+.gallery-item__body p{color:var(--text-2);font-size:.875rem;margin:0;min-height:42px;}
+
+/* ---------- 内页图片卡片（复用 gallery-item，子页统一 3 列） ---------- */
+.gallery--3{grid-template-columns:repeat(3,1fr);}
+a.gallery-item{display:block;color:inherit;text-decoration:none;}
+.gallery-item__sub{display:block;color:var(--accent);font-size:.8125rem;font-weight:600;margin:0 0 6px;letter-spacing:.02em;}
+
+/* ---------- 内页入口卡片（师资分类，链接态） ---------- */
+a.feature{display:block;color:inherit;text-decoration:none;}
+a.feature .feature__no{color:var(--accent);}
+
+/* ---------- 内页教授简介（顶尖师资团队页） ---------- */
+.profile{display:flex;gap:24px;align-items:flex-start;margin-bottom:28px;}
+.profile__media{flex:0 0 180px;}
+.profile__media .ph{min-height:220px;}
+.profile__body{flex:1 1 auto;min-width:0;}
+.profile__name{font-size:1.25rem;margin:0 0 4px;}
+.profile__role{color:var(--accent);font-size:.875rem;font-weight:600;margin:0 0 12px;}
+.profile__bio{color:var(--text);font-size:1rem;line-height:1.8;margin:0;}
+
+/* 内页呼吸感微调（覆盖上方默认值，拉开板块间距） */
+.block{margin-bottom:40px;}
+.layout{padding-top:40px;padding-bottom:56px;}
+.college-banner__inner{padding-top:40px;padding-bottom:40px;gap:32px;}
+.college-banner__title{font-size:clamp(1.9rem,4vw,2.6rem);}
+
+/* =========================================================
+   响应式：桌面 / 平板 / 手机 三端自适应
+   字体与间距随设备自动缩放
+   ========================================================= */
+@media (max-width:1024px){
+  html{font-size:15px;}
+  .layout__side{flex-basis:260px;}
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .people-grid{grid-template-columns:repeat(3,1fr);}
+  .college-banner__figure{flex-basis:260px;}
+  .gallery{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:768px){
+  html{font-size:14.5px;}
+  .college-name,.org-block__cn{font-size:1.3rem;}
+  .college-bar__orgs{gap:14px;}
+  .college-banner__title{font-size:1.875rem;}
+  .college-banner__figure{flex-basis:100%;}
+  .subnav{border-top:none;}
+  .subnav__toggle{display:block;width:100%;background:var(--navy);color:#fff;border:none;padding:12px 20px;font-size:.9375rem;text-align:left;cursor:pointer;border-top:3px solid var(--accent);}
+  .megamenu{flex-direction:column;display:none;width:100%;}
+  .megamenu.is-open{display:flex;}
+  .megamenu > li{width:100%;}
+  .megamenu > li > a{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+  .megapanel{position:static;display:block;box-shadow:none;border:none;background:rgba(255,255,255,.05);min-width:0;}
+  .megapanel a{color:#e8eef5;border-color:rgba(255,255,255,.08);padding-left:32px;border-left:none;}
+  .megapanel a:hover{background:rgba(255,255,255,.1);color:#fff;}
+  .layout{flex-direction:column;}
+  .layout__side{flex-basis:auto;}
+  .cards{grid-template-columns:1fr;}
+  .people-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-cols{grid-template-columns:repeat(2,1fr);}
+  .hero__media,.landing__media,.rhighlight__media{flex-basis:100%;min-height:240px;}
+  .qa{grid-template-columns:1fr;}
+  .gallery{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:480px){
+  .people-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-cols{grid-template-columns:1fr;}
+  .gallery{grid-template-columns:1fr;}
+}
+
+/* 教授简介在平板 / 手机端竖向堆叠 */
+@media (max-width:768px){
+  .profile{flex-direction:column;align-items:stretch;}
+  .profile__media{flex-basis:auto;width:100%;}
+}
+
+/* =========================================================
+   CUHK 内页排版格局：内容板块变体（仍为骨架，仅标题+留白+占位）
+   ========================================================= */
+
+/* 概述导语 */
+.lead{margin-bottom:28px;}
+.lead__body{min-height:90px;color:var(--text);font-size:1.0625rem;line-height:1.8;}
+
+/* 图文两栏 */
+.two-col{display:flex;gap:var(--gap);align-items:flex-start;margin-bottom:28px;}
+.two-col__main{flex:1 1 auto;min-width:0;}
+.two-col__side{flex:0 0 320px;}
+.two-col__side .ph{min-height:220px;}
+
+/* 正文富文本 */
+.rich p{margin:0 0 15px;color:var(--text);font-size:1rem;line-height:1.85;}
+.rich p:last-child{margin-bottom:0;}
+.rich ul,.rich ol{margin:0 0 15px;padding-left:1.35em;line-height:1.85;color:var(--text);}
+.rich ul{list-style:disc;}
+.rich ol{list-style:decimal;}
+.rich li{margin-bottom:6px;}
+.rich li:last-child{margin-bottom:0;}
+
+/* ===== 正文文章模板（通用 article，无侧栏；标题+元信息一体；正文左起高可读） ===== */
+.article{width:100%;}
+.article__head{padding-bottom:18px;margin-bottom:28px;border-bottom:2px solid var(--navy);}
+.article__title{font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1.5;margin:0 0 14px;letter-spacing:.01em;}
+.article__meta{font-size:.875rem;color:var(--text-2);line-height:1.9;margin:0;}
+.article__body p{margin:0 0 18px;color:var(--text);font-size:1.0625rem;line-height:1.95;text-align:left;}
+.article__sec{font-size:1.125rem;font-weight:700;color:var(--navy);line-height:1.55;margin:36px 0 16px;padding-left:13px;border-left:4px solid var(--accent);letter-spacing:.01em;}
+.article__sec:first-child{margin-top:0;}
+.article__body ul,.article__body ol{margin:0 0 18px;padding-left:1.5em;line-height:1.9;font-size:1.0625rem;color:var(--text);}
+.article__body ul{list-style:disc;}
+.article__body ol{list-style:decimal;}
+.article__body li{margin-bottom:9px;}
+.article__foot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);}
+.article__foot .view-all{margin:0;}
+
+/* 联络信息列表（联系我们 / 联系档案室） */
+.contact-list{list-style:none;padding:0;margin:4px 0 16px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.contact-list li{background:var(--bg-soft);border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:var(--radius);padding:12px 15px;display:flex;flex-direction:column;gap:4px;}
+.contact-list strong{color:var(--navy);font-size:.9375rem;font-weight:700;}
+.contact-list span{color:var(--text-2);font-size:.85rem;line-height:1.65;word-break:break-word;}
+.contact-line{margin:0 0 15px;color:var(--text);font-size:1rem;line-height:1.85;}
+
+/* 要点卡片（序号 + 标题 + 说明，hover 轻微上浮） */
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+.feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;border-top:3px solid var(--navy);transition:transform .25s ease,box-shadow .25s ease,border-top-color .25s ease;}
+.feature__no{display:block;font-family:"Poppins",sans-serif;font-size:.8125rem;font-weight:700;color:var(--accent);letter-spacing:1.5px;margin-bottom:10px;}
+.feature h3{font-size:1.0625rem;margin:0 0 8px;line-height:1.5;}
+.feature p{color:var(--text-2);font-size:.9rem;margin:0;line-height:1.7;}
+.feature:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(9,17,62,.1);border-top-color:var(--accent);}
+
+/* 数据指标（序号 + 指标说明） */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat{background:var(--bg-soft);border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:var(--radius);padding:20px;text-align:left;}
+.stat__num{font-family:"Poppins","Noto Sans SC",sans-serif;font-size:1.375rem;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.5px;}
+.stat__label{font-size:.875rem;color:var(--text);margin-top:9px;line-height:1.7;}
+
+/* 列表板块 */
+.list-block{margin-bottom:28px;}
+/* 动态列表：日期固定列 + 等宽数字，保证上下逐行对齐 */
+.list-item{
+  display:grid;
+  grid-template-columns:118px 1fr;
+  align-items:baseline;
+  column-gap:22px;
+  padding:15px 6px;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+  transition:background-color .18s ease;
+}
+.list-item:hover{background-color:rgba(9,17,62,.04);}
+.list-item__date{
+  font-family:"Poppins","Noto Sans SC",sans-serif;
+  font-size:.8125rem;
+  letter-spacing:.02em;
+  color:var(--accent);
+  font-weight:600;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.list-item__title{
+  font-size:1rem;
+  color:var(--navy);
+  font-weight:500;
+  line-height:1.55;
+}
+.list-item:hover .list-item__title{color:var(--accent);}
+
+/* 折叠答疑 */
+.accordion{margin-bottom:28px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.accordion__item{border-bottom:1px solid var(--line);}
+.accordion__item:last-child{border-bottom:none;}
+.accordion__head{width:100%;text-align:left;background:#fff;border:none;padding:15px 18px;font-size:1rem;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.accordion__head::after{content:"+";color:var(--accent);font-size:1.3rem;font-weight:700;line-height:1;transition:transform .25s ease;}
+.accordion__item.is-open .accordion__head::after{content:"\2212";}
+.accordion__body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.accordion__item.is-open .accordion__body{max-height:600px;}
+.accordion__body-inner{padding:0 18px 16px;color:var(--text-2);font-size:.9rem;min-height:48px;}
+
+/* 滚动渐入小动效（默认可见，仅在有 JS 时隐藏再渐入，避免无脚本内容消失） */
+.reveal{opacity:1;transform:none;}
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.js .reveal.is-visible{opacity:1;transform:none;}
+
+/* 新板块在平板 / 手机端的自适应堆叠 */
+@media (max-width:1024px){
+  .feature-grid{grid-template-columns:repeat(2,1fr);}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .two-col__side{flex-basis:260px;}
+}
+@media (max-width:768px){
+  .two-col{flex-direction:column;}
+  .two-col__side{flex-basis:auto;width:100%;}
+  .feature-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .contact-list{grid-template-columns:1fr;}
+}
+@media (max-width:480px){
+  .stats{grid-template-columns:1fr;}
+}
+/* 尊重系统「减少动态效果」偏好 */
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1;transform:none;transition:none;}
+  .feature,.feature:hover,.accordion__head::after,.accordion__body{transition:none;}
+  .feature:hover{transform:none;}
+}
+
+/* 查看全部历史公告 / 通知 链接 */
+.view-all{margin:6px 0 32px;}
+.view-all a{display:inline-block;font-weight:600;color:var(--navy);border-bottom:2px solid var(--accent);padding-bottom:3px;transition:color .2s ease;}
+.view-all a:hover{color:var(--accent);}
+
+/* ---------- 学院动态：分类板块 + 分页 ---------- */
+.dyn-category{margin-bottom:38px;}
+.dyn-category__title{font-size:1.125rem;margin:0 0 16px;padding-bottom:8px;border-bottom:2px solid var(--line);position:relative;color:var(--navy);}
+.dyn-category__title::before{content:"";position:absolute;left:0;bottom:-2px;width:40px;height:3px;background:var(--accent);}
+.dyn-pager{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;}
+.dyn-page{min-width:38px;height:38px;padding:0 12px;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:.9rem;font-weight:600;cursor:pointer;border-radius:var(--radius);transition:background .2s ease,color .2s ease,border-color .2s ease;font-family:"Poppins","Noto Sans SC",sans-serif;}
+.dyn-page:hover{border-color:var(--accent);color:var(--accent);}
+.dyn-page.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.dyn-page:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* ---------- 公告详情页（notice-*.html） ---------- */
+.notice-meta{color:var(--text-2);font-size:.875rem;border-bottom:1px solid var(--line);
+  padding-bottom:14px;margin-bottom:22px;}

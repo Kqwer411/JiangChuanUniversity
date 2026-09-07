@@ -1,0 +1,152 @@
+/* =========================================================
+   校园内网系统样式（intranet/）— 与主站同色系，加系统表单感
+   ========================================================= */
+:root{
+  --navy:#09113e; --navy-2:#11205c; --accent:#ff4300;
+  --text:#4e4e4e; --text-2:#828282; --line:#e0e0e0; --bg-soft:#f5f5f5;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;color:var(--text);
+  background:#eef0f4;line-height:1.75;font-size:15px;}
+a{color:var(--navy);}
+a:hover{color:var(--accent);}
+
+.in-bar{background:var(--navy);color:#fff;padding:14px 0;}
+.in-bar__in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:8px;}
+.in-bar__sys{font-weight:700;letter-spacing:.06em;font-size:1.05rem;}
+.in-bar__sys small{display:block;font-weight:400;font-size:.72rem;opacity:.7;letter-spacing:.14em;}
+.in-bar__user{font-size:.8rem;opacity:.85;}
+.in-auth{background:#fff7e6;border-bottom:1px solid #f0dfae;color:#8a6d1a;
+  font-size:.82rem;padding:8px 24px;text-align:center;}
+
+.in-wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px;}
+.in-card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:28px 32px;margin-bottom:24px;}
+.in-card h1{font-size:1.35rem;color:var(--navy);margin:0 0 4px;}
+.in-card h2{font-size:1.05rem;color:var(--navy);margin:26px 0 10px;border-left:3px solid var(--accent);padding-left:10px;}
+.in-meta{font-size:.82rem;color:var(--text-2);border-bottom:1px dashed var(--line);padding-bottom:12px;margin-bottom:18px;}
+.in-meta span{margin-right:18px;}
+
+table.in-tbl{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0;}
+.in-tbl th{background:var(--bg-soft);color:var(--navy);text-align:left;font-weight:600;
+  padding:9px 12px;border:1px solid var(--line);white-space:nowrap;}
+.in-tbl td{padding:9px 12px;border:1px solid var(--line);vertical-align:top;}
+.in-tbl tr:nth-child(even) td{background:#fafafa;}
+
+.in-tag{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:2px;margin-right:6px;}
+.in-tag--red{background:#fdecea;color:#c0392b;border:1px solid #f5c6c0;}
+.in-tag--blue{background:#eaf0fb;color:var(--navy);border:1px solid #c8d4ee;}
+.in-tag--gray{background:#f0f0f0;color:#777;border:1px solid #ddd;}
+
+.in-note{background:var(--bg-soft);border-left:3px solid var(--navy);padding:12px 16px;font-size:.86rem;margin:14px 0;}
+.in-frag{margin-top:26px;padding-top:10px;border-top:1px dotted var(--line);
+  font-size:.72rem;color:#b5b5b5;letter-spacing:.05em;}
+.in-foot{text-align:center;font-size:.75rem;color:#9a9a9a;padding:26px 0 10px;}
+
+/* 通讯碎片（截图残片风） */
+.frag-shot{background:#20242e;color:#c9ced8;border-radius:4px;padding:20px 22px;margin:16px 0;
+  font-family:"Consolas","Noto Sans SC",monospace;font-size:.86rem;line-height:2;position:relative;}
+.frag-shot__hd{font-size:.7rem;color:#6d7482;border-bottom:1px solid #333947;padding-bottom:8px;margin-bottom:12px;
+  display:flex;justify-content:space-between;}
+.frag-mark{background:#20242e;color:#20242e;border-radius:2px;padding:0 6px;user-select:all;}
+.frag-vis{color:#e8b45a;}
+@media (max-width:768px){.in-card{padding:20px 18px;}}
+
+/* ============ 内网系统框架（登录后） ============ */
+/* 登录门户 */
+.in-login{max-width:420px;margin:64px auto;background:#fff;border:1px solid var(--line);
+  border-radius:6px;padding:34px 34px 28px;box-shadow:0 4px 18px rgba(9,17,62,.06);}
+.in-login h1{font-size:1.3rem;color:var(--navy);margin:0 0 4px;text-align:center;}
+.in-login__sub{text-align:center;color:var(--text-2);font-size:.82rem;margin-bottom:22px;}
+.in-field{margin-bottom:16px;}
+.in-field label{display:block;font-size:.84rem;color:var(--navy);margin-bottom:6px;font-weight:500;}
+.in-field input,.in-field select,.in-field textarea{width:100%;padding:10px 12px;border:1px solid var(--line);
+  border-radius:3px;font-size:.92rem;font-family:inherit;color:var(--text);background:#fff;}
+.in-field textarea{min-height:96px;resize:vertical;}
+.in-btn{display:inline-block;background:var(--navy);color:#fff;border:none;border-radius:3px;
+  padding:10px 18px;font-size:.92rem;cursor:pointer;font-family:inherit;}
+.in-btn:hover{background:var(--navy-2);}
+.in-btn--block{width:100%;text-align:center;}
+.in-btn--ghost{background:#fff;color:var(--navy);border:1px solid var(--navy);}
+.in-hint{font-size:.78rem;color:var(--text-2);margin-top:14px;text-align:center;line-height:1.7;}
+.in-reg-note{font-size:.78rem;color:#c0392b;text-align:center;margin-top:8px;}
+
+/* 登录后整体布局：顶栏 + 侧栏 + 主区 */
+.in-shell{display:flex;min-height:calc(100vh - 52px);}
+.in-nav{position:relative;width:212px;flex:0 0 212px;background:#fff;border-right:1px solid var(--line);
+  padding:18px 0;overflow:hidden;transition:width .2s ease,flex-basis .2s ease;}
+.in-nav__grp{font-size:.72rem;color:var(--text-2);letter-spacing:.08em;padding:10px 22px 6px;
+  white-space:nowrap;transition:opacity .15s ease;}
+.in-nav ul{list-style:none;margin:0;padding:0;}
+.in-nav li a{display:flex;align-items:center;padding:9px 22px;color:var(--text);font-size:.9rem;
+  border-left:3px solid transparent;white-space:nowrap;transition:background .15s,color .15s;}
+.in-nav__ico{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  margin-right:10px;flex:0 0 20px;color:var(--navy);}
+.in-nav__ico svg{width:20px;height:20px;display:block;}
+.in-nav__txt{vertical-align:middle;}
+.in-nav li a:hover{background:var(--bg-soft);color:var(--navy);}
+.in-nav li a.is-active{background:#eef1fb;border-left-color:var(--accent);color:var(--navy);font-weight:600;}
+.in-nav__toggle{position:absolute;top:13px;right:12px;width:24px;height:24px;border:1px solid var(--line);
+  background:#fff;border-radius:4px;cursor:pointer;color:var(--navy);font-size:15px;line-height:1;
+  display:flex;align-items:center;justify-content:center;z-index:3;padding:0;transition:background .15s;}
+.in-nav__toggle:hover{background:var(--bg-soft);}
+
+/* 折叠态：仅留图标，把空间还给主内容 */
+.in-shell.is-collapsed .in-nav{width:64px;flex-basis:64px;}
+.in-shell.is-collapsed .in-nav__grp{opacity:0;height:0;padding:0;margin:0;overflow:hidden;}
+.in-shell.is-collapsed .in-nav__txt{display:none;}
+.in-shell.is-collapsed .in-nav li a{justify-content:center;padding-left:0;padding-right:0;}
+.in-shell.is-collapsed .in-nav__ico{margin-right:0;}
+.in-shell.is-collapsed .in-nav__toggle{right:50%;transform:translateX(50%);}
+.in-main{flex:1;padding:26px 30px 60px;max-width:100%;overflow:auto;}
+.in-page-h{font-size:1.2rem;color:var(--navy);margin:0 0 4px;}
+.in-page-sub{font-size:.82rem;color:var(--text-2);margin-bottom:18px;}
+.in-mod{border:1px solid var(--line);border-radius:5px;background:#fff;padding:20px 22px;margin-bottom:20px;}
+.in-mod h3{font-size:1rem;color:var(--navy);margin:0 0 12px;border-left:3px solid var(--accent);padding-left:10px;}
+.in-empty{color:#9a9a9a;font-size:.86rem;padding:22px;text-align:center;background:var(--bg-soft);
+  border:1px dashed var(--line);border-radius:4px;}
+.in-stamp{font-size:.74rem;color:#9a9a9a;text-align:right;margin-top:8px;}
+
+/* 仪表盘模块宫格 */
+.in-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.in-tile{background:#fff;border:1px solid var(--line);border-radius:5px;padding:18px 20px;
+  text-decoration:none;color:var(--text);display:block;transition:.15s;}
+.in-tile:hover{border-color:var(--accent);color:var(--navy);transform:translateY(-2px);}
+.in-tile b{display:block;color:var(--navy);font-size:1.02rem;margin-bottom:4px;}
+.in-tile span{font-size:.8rem;color:var(--text-2);}
+@media (max-width:900px){.in-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:768px){
+  .in-shell{display:block;}
+  .in-shell .in-nav{width:100%;flex:none;border-right:none;border-bottom:1px solid var(--line);
+    overflow:visible;}
+  .in-main{padding:18px 16px 50px;}
+  .in-grid{grid-template-columns:1fr;}
+  /* 移动端侧栏始终展开、隐藏折叠开关，避免与堆叠布局冲突 */
+  .in-nav__toggle{display:none;}
+  .in-shell.is-collapsed .in-nav{width:100%;flex:none;}
+  .in-shell.is-collapsed .in-nav__grp{opacity:1;height:auto;padding:10px 22px 6px;margin:0;}
+  .in-shell.is-collapsed .in-nav__txt{display:inline;}
+  .in-shell.is-collapsed .in-nav li a{justify-content:flex-start;padding-left:22px;padding-right:22px;}
+  .in-shell.is-collapsed .in-nav__ico{margin-right:10px;}
+}
+
+/* 选项卡（邮箱/工单/日志等） */
+.in-tabs{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap;}
+.in-tabs button{background:var(--bg-soft);border:1px solid var(--line);border-radius:3px;
+  padding:6px 14px;font-size:.84rem;cursor:pointer;color:var(--text);font-family:inherit;}
+.in-tabs button.is-active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* 课程表 / 日程网格 */
+.in-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.in-cal__cell{border:1px solid var(--line);border-radius:3px;min-height:74px;padding:6px;background:#fff;font-size:.76rem;}
+.in-cal__cell b{display:block;color:var(--navy);font-size:.72rem;margin-bottom:3px;}
+.in-cal__hd{background:var(--navy);color:#fff;text-align:center;font-size:.74rem;padding:6px 0;border-radius:3px;}
+@media (max-width:768px){.in-cal{grid-template-columns:repeat(2,1fr);}}
+
+/* 表单行内布局 */
+.in-row{display:flex;gap:14px;flex-wrap:wrap;}
+.in-row .in-field{flex:1;min-width:200px;}
+
+/* 顶栏用户区（登录后） */
+.in-bar__user a{color:#fff;opacity:.85;text-decoration:underline;margin-left:10px;}
+

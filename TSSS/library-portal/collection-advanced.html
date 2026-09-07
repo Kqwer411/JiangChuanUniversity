@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高级检索 - 江川大学图书馆</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-nav="collection" data-sub="collection">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__mark">川</span><span class="brand__text"><span class="brand__cn">川流藏书馆</span><span class="brand__en">JIANGCHUAN UNIVERSITY LIBRARY</span></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="导航菜单">☰</button>
+    <nav class="mainnav" id="mainnav"><ul class="nav-list"><li><a class="nav-link" data-nav="home" href="index.html">首页</a></li><li><a class="nav-link" data-nav="collection" href="collection.html">馆藏资源</a></li><li><a class="nav-link" data-nav="spaces" href="spaces.html">空间与设施</a></li><li><a class="nav-link" data-nav="borrowing" href="borrowing.html">借阅服务</a></li><li><a class="nav-link" data-nav="about" href="about.html">关于我们</a></li><li><a class="nav-link" data-nav="mylib" href="login.html">我的图书馆</a></li></ul></nav>
+    <div class="header-account" id="account-area"></div>
+  </div>
+</header>
+<div class="breadcrumb-wrap"><div class="container"><nav class="breadcrumb"><a href="index.html">首页</a> <span class="sep">&rsaquo;</span> 馆藏资源 <span class="sep">&rsaquo;</span> 高级检索</nav></div></div>
+
+<main>
+<section class="page-head"><div class="container"><h1>高级检索</h1><p class="lead">填写部分字段进行模糊检索；<strong>全部字段精确匹配</strong>可检索到仅限内部调阅的特藏文献。</p></div></section><section class="section" style="padding-top:8px"><div class="container"><div class="form-card"><form id="adv-form"><div class="field"><label>书名</label><input name="booktitle"></div><div class="field"><label>作者</label><input name="author"></div><div class="field"><label>分类</label><input name="category"></div><div class="field"><label>出版社</label><input name="publisher"></div><div class="field"><label>出版年份</label><input name="year"></div><div class="field"><label>馆藏地点</label><select name="location"><option value="">全部</option><option>川流藏书馆</option><option>资料档案室</option></select></div><button class="btn btn-primary btn-block" type="submit">检索</button><p class="form-note">提示：留空字段将按模糊匹配处理；仅当六项全部填写且完全吻合时才返回内部特藏。</p></form></div><div class="result-count" id="result-count" style="margin-top:24px"></div><div class="grid grid-3" id="results"></div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-col"><h4>江川大学图书馆</h4><ul>
+        <li><a href="index.html">川流藏书馆</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="collection.html">馆藏资源</a></li>
+        <li><a href="spaces.html">空间与设施</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>联系方式</h4><ul>
+        <li>地址：白宁省江川市学苑路66号</li>
+        <li>电话：+86-894-15868</li>
+        <li>邮箱：<a href="mailto:lib@jcu.edu.cn">lib@jcu.edu.cn</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>友情链接</h4><ul>
+        <li><a href="../index.html">圣殿科学学会学院</a></li>
+        <li><a href="special-collection.html">资料档案室特藏</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+        <li><a href="feedback.html">意见反馈</a></li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">版权所有 &copy; 江川大学图书馆　|　川流藏书馆 · 圣殿科学学会学院资料档案室　|　内部系统，仅限本校师生</div>
+</footer>
+<button class="to-top" id="to-top" aria-label="返回顶部">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

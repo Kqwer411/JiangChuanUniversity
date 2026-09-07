@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研讨室预约 - 江川大学图书馆</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-nav="spaces" data-sub="spaces">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__mark">川</span><span class="brand__text"><span class="brand__cn">川流藏书馆</span><span class="brand__en">JIANGCHUAN UNIVERSITY LIBRARY</span></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="导航菜单">☰</button>
+    <nav class="mainnav" id="mainnav"><ul class="nav-list"><li><a class="nav-link" data-nav="home" href="index.html">首页</a></li><li><a class="nav-link" data-nav="collection" href="collection.html">馆藏资源</a></li><li><a class="nav-link" data-nav="spaces" href="spaces.html">空间与设施</a></li><li><a class="nav-link" data-nav="borrowing" href="borrowing.html">借阅服务</a></li><li><a class="nav-link" data-nav="about" href="about.html">关于我们</a></li><li><a class="nav-link" data-nav="mylib" href="login.html">我的图书馆</a></li></ul></nav>
+    <div class="header-account" id="account-area"></div>
+  </div>
+</header>
+<div class="breadcrumb-wrap"><div class="container"><nav class="breadcrumb"><a href="index.html">首页</a> <span class="sep">&rsaquo;</span> 空间与设施 <span class="sep">&rsaquo;</span> 研讨室预约</nav></div></div>
+
+<main>
+<section class="page-head"><div class="container"><h1>研讨室预约</h1><p class="lead">1-8 号研讨室开放预约，7、8 号限圣殿学院使用。</p></div></section><section class="section" style="padding-top:8px"><div class="container"><div class="form-card" style="max-width:720px"><form id="booking-form"><div class="field"><label>预约日期</label><input type="date" name="date"></div><div class="field"><label>时间段</label><select name="slot"><option>09:00-12:00</option><option>13:00-17:00</option><option>18:00-21:00</option><option>全天</option></select></div><div class="field"><label>研讨室</label><select name="room"><option>#1</option><option>#2</option><option>#3</option><option>#4</option><option>#5</option><option>#6</option><option>#7</option><option>#8</option></select></div><div class="field"><label>用途说明</label><input name="purpose"></div><button class="btn btn-primary btn-block" type="submit">提交预约</button></form></div><div class="block-title" style="margin-top:40px"><h2>研讨室列表</h2></div><div class="grid grid-4"><div class="room-card"><div class="room-no">#1</div><div class="room-meta">容量：4 人</div><div class="room-meta">设施：白板、显示屏、Wi-Fi</div></div><div class="room-card"><div class="room-no">#2</div><div class="room-meta">容量：4 人</div><div class="room-meta">设施：白板、显示屏、Wi-Fi</div></div><div class="room-card"><div class="room-no">#3</div><div class="room-meta">容量：6 人</div><div class="room-meta">设施：白板、投影、Wi-Fi</div></div><div class="room-card"><div class="room-no">#4</div><div class="room-meta">容量：6 人</div><div class="room-meta">设施：白板、投影、Wi-Fi</div></div><div class="room-card"><div class="room-no">#5</div><div class="room-meta">容量：8 人</div><div class="room-meta">设施：显示屏、会议桌、Wi-Fi</div></div><div class="room-card"><div class="room-no">#6</div><div class="room-meta">容量：8 人</div><div class="room-meta">设施：显示屏、会议桌、Wi-Fi</div></div><div class="room-card"><div class="room-no">#7</div><span class="badge-special">圣殿学院专属研讨室</span><div class="room-meta">容量：10 人</div><div class="room-meta">设施：投影、白板、研讨桌、Wi-Fi</div></div><div class="room-card"><div class="room-no">#8</div><span class="badge-special">圣殿学院专属研讨室</span><div class="room-meta">容量：12 人</div><div class="room-meta">设施：投影、白板、设备接口、Wi-Fi</div></div></div><div id="booking-history" data-auth="user" style="margin-top:40px"><div class="block-title"><h2>我的预约历史</h2></div><div id="booking-history-list"></div></div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-col"><h4>江川大学图书馆</h4><ul>
+        <li><a href="index.html">川流藏书馆</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="collection.html">馆藏资源</a></li>
+        <li><a href="spaces.html">空间与设施</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>联系方式</h4><ul>
+        <li>地址：白宁省江川市学苑路66号</li>
+        <li>电话：+86-894-15868</li>
+        <li>邮箱：<a href="mailto:lib@jcu.edu.cn">lib@jcu.edu.cn</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>友情链接</h4><ul>
+        <li><a href="../index.html">圣殿科学学会学院</a></li>
+        <li><a href="special-collection.html">资料档案室特藏</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+        <li><a href="feedback.html">意见反馈</a></li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">版权所有 &copy; 江川大学图书馆　|　川流藏书馆 · 圣殿科学学会学院资料档案室　|　内部系统，仅限本校师生</div>
+</footer>
+<button class="to-top" id="to-top" aria-label="返回顶部">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

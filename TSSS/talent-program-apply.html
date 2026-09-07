@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青年才俊精英培养专项计划申报表 - 圣殿科学学会学院</title>
+<meta name="description" content="青年才俊精英培养专项计划申报表，面向 35 周岁以下在古法魔法研究或数理魔法解析方向具突出潜力的青年人才。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ============ 申报表专用样式（沿用学院主题变量） ============ */
+.form-page{max-width:1000px;margin:0 auto}
+.form-alert{display:flex;gap:12px;align-items:flex-start;background:#fff6f3;border:1px solid #ffd6c8;
+  border-left:4px solid var(--accent);border-radius:var(--radius);padding:16px 20px;margin:0 0 24px;font-size:.9rem;line-height:1.7;color:#7a2a10}
+.form-alert b{display:block;margin-bottom:2px;color:#7a2a10}
+.form-tip{background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:var(--radius);padding:16px 20px;margin:0 0 26px;font-size:.9rem;color:var(--text-2)}
+.form-tip h4{margin:0 0 8px;font-size:.95rem;color:var(--navy)}
+.form-tip ol{margin:0;padding-left:20px}
+.form-tip li{margin-bottom:4px}
+
+.fsec{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:26px;background:#fff;overflow:hidden}
+.fsec__head{display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:13px 22px}
+.fsec__no{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;
+  justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+.fsec__head h3{margin:0;font-size:1rem;font-weight:600;letter-spacing:.5px}
+.fsec__head span{margin-left:auto;font-size:.78rem;color:#b9c2e8;font-weight:400}
+.fsec__body{padding:6px 24px 24px}
+
+.fq{padding:18px 0;border-bottom:1px dashed var(--line)}
+.fq:last-child{border-bottom:none}
+.fq__t{display:flex;gap:10px;font-weight:500;color:#222;font-size:.94rem;line-height:1.65;margin-bottom:9px}
+.fq__n{color:var(--accent);font-weight:700;min-width:28px;flex-shrink:0}
+.fq__star{color:var(--accent);margin-left:2px}
+.fq__hint{display:block;font-weight:400;font-size:.8rem;color:var(--text-2);margin-top:3px}
+.fq__err{display:none;font-size:.8rem;color:var(--accent);margin-top:7px}
+.fq.is-err .fq__err{display:block}
+.fq.is-err .fq__t{color:var(--accent)}
+.fq.is-err input,.fq.is-err select,.fq.is-err textarea{border-color:var(--accent)}
+
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=month],input[type=number],select,textarea{
+  width:100%;font-family:inherit;font-size:.92rem;color:#222;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);padding:10px 12px;outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(9,17,62,.08)}
+textarea{min-height:104px;resize:vertical;line-height:1.7}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#828282 50%),linear-gradient(135deg,#828282 50%,transparent 50%);
+  background-position:calc(100% - 18px) 19px,calc(100% - 12px) 19px;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:34px}
+input[readonly]{background:var(--bg-soft);color:var(--text-2)}
+
+.fgrid{display:grid;gap:12px}
+.fgrid--2{grid-template-columns:1fr 1fr}
+.fgrid--3{grid-template-columns:1fr 1fr 1fr}
+.fgrid--4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.fgrid--2,.fgrid--3,.fgrid--4{grid-template-columns:1fr}}
+
+.fopts{display:flex;flex-wrap:wrap;gap:9px 22px}
+.fopt{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:.9rem;color:var(--text);user-select:none}
+.fopt input{width:16px;height:16px;accent-color:var(--navy);cursor:pointer;margin:0;flex-shrink:0}
+.fopt:hover{color:var(--navy)}
+.fopts--col{flex-direction:column;gap:10px}
+
+.fcheck{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:4px}
+@media(max-width:760px){.fcheck{grid-template-columns:1fr}}
+.fcheck .fopt{align-items:flex-start;line-height:1.5}
+
+.fwarn{display:none;margin-top:10px;padding:10px 14px;background:#fff6f3;border:1px solid #ffd6c8;
+  border-radius:var(--radius);font-size:.84rem;color:#7a2a10}
+.fwarn.on{display:block}
+
+.fbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--bg-soft);
+  border-top:1px solid var(--line);padding:20px 24px}
+.fbar__note{font-size:.82rem;color:var(--text-2)}
+.fbar__btns{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.fbtn{font-family:inherit;font-size:.9rem;font-weight:600;padding:11px 24px;border-radius:40px;border:1px solid transparent;cursor:pointer;transition:.2s}
+.fbtn--main{background:var(--navy);color:#fff}
+.fbtn--main:hover{background:var(--navy-2)}
+.fbtn--accent{background:var(--accent);color:#fff}
+.fbtn--accent:hover{filter:brightness(1.08)}
+.fbtn--line{background:#fff;color:var(--navy);border-color:var(--line)}
+.fbtn--line:hover{border-color:var(--navy)}
+
+.repeat{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:6px}
+.repeat__row{display:grid;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);align-items:center}
+.repeat__row:last-child{border-bottom:none}
+.repeat__row input{font-size:.86rem;padding:8px 10px}
+.repeat__del{background:none;border:1px solid var(--line);border-radius:50%;width:26px;height:26px;color:var(--text-2);cursor:pointer;line-height:1;font-size:.9rem}
+.repeat__del:hover{border-color:var(--accent);color:var(--accent)}
+.repeat__add{margin-top:8px;font-family:inherit;font-size:.85rem;background:none;border:1px dashed var(--line);
+  border-radius:var(--radius);padding:8px 16px;color:var(--navy);cursor:pointer;width:100%}
+.repeat__add:hover{border-color:var(--navy);background:var(--bg-soft)}
+.repeat__head{display:grid;gap:10px;padding:9px 12px;background:var(--bg-soft);
+  font-size:.78rem;color:var(--text-2);border-bottom:1px solid var(--line)}
+.r5{grid-template-columns:1.1fr 1.5fr 1.2fr 1fr 1fr auto}
+.r4{grid-template-columns:1.2fr 1.6fr 1.4fr 1.2fr auto}
+.r3{grid-template-columns:1fr 2fr 1.4fr auto}
+@media(max-width:760px){
+  .r5,.r4,.r3{grid-template-columns:1fr 1fr}
+  .repeat__head{display:none}
+}
+
+.receipt{display:none;border:2px solid var(--navy);border-radius:var(--radius);overflow:hidden;margin-bottom:60px}
+.receipt__hd{background:var(--navy);color:#fff;padding:30px 28px;text-align:center}
+.receipt__hd .tick{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;
+  justify-content:center;font-size:26px;margin:0 auto 12px}
+.receipt__hd h2{margin:0 0 6px;font-size:1.3rem;font-weight:600;color:#fff}
+.receipt__hd p{margin:0;font-size:.86rem;color:#b9c2e8}
+.receipt__bd{padding:26px 28px}
+.receipt__no{font-size:1.6rem;font-weight:700;color:var(--navy);letter-spacing:2px}
+.receipt__grid{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin-top:16px;font-size:.88rem}
+.receipt__grid dt{color:var(--text-2)}
+.receipt__grid dd{margin:0;color:#222}
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.steps li{position:relative;padding:0 0 16px 24px}
+.steps li:last-child{padding-bottom:0;border-left-color:transparent}
+.steps li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+.steps li.on:before{background:var(--accent);border-color:var(--accent)}
+.steps b{display:block;font-size:.92rem;color:#222}
+.steps span{font-size:.82rem;color:var(--text-2)}
+.seal{margin-top:24px;padding:16px 20px;border:1px dashed var(--line);border-radius:var(--radius);
+  font-size:.8rem;color:var(--text-2);background:var(--bg-soft)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+@media(max-width:760px){.sig{grid-template-columns:1fr}}
+@media print{.subnav,.college-banner,.fbar__btns,.form-alert{display:none!important}}
+</style>
+</head>
+<body>
+
+<header class="college-bar">
+  <div class="container">
+    <div class="college-bar__orgs">
+      <a class="org-block org-block--link" href="../index.html">
+        <div class="ph ph--logo">【待填入图片】</div>
+        <div class="org-block__text">
+          <span class="org-block__cn">江川大学</span>
+          <span class="org-block__en">JIANGCHUAN UNIVERSITY</span>
+        </div>
+      </a>
+      <span class="college-bar__divider" aria-hidden="true"></span>
+      <a class="org-block org-block--link" href="index.html">
+        <div class="ph ph--logo">【待填入图片】</div>
+        <div class="org-block__text">
+          <h1 class="org-block__cn college-name">圣殿科学学会学院</h1>
+          <span class="org-block__en">Temple Society of Science School</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="college-banner">
+  <div class="container college-banner__inner">
+    <div class="college-banner__text">
+      <span class="college-banner__kicker">师资队伍 · TALENT PROGRAMME</span>
+      <h1 class="college-banner__title">青年才俊精英培养专项计划申报表</h1>
+    </div>
+    <div class="ph ph--banner college-banner__figure">【待填入图片】</div>
+  </div>
+</div>
+
+<nav class="subnav">
+  <div class="container subnav__bar">
+    <button class="subnav__toggle" aria-expanded="false" aria-label="导航菜单">☰ 导航菜单</button>
+    <ul class="megamenu"><li><a href="index.html">首页</a></li><li><a href="学院动态.html">学院动态</a></li><li><a href="about.html">学院简介</a><div class="megapanel"><a href="about-0.html">学院概况</a><a href="about-1.html">历史沿革</a><a href="about-2.html">机构设置</a><a href="about-3.html">现任领导</a><a href="about-4.html">联系我们</a></div></li><li><a href="faculty.html" class="is-active">师资队伍</a><div class="megapanel"><a href="faculty-0.html">师资概况</a><a href="faculty-top.html">顶尖师资团队</a><a href="faculty-1.html">教授与博士生导师</a><a href="faculty-2.html">副教授与硕士生导师</a><a href="faculty-3.html">讲师与其他师资</a><a href="faculty-4.html">行政与支撑人员</a></div></li><li><a href="research.html">科研成果</a><div class="megapanel"><a href="research-0.html">科研平台</a><a href="research-1.html">科研项目</a><a href="research-2.html">科研成果</a><a href="research-3.html">学术交流</a><a href="research-4.html">科研通知</a></div></li><li><a href="announcements.html">学术公告</a><div class="megapanel"><a href="announcements-0.html">通知公告</a><a href="announcements-1.html">学术讲座</a><a href="announcements-2.html">会议论坛</a><a href="announcements-3.html">招生信息</a><a href="announcements-4.html">青年法术师</a><a href="announcements-5.html">活动日历</a></div></li><li><a href="library.html">图书馆</a><div class="megapanel"><a href="archive.html">资料档案室</a><a href="archive-0.html">档案室简介</a><a href="archive-1.html">馆藏资源</a><a href="archive-2.html">规章制度</a><a href="archive-3.html">借阅服务</a><a href="archive-4.html">联系档案室</a></div></li><li><a href="intranet/index.html">内联网</a></li></ul>
+  </div>
+</nav>
+
+<main class="container form-page" style="padding:30px 20px 0">
+  <div class="breadcrumb">首页 &gt; 师资队伍 &gt; 青年才俊计划 &gt; 专项计划申报表</div>
+
+  <div class="form-alert">
+    <div>
+      <b>2026 年度选拔工作说明</b>
+      本年度申报截止时间为 2026 年 6 月 30 日 24:00。计划面向 35 周岁以下青年人才开放，经个人申报、书院推荐、专家评审、学院党政联席会审议四级程序确定人选，并按规定进行公示。
+    </div>
+  </div>
+
+  <div class="form-tip">
+    <h4>填表须知</h4>
+    <ol>
+      <li>本计划依托江川基金会与圣殿基金会联合资助，提供科研启动、导师结对、馆藏开放等系统性支持。</li>
+      <li>申报人须在古法魔法研究或数理魔法解析方向展现突出潜力，年龄计算截至申报年度 1 月 1 日。</li>
+      <li>入选者由学院配备一对一责任导师，纳入对应书院教研体系，实行年度考核与滚动支持机制。</li>
+      <li>标记 <span style="color:var(--accent)">*</span> 项为必填。填写内容将作为专家评审的唯一依据，请如实、完整填写。</li>
+    </ol>
+  </div>
+
+  <form id="talForm" novalidate>
+
+    <!-- 一 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">壹</span><h3>基本信息</h3><span>第 1–10 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">1.</span><span>申报年度 / 申报类别<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--2">
+            <select name="t_year" required>
+              <option value="">申报年度</option><option>2026 年度</option><option>2027 年度（预申报）</option>
+            </select>
+            <select name="t_cat" required>
+              <option value="">申报类别</option>
+              <option>青年学者（教学科研岗）</option>
+              <option>优秀青年传承者（古法传承岗）</option>
+              <option>博士后专项（流动站培养）</option>
+              <option>跨书院联合培养专项</option>
+            </select>
+          </div>
+          <div class="fq__err">请选择申报年度与类别</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">2.</span><span>姓名 / 性别 / 出生年月<span class="fq__star">*</span><span class="fq__hint">计划面向 35 周岁以下人员开放</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="t_name" required placeholder="姓名">
+            <select name="t_gender" required><option value="">性别</option><option>男</option><option>女</option></select>
+            <input type="month" name="t_birth" id="tBirth" required>
+          </div>
+          <div class="fq__err">请完整填写姓名、性别与出生年月</div>
+          <div class="fwarn" id="ageWarn">提示：按所填出生年月计算，申报人年龄已超过 35 周岁，可能不符合本计划申报条件。如属特殊情况（如破格推荐），请在第九部分说明并附书院推荐意见。</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">3.</span><span>证件号码 / 国籍或地区<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="text" name="t_idno" required placeholder="身份证 / 护照号码">
+            <input type="text" name="t_nat" required placeholder="国籍 / 地区">
+          </div>
+          <div class="fq__err">请填写证件号码与国籍（地区）</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">4.</span><span>现工作单位 / 职称 / 职务<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="text" name="t_org" required placeholder="现工作单位">
+            <select name="t_title" required>
+              <option value="">现有职称</option><option>无</option><option>助教 / 研究实习员</option><option>讲师 / 助理研究员</option>
+              <option>副教授 / 副研究员</option><option>教授 / 研究员</option><option>传承人（流派认定）</option><option>其他</option>
+            </select>
+            <input type="text" name="t_post" required placeholder="现任职务">
+          </div>
+          <div class="fq__err">请完整填写工作单位、职称与职务</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">5.</span><span>联系电话 / 电子邮箱 / 通讯地址<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--3">
+            <input type="tel" name="t_tel" required placeholder="手机号码">
+            <input type="email" name="t_email" required placeholder="电子邮箱">
+            <input type="text" name="t_addr" required placeholder="通讯地址">
+          </div>
+          <div class="fq__err">请填写有效的联系方式</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">6.</span><span>是否已获其他人才计划资助<span class="fq__star">*</span></span></div>
+          <div class="fopts">
+            <label class="fopt"><input type="radio" name="t_other" value="否" required><span>否</span></label>
+            <label class="fopt"><input type="radio" name="t_other" value="是（校级）"><span>是（校级人才项目）</span></label>
+            <label class="fopt"><input type="radio" name="t_other" value="是（省部级及以上）"><span>是（省部级及以上）</span></label>
+          </div>
+          <div class="fq__err">请选择</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">7.</span><span>外语水平<span class="fq__hint">选填。海外访学推荐将参考此项</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="text" name="t_lang" placeholder="语种及等级，如 英语 CET-6 / 雅思 7.0">
+            <input type="text" name="t_lang2" placeholder="古文字 / 古代语掌握情况（选填）">
+          </div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">8.</span><span>魔法感知能力等级<span class="fq__hint">选填。古法传承岗申报者建议填写</span></span></div>
+          <div class="fgrid fgrid--2">
+            <select name="t_sense">
+              <option value="">请选择（选填）</option><option>甲级</option><option>乙级</option><option>丙级</option><option>未测定</option><option>无感知能力</option>
+            </select>
+            <input type="text" name="t_senseorg" placeholder="测评机构（选填）">
+          </div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">9.</span><span>个人学术主页 / ORCID<span class="fq__hint">选填</span></span></div>
+          <input type="text" name="t_orcid" placeholder="https:// 或 ORCID iD">
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">10.</span><span>一寸免冠证件照<span class="fq__hint">选填。正式入选后由人事办公室另行采集</span></span></div>
+          <input type="text" name="t_photo" placeholder="可填写照片文件名或留空">
+        </div>
+      </div>
+    </section>
+
+    <!-- 二 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">贰</span><h3>学历经历</h3><span>第 11 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">11.</span><span>自本科起填写学历经历<span class="fq__star">*</span><span class="fq__hint">至少填写一行</span></span></div>
+          <div class="repeat" id="eduRep">
+            <div class="repeat__head r5"><span>起止年月</span><span>院校 / 机构</span><span>专业 / 方向</span><span>导师</span><span>学位</span><span></span></div>
+            <div class="repeat__row r5">
+              <input type="text" name="t_edu_p" placeholder="2018.09—2022.06">
+              <input type="text" name="t_edu_s" placeholder="院校名称">
+              <input type="text" name="t_edu_m" placeholder="专业 / 方向">
+              <input type="text" name="t_edu_t" placeholder="导师姓名">
+              <input type="text" name="t_edu_d" placeholder="学士 / 硕士 / 博士">
+              <button type="button" class="repeat__del" title="删除本行">×</button>
+            </div>
+          </div>
+          <button type="button" class="repeat__add" id="addEdu">＋ 添加一行学历经历</button>
+          <div class="fq__err">请至少完整填写一行学历经历</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">叁</span><h3>工作经历</h3><span>第 12 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">12.</span><span>工作经历 / 流派研修经历<span class="fq__hint">选填，可添加多行</span></span></div>
+          <div class="repeat" id="workRep">
+            <div class="repeat__head r4"><span>起止年月</span><span>工作单位 / 流派</span><span>职务</span><span>职称或身份</span><span></span></div>
+            <div class="repeat__row r4">
+              <input type="text" placeholder="2022.07—至今">
+              <input type="text" placeholder="单位或流派名称">
+              <input type="text" placeholder="职务">
+              <input type="text" placeholder="职称 / 身份">
+              <button type="button" class="repeat__del" title="删除本行">×</button>
+            </div>
+          </div>
+          <button type="button" class="repeat__add" id="addWork">＋ 添加一行工作经历</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 四 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">肆</span><h3>研究方向与书院意向</h3><span>第 13–16 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">13.</span><span>主要研究方向<span class="fq__star">*</span></span></div>
+          <div class="fopts">
+            <label class="fopt"><input type="radio" name="t_dir" value="古法魔法研究" required><span>古法魔法研究</span></label>
+            <label class="fopt"><input type="radio" name="t_dir" value="数理魔法解析"><span>数理魔法解析</span></label>
+            <label class="fopt"><input type="radio" name="t_dir" value="跨流派比较研究"><span>跨流派比较研究</span></label>
+            <label class="fopt"><input type="radio" name="t_dir" value="古手稿修复与数字化"><span>古手稿修复与数字化</span></label>
+            <label class="fopt"><input type="radio" name="t_dir" value="数理魔法模拟"><span>数理魔法模拟</span></label>
+          </div>
+          <div class="fq__err">请选择主要研究方向</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">14.</span><span>具体研究课题<span class="fq__star">*</span></span></div>
+          <input type="text" name="t_topic" required placeholder="例：仪式文学与古代祝祷文本比较研究">
+          <div class="fq__err">请填写具体研究课题</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">15.</span><span>意向书院<span class="fq__star">*</span><span class="fq__hint">入选后纳入该书院教研体系，并由书院配备责任导师</span></span></div>
+          <div class="fgrid fgrid--3">
+            <select name="t_col" required>
+              <option value="">请选择书院</option>
+              <option>阵法书院（Ars Formatio）</option>
+              <option>炼金书院（Ars Alchemia）</option>
+              <option>仪式书院（Ars Ritualis）</option>
+              <option>医疗书院（Ars Medicina）</option>
+              <option>魔法书院（Ars Magica）</option>
+              <option>巫术书院（Ars Venefica）</option>
+              <option>占卜书院（Ars Divinatio）</option>
+              <option>神谕书院（Ars Oraculi）</option>
+            </select>
+            <select name="t_col_adjust" required>
+              <option value="">是否接受跨书院调配</option><option>接受</option><option>不接受</option>
+            </select>
+            <input type="text" name="t_mentor" placeholder="意向责任导师（选填）">
+          </div>
+          <div class="fq__err">请选择意向书院并说明是否接受调配</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">16.</span><span>是否愿意承担本科教学任务<span class="fq__star">*</span></span></div>
+          <div class="fopts">
+            <label class="fopt"><input type="radio" name="t_teach" value="愿意" required><span>愿意，可承担书院本科课程</span></label>
+            <label class="fopt"><input type="radio" name="t_teach" value="愿意（仅研究生课程）"><span>愿意，仅承担研究生课程</span></label>
+            <label class="fopt"><input type="radio" name="t_teach" value="暂不承担"><span>培养期内暂不承担</span></label>
+          </div>
+          <div class="fq__err">请选择</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">伍</span><h3>代表性成果</h3><span>第 17–19 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">17.</span><span>代表性成果清单<span class="fq__star">*</span><span class="fq__hint">含论文、著作、专利、仪式档案整理等，至少填写一项</span></span></div>
+          <div class="repeat" id="achRep">
+            <div class="repeat__head r5"><span>类别</span><span>成果名称</span><span>发表 / 出版 / 授权单位</span><span>时间</span><span>本人排序</span><span></span></div>
+            <div class="repeat__row r5">
+              <input type="text" placeholder="论文 / 著作 / 专利 / 档案">
+              <input type="text" placeholder="成果名称">
+              <input type="text" placeholder="期刊 / 出版社 / 授权机构">
+              <input type="text" placeholder="2025.03">
+              <input type="text" placeholder="独著 / 第一作者">
+              <button type="button" class="repeat__del" title="删除本行">×</button>
+            </div>
+          </div>
+          <button type="button" class="repeat__add" id="addAch">＋ 添加一项成果</button>
+          <div class="fq__err">请至少完整填写一项代表性成果</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">18.</span><span>主持或参与的科研项目<span class="fq__hint">选填，可添加多行</span></span></div>
+          <div class="repeat" id="projRep">
+            <div class="repeat__head r4"><span>角色</span><span>项目名称</span><span>项目来源</span><span>起止年月 / 经费</span><span></span></div>
+            <div class="repeat__row r4">
+              <input type="text" placeholder="主持 / 参与">
+              <input type="text" placeholder="项目名称">
+              <input type="text" placeholder="圣殿基金会 / 江川基金会 / 国家社科">
+              <input type="text" placeholder="2024.01—2026.12 / 30 万">
+              <button type="button" class="repeat__del" title="删除本行">×</button>
+            </div>
+          </div>
+          <button type="button" class="repeat__add" id="addProj">＋ 添加一个项目</button>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">19.</span><span>获奖与学术兼职情况<span class="fq__hint">选填。含期刊审稿、学会职务、流派认定等</span></span></div>
+          <textarea name="t_award" placeholder="例：2024 年获江川基金会青年研究奖；担任《极点》期刊匿名审稿人"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 六 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">陆</span><h3>支持需求</h3><span>第 20–21 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">20.</span><span>申请学院提供的支持<span class="fq__star">*</span><span class="fq__hint">可多选</span></span></div>
+          <div class="fcheck">
+            <label class="fopt"><input type="checkbox" name="t_sup" value="科研启动经费"><span>科研启动经费</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="一对一责任导师"><span>一对一责任导师</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="专属工位"><span>专属工位</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="实验平台使用权限"><span>实验平台使用权限</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="古籍查阅权限"><span>古籍查阅权限</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="海外访学推荐"><span>海外访学推荐</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="住房与安家支持"><span>住房与安家支持</span></label>
+            <label class="fopt"><input type="checkbox" name="t_sup" value="跨书院联合课题"><span>跨书院联合课题</span></label>
+          </div>
+          <div class="fq__err">请至少选择一项</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">21.</span><span>申请古籍查阅权限等级<span class="fq__star">*</span><span class="fq__hint">按《资料档案室馆藏管理制度》核定，一级为公开馆藏，四级为限制级孤本</span></span></div>
+          <div class="fopts">
+            <label class="fopt"><input type="radio" name="t_perm" value="一级（公开馆藏）" required><span>一级 · 公开馆藏</span></label>
+            <label class="fopt"><input type="radio" name="t_perm" value="二级（院内馆藏）"><span>二级 · 院内馆藏</span></label>
+            <label class="fopt"><input type="radio" name="t_perm" value="三级（特藏）"><span>三级 · 特藏（需导师联署）</span></label>
+            <label class="fopt"><input type="radio" name="t_perm" value="四级（限制级孤本）"><span>四级 · 限制级孤本（需专项审批）</span></label>
+          </div>
+          <div class="fq__err">请选择申请的权限等级</div>
+          <div class="fwarn" id="permWarn">申请三级及以上权限者，须由责任导师联署并附研究必要性说明，经资料档案室与科研管理办公室联合审批后开放。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 七 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">柒</span><h3>培养期目标与自述</h3><span>第 22–23 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">22.</span><span>三年培养期目标<span class="fq__star">*</span><span class="fq__hint">1000 字以内。年度考核以本目标为依据，实行滚动支持</span></span></div>
+          <textarea name="t_goal" id="goalArea" maxlength="1000" required placeholder="请分年度说明拟达成的研究目标、教学任务与成果产出。"></textarea>
+          <div style="text-align:right;font-size:.78rem;color:var(--text-2);margin-top:6px"><span id="goalCount">0</span> / 1000</div>
+          <div class="fq__err">请填写培养期目标（不少于 80 字）</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">23.</span><span>个人自述与特殊情况说明<span class="fq__hint">选填。含破格推荐理由、需回避事项、身体或其他特殊情况</span></span></div>
+          <textarea name="t_self" placeholder="可说明需要学院特别支持或协调的事项"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 八 -->
+    <section class="fsec">
+      <div class="fsec__head"><span class="fsec__no">捌</span><h3>推荐意见与承诺</h3><span>第 24–27 项</span></div>
+      <div class="fsec__body">
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">24.</span><span>书院推荐意见<span class="fq__star">*</span><span class="fq__hint">由意向书院主管填写并加盖书院章；线上申报时可先填写推荐人姓名</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="text" name="t_rec1" required placeholder="推荐书院 / 主管姓名">
+            <input type="text" name="t_rec1tel" placeholder="联系方式（选填）">
+          </div>
+          <textarea name="t_rec1txt" placeholder="推荐意见摘要（选填）" style="margin-top:12px;min-height:80px"></textarea>
+          <div class="fq__err">请填写推荐书院或主管姓名</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">25.</span><span>两名同行专家推荐人<span class="fq__star">*</span></span></div>
+          <div class="fgrid fgrid--2">
+            <input type="text" name="t_exp1" required placeholder="专家一 姓名">
+            <input type="text" name="t_exp1org" required placeholder="专家一 单位 / 职称">
+          </div>
+          <div class="fgrid fgrid--2" style="margin-top:12px">
+            <input type="text" name="t_exp2" required placeholder="专家二 姓名">
+            <input type="text" name="t_exp2org" required placeholder="专家二 单位 / 职称">
+          </div>
+          <div class="fq__err">请填写两名专家的姓名与单位</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">26.</span><span>随附材料<span class="fq__star">*</span></span></div>
+          <div class="fcheck">
+            <label class="fopt"><input type="checkbox" name="t_doc" value="学历学位证书"><span>学历学位证书扫描件</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="代表性成果全文"><span>代表性成果全文</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="书院推荐信"><span>书院推荐信</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="专家推荐信两封"><span>同行专家推荐信两封</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="三年研究计划"><span>三年研究计划书</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="体检证明"><span>二级以上医院体检证明</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="无违纪记录证明"><span>无违纪记录证明</span></label>
+            <label class="fopt"><input type="checkbox" name="t_doc" value="保密承诺书"><span>馆藏资料保密承诺书</span></label>
+          </div>
+          <div class="fq__err">请至少勾选一项材料</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">27.</span><span>申报人承诺<span class="fq__star">*</span></span></div>
+          <div class="fopts fopts--col">
+            <label class="fopt"><input type="checkbox" name="t_p" value="信息真实" required><span>本人承诺所填内容真实有效，成果无学术不端情形，如有不实愿承担相应责任并退出计划。</span></label>
+            <label class="fopt"><input type="checkbox" name="t_p" value="接受年度考核" required><span>本人知悉并接受计划的年度考核与滚动支持机制，愿意纳入对应书院教研体系。</span></label>
+            <label class="fopt"><input type="checkbox" name="t_p" value="遵守保密条款" required><span>本人承诺遵守《馆藏与流派资料保密条款》与《学院安全管理条例》。</span></label>
+            <label class="fopt"><input type="checkbox" name="t_p" value="同意信息使用" required><span>本人同意学院及资助方在人才选拔、培养与评估范围内使用上述信息。</span></label>
+          </div>
+          <div class="fq__err">请勾选全部四项承诺</div>
+        </div>
+        <div class="fq">
+          <div class="fq__t"><span class="fq__n">签</span><span>申报人签名 / 日期<span class="fq__star">*</span><span class="fq__hint">线上申报请键入姓名，视为电子签名，与手写签名具有同等效力</span></span></div>
+          <div class="sig">
+            <input type="text" name="t_sign" required placeholder="申报人签名（键入姓名）">
+            <input type="date" name="t_signdate" required>
+          </div>
+          <div class="fq__err">请填写签名与日期</div>
+        </div>
+      </div>
+
+      <div class="fbar">
+        <div class="fbar__note">申报咨询：学院人事办公室　+86-894-15868　tsss@jcu.edu.cn</div>
+        <div class="fbar__btns">
+          <button type="button" class="fbtn fbtn--line" id="talClear">清空重填</button>
+          <button type="button" class="fbtn fbtn--line" id="talPrint">打印申报表</button>
+          <button type="submit" class="fbtn fbtn--accent">提交申报</button>
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <!-- 回执 -->
+  <div class="receipt" id="talReceipt" role="status" aria-live="polite">
+    <div class="receipt__hd">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h2>申报已提交</h2>
+      <p>材料已进入「个人申报」环节，请关注书院推荐与专家评审通知</p>
+    </div>
+    <div class="receipt__bd">
+      <div style="font-size:.78rem;color:var(--text-2);letter-spacing:2px">申 报 编 号</div>
+      <div class="receipt__no" id="talNo">JCQN-2026-0000</div>
+      <dl class="receipt__grid">
+        <dt>提交时间</dt><dd id="talTime">—</dd>
+        <dt>申报人</dt><dd id="talName">—</dd>
+        <dt>申报类别</dt><dd id="talCat">—</dd>
+        <dt>主要研究方向</dt><dd id="talDir">—</dd>
+        <dt>意向书院</dt><dd id="talCol">—</dd>
+        <dt>古籍查阅权限申请</dt><dd id="talPerm">—</dd>
+        <dt>受理部门</dt><dd>学院人事办公室（人才工作科）</dd>
+      </dl>
+      <h4 style="margin:26px 0 12px;font-size:.95rem;color:#222">四级选拔程序</h4>
+      <ol class="steps">
+        <li class="on"><b>个人申报</b><span>材料完整性审查，缺件将通过电话通知补交（5 个工作日）。</span></li>
+        <li><b>书院推荐</b><span>意向书院主管出具推荐意见并加盖书院章。</span></li>
+        <li><b>专家评审</b><span>同行专家通讯评审与现场答辩，重点考察研究潜力与课题匹配度。</span></li>
+        <li><b>党政联席会审议</b><span>确定拟入选名单，在学院官网公示 7 日无异议后正式入选。</span></li>
+      </ol>
+      <div class="seal">
+        本回执由圣殿科学学会学院人事办公室在线生成。入选者培养期内由学院配备责任导师，纳入对应书院教研体系，配套科研启动经费、专属工位与实验平台使用权限，并按馆藏管理制度核定古籍查阅权限。年度考核优异者直推参评校级青年人才项目，并优先推荐赴海外合作院校访学。<br>
+        地址：白宁省江川市江川大学学苑路 66 号　邮编：157749　电话：+86-894-15868
+      </div>
+      <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="fbtn fbtn--main" id="talBack" type="button">返回修改</button>
+        <button class="fbtn fbtn--line" id="talPrint2" type="button">打印回执</button>
+        <a class="fbtn fbtn--line" href="faculty-talent.html">返回青年才俊计划</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>江川大学</h4>
+        <ul>
+          <li><a href="index.html">圣殿科学学会学院</a></li>
+          <li><a href="about.html">学院简介</a></li>
+          <li><a href="faculty.html">师资队伍</a></li>
+          <li><a href="research.html">科研成果</a></li>
+        </ul>
+      </div><div class="footer-col">
+        <h4>联系方式</h4>
+        <ul>
+          <li>地址：白宁省江川市江川大学学苑路66号</li>
+          <li>电话：+86-894-15868</li>
+          <li>邮箱：<a href="mailto:tsss@jcu.edu.cn">tsss@jcu.edu.cn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>友情链接</h4>
+        <ul>
+          <li><a href="#">《极点》期刊官网</a></li><li><a href="#">《起源》期刊官网</a></li><li><a href="#">圣殿科学学会官网</a></li><li><a href="#">江川基金会</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      版权所有 &copy; 江川大学　邮编：157749　|　备案号：流ICP备5X9376号-1　|　<a href="#">隐私政策</a>　微信公众号：江川大学圣殿科学学会学院
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('talForm');
+  if(!form) return;
+
+  function bindRepeat(wrapId, addId, cls, html){
+    var wrap = document.getElementById(wrapId);
+    document.getElementById(addId).addEventListener('click', function(){
+      var row = document.createElement('div');
+      row.className = 'repeat__row ' + cls;
+      row.innerHTML = html;
+      wrap.appendChild(row);
+    });
+    wrap.addEventListener('click', function(e){
+      if(e.target.classList.contains('repeat__del')){
+        if(wrap.querySelectorAll('.repeat__row').length <= 1) return;
+        e.target.closest('.repeat__row').remove();
+      }
+    });
+  }
+  bindRepeat('eduRep','addEdu','r5',
+    '<input type="text" name="t_edu_p" placeholder="起止年月"><input type="text" name="t_edu_s" placeholder="院校 / 机构">' +
+    '<input type="text" name="t_edu_m" placeholder="专业 / 方向"><input type="text" name="t_edu_t" placeholder="导师">' +
+    '<input type="text" name="t_edu_d" placeholder="学位"><button type="button" class="repeat__del" title="删除本行">×</button>');
+  bindRepeat('workRep','addWork','r4',
+    '<input type="text" placeholder="起止年月"><input type="text" placeholder="单位 / 流派">' +
+    '<input type="text" placeholder="职务"><input type="text" placeholder="职称 / 身份">' +
+    '<button type="button" class="repeat__del" title="删除本行">×</button>');
+  bindRepeat('achRep','addAch','r5',
+    '<input type="text" placeholder="类别"><input type="text" placeholder="成果名称">' +
+    '<input type="text" placeholder="发表 / 出版 / 授权单位"><input type="text" placeholder="时间">' +
+    '<input type="text" placeholder="本人排序"><button type="button" class="repeat__del" title="删除本行">×</button>');
+  bindRepeat('projRep','addProj','r4',
+    '<input type="text" placeholder="主持 / 参与"><input type="text" placeholder="项目名称">' +
+    '<input type="text" placeholder="项目来源"><input type="text" placeholder="起止年月 / 经费">' +
+    '<button type="button" class="repeat__del" title="删除本行">×</button>');
+
+  /* 字数 */
+  var goal = document.getElementById('goalArea'), gc = document.getElementById('goalCount');
+  goal.addEventListener('input', function(){ gc.textContent = goal.value.length; });
+
+  /* 年龄校验 + 权限提示 */
+  var birth = document.getElementById('tBirth');
+  function cond(){
+    var v = birth.value;
+    if(v){
+      var parts = v.split('-');
+      var y = parseInt(parts[0],10), m = parseInt(parts[1],10);
+      var now = new Date();
+      var age = now.getFullYear() - y + ((now.getMonth()+1) < m ? -1 : 0);
+      document.getElementById('ageWarn').classList.toggle('on', age >= 35);
+    } else {
+      document.getElementById('ageWarn').classList.remove('on');
+    }
+    var perm = (form.querySelector('[name=t_perm]:checked')||{}).value || '';
+    document.getElementById('permWarn').classList.toggle('on', /^(三级|四级)/.test(perm));
+  }
+  form.addEventListener('change', cond);
+  birth.addEventListener('input', cond);
+  cond();
+
+  function rowFilled(wrap, min){
+    var rows = wrap.querySelectorAll('.repeat__row');
+    var n = 0;
+    rows.forEach(function(r){
+      var ins = r.querySelectorAll('input');
+      var filled = 0;
+      ins.forEach(function(i){ if(i.value.trim() !== '') filled++; });
+      if(filled >= min) n++;
+    });
+    return n;
+  }
+
+  function validate(){
+    var first = null;
+    form.querySelectorAll('.fq').forEach(function(q){ q.classList.remove('is-err'); });
+    form.querySelectorAll('.fq').forEach(function(q){
+      var reqs = q.querySelectorAll('[required]');
+      var ok = true;
+      reqs.forEach(function(el){
+        if(el.type === 'radio' || el.type === 'checkbox'){
+          if(q.querySelectorAll('[name="'+el.name+'"]:checked').length === 0) ok = false;
+        } else if(el.value.trim() === ''){ ok = false; }
+        else if(el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())){ ok = false; }
+      });
+      if(q.querySelector('[name=t_p]') && q.querySelectorAll('[name=t_p]:checked').length < 4) ok = false;
+      if(q.contains(document.getElementById('achRep')) && rowFilled(document.getElementById('achRep'), 2) < 1) ok = false;
+      if(q.contains(document.getElementById('eduRep')) && rowFilled(document.getElementById('eduRep'), 3) < 1) ok = false;
+      if(q.contains(document.getElementById('goalArea')) && goal.value.trim().length < 80) ok = false;
+      if(!ok){ q.classList.add('is-err'); if(!first) first = q; }
+    });
+    if(first){ if(first.scrollIntoView) first.scrollIntoView({behavior:'smooth', block:'center'}); return false; }
+    return true;
+  }
+
+  function val(name){
+    var out = [];
+    form.querySelectorAll('[name="'+name+'"]:checked').forEach(function(e){ out.push(e.value); });
+    if(out.length) return out.join('、');
+    var el = form.querySelector('[name="'+name+'"]');
+    return el && el.value.trim() ? el.value.trim() : '—';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+    var now = new Date();
+    var no = 'JCQN-' + now.getFullYear() + '-' +
+      String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' +
+      String(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('talNo').textContent = no;
+    document.getElementById('talTime').textContent = now.toLocaleString('zh-CN');
+    document.getElementById('talName').textContent = val('t_name');
+    document.getElementById('talCat').textContent = val('t_cat');
+    document.getElementById('talDir').textContent = val('t_dir');
+    document.getElementById('talCol').textContent = val('t_col');
+    document.getElementById('talPerm').textContent = val('t_perm');
+    form.style.display = 'none';
+    document.querySelector('.form-alert').style.display = 'none';
+    document.querySelector('.form-tip').style.display = 'none';
+    var r = document.getElementById('talReceipt'); r.style.display = 'block';
+    if(r.scrollIntoView) r.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('talBack').addEventListener('click', function(){
+    form.style.display = '';
+    document.querySelector('.form-alert').style.display = '';
+    document.querySelector('.form-tip').style.display = '';
+    document.getElementById('talReceipt').style.display = 'none';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  document.getElementById('talClear').addEventListener('click', function(){
+    if(!confirm('确定清空全部已填内容吗？')) return;
+    form.reset(); cond(); gc.textContent = '0';
+  });
+  document.getElementById('talPrint').addEventListener('click', function(){ window.print(); });
+  document.getElementById('talPrint2').addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-level="2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>江川大学报读意愿 — 江川大学 JIANGCHUAN UNIVERSITY</title>
+<meta name="description" content="江川大学报读意愿登记表，面向本科、研究生及国际项目意向考生，用于招生咨询与回访服务。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a5d6b'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23fff' font-family='serif'%3E江%3C/text%3E%3C/svg%3E">
+<style>
+/* ============ 江川大学 Design System (river-teal & gold) ============ */
+:root{
+  --jc-primary:#0a5d6b; --jc-primary-dark:#063f49; --jc-primary-darker:#042a32;
+  --jc-primary-light:#0f7d8f; --jc-gold:#c2992f; --jc-gold-light:#d9b352;
+  --jc-ink:#16242a; --jc-body:#3c4a4f; --jc-muted:#6b7a80; --jc-line:#e3eaec;
+  --jc-bg:#ffffff; --jc-bg-alt:#f4f8f9; --jc-bg-alt-2:#e9f1f3;
+  --jc-danger:#b3261e; --jc-ok:#0f7a55;
+  --jc-font:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+  --jc-serif:"Noto Serif SC",Georgia,"Times New Roman",serif;
+}
+html[data-theme="dark"]{
+  --jc-ink:#eaf2f4; --jc-body:#c3d3d7; --jc-muted:#8fa3a9;
+  --jc-line:#1d3a41; --jc-bg:#0c1f24; --jc-bg-alt:#102a31; --jc-bg-alt-2:#14343c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--jc-font);color:var(--jc-body);background:var(--jc-bg);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--jc-primary);text-decoration:none;transition:color .2s}
+a:hover{color:var(--jc-primary-light)}
+h1,h2,h3,h4{color:var(--jc-ink);line-height:1.3;margin:0 0 .5em;font-weight:700}
+p{margin:0 0 1.1em}
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 24px}
+.container-narrow{width:100%;max-width:960px;margin:0 auto;padding:0 24px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4em;font-weight:700;font-size:15px;
+  padding:13px 28px;border-radius:40px;border:2px solid transparent;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,background .2s,color .2s;line-height:1}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--jc-primary);color:#fff}
+.btn--primary:hover{background:var(--jc-primary-dark);color:#fff}
+.btn--gold{background:linear-gradient(135deg,var(--jc-gold-light),var(--jc-gold));color:#3a2c05;box-shadow:0 10px 24px rgba(194,153,47,.32)}
+.btn--gold:hover{color:#3a2c05}
+.btn--outline{background:transparent;color:var(--jc-primary);border-color:var(--jc-primary)}
+.btn--outline:hover{background:var(--jc-primary);color:#fff}
+.btn--ghost{background:transparent;color:var(--jc-muted);border-color:var(--jc-line)}
+.btn--ghost:hover{color:var(--jc-primary);border-color:var(--jc-primary)}
+
+/* topbar */
+.topbar{background:var(--jc-primary-darker);color:#cfe3e7;font-size:13px}
+.topbar__inner{display:flex;justify-content:space-between;align-items:center;height:40px;flex-wrap:wrap;gap:8px}
+.topbar a{color:#bcd6db}
+.topbar a:hover{color:#fff}
+.topbar__left a,.topbar__right a{margin-right:16px}
+.topbar__right a:last-child{margin-right:0}
+
+/* header */
+.page-head{background:var(--jc-bg);border-bottom:1px solid var(--jc-line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(6,42,50,.05)}
+.page-head__inner{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.page-head__brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.page-head__logo{height:50px;width:50px;border-radius:8px;background:var(--jc-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--jc-serif);font-size:26px;font-weight:700}
+.brand-text b{display:block;font-size:20px;color:var(--jc-ink);letter-spacing:1px;line-height:1.15}
+.brand-text i{display:block;font-style:normal;font-size:11px;letter-spacing:2px;color:var(--jc-muted)}
+.mn__list{list-style:none;display:flex;gap:2px;margin:0;padding:0;flex-wrap:wrap}
+.mn__link{display:block;padding:9px 13px;color:var(--jc-ink);font-weight:600;font-size:14.5px;border-radius:6px}
+.mn__link:hover{background:var(--jc-bg-alt);color:var(--jc-primary)}
+.mn__link.is-active{color:var(--jc-primary)}
+.toolkit{display:flex;align-items:center;gap:10px}
+.toolkit__btn{background:none;border:1px solid var(--jc-line);padding:7px 13px;border-radius:30px;font-weight:600;color:var(--jc-ink);cursor:pointer;font-size:13px;font-family:inherit}
+.toolkit__btn:hover{border-color:var(--jc-primary);background:var(--jc-bg-alt)}
+
+/* banner */
+.page-banner{background:linear-gradient(135deg,var(--jc-primary-darker),var(--jc-primary-dark) 55%,var(--jc-primary));color:#fff;padding:52px 0 46px;position:relative;overflow:hidden}
+.page-banner:after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;background:rgba(194,153,47,.14)}
+.page-banner__kicker{display:inline-block;font-size:12px;letter-spacing:3px;color:#e7cf94;font-weight:700;margin-bottom:14px;text-transform:uppercase}
+.page-banner h1{color:#fff;font-size:clamp(26px,4vw,40px);margin:0 0 12px;font-family:var(--jc-serif);letter-spacing:1px}
+.page-banner p{margin:0;max-width:720px;color:#cfe3e7;font-size:15.5px}
+.breadcrumb{font-size:13px;color:#9fc4cb;margin-bottom:14px}
+.breadcrumb a{color:#cfe3e7}
+.breadcrumb span{margin:0 6px;opacity:.6}
+
+/* notice */
+.notice{background:var(--jc-bg-alt);border:1px solid var(--jc-line);border-left:4px solid var(--jc-gold);
+  border-radius:8px;padding:18px 22px;margin:32px 0 26px;font-size:14.5px}
+.notice h4{margin:0 0 8px;font-size:15px;color:var(--jc-ink)}
+.notice ul{margin:0;padding-left:20px}
+.notice li{margin-bottom:4px}
+
+/* progress */
+.progress-wrap{position:sticky;top:76px;z-index:40;background:var(--jc-bg);border-bottom:1px solid var(--jc-line);padding:12px 0}
+.progress-bar{height:8px;background:var(--jc-bg-alt-2);border-radius:20px;overflow:hidden}
+.progress-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--jc-primary),var(--jc-gold));transition:width .35s ease}
+.progress-meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--jc-muted);margin-top:7px}
+
+/* form */
+.form-section{margin:0 0 34px;background:var(--jc-bg);border:1px solid var(--jc-line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(6,42,50,.05)}
+.form-section__head{background:var(--jc-bg-alt);border-bottom:1px solid var(--jc-line);padding:16px 26px;display:flex;align-items:center;gap:12px}
+.form-section__no{width:30px;height:30px;border-radius:50%;background:var(--jc-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.form-section__head h3{margin:0;font-size:17px}
+.form-section__head span{font-size:13px;color:var(--jc-muted)}
+.form-section__body{padding:8px 26px 26px}
+
+.q{padding:20px 0;border-bottom:1px dashed var(--jc-line)}
+.q:last-child{border-bottom:none}
+.q__title{display:flex;gap:10px;font-weight:600;color:var(--jc-ink);font-size:15.5px;margin-bottom:10px;line-height:1.6}
+.q__no{color:var(--jc-primary);font-weight:700;flex-shrink:0;min-width:30px}
+.q__req{color:var(--jc-danger);margin-left:2px}
+.q__hint{font-size:13px;color:var(--jc-muted);font-weight:400;display:block;margin-top:3px}
+.q__err{font-size:13px;color:var(--jc-danger);margin-top:8px;display:none}
+.q.is-error .q__err{display:block}
+.q.is-error .q__title{color:var(--jc-danger)}
+
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=month],input[type=number],select,textarea{
+  width:100%;font-family:inherit;font-size:15px;color:var(--jc-ink);background:var(--jc-bg);
+  border:1px solid var(--jc-line);border-radius:8px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--jc-primary);box-shadow:0 0 0 3px rgba(10,93,107,.12)}
+textarea{min-height:110px;resize:vertical;line-height:1.7}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--jc-muted) 50%),linear-gradient(135deg,var(--jc-muted) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 20px,calc(100% - 13px) 20px;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:38px}
+label{font-size:14.5px}
+
+.field-row{display:grid;gap:14px}
+.field-row--2{grid-template-columns:1fr 1fr}
+.field-row--3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:720px){.field-row--2,.field-row--3{grid-template-columns:1fr}}
+
+.opts{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:2px}
+.opt{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14.5px;color:var(--jc-body);user-select:none}
+.opt input{width:17px;height:17px;accent-color:var(--jc-primary);cursor:pointer;margin:0;flex-shrink:0}
+.opt:hover{color:var(--jc-primary)}
+.opts--col{flex-direction:column;gap:11px}
+
+.consent{background:var(--jc-bg-alt);border:1px solid var(--jc-line);border-radius:10px;padding:20px 24px;margin-top:8px}
+.consent .opt{align-items:flex-start;line-height:1.65;display:flex}
+
+.form-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:flex-between;
+  padding:26px;border-top:1px solid var(--jc-line);background:var(--jc-bg-alt);border-radius:0 0 12px 12px}
+.form-actions__left{font-size:13.5px;color:var(--jc-muted)}
+.form-actions__right{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}
+
+/* result */
+.result{display:none;background:var(--jc-bg);border:1px solid var(--jc-line);border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(6,42,50,.12);margin-bottom:60px}
+.result__head{background:linear-gradient(135deg,var(--jc-primary),var(--jc-primary-light));color:#fff;padding:34px 32px;text-align:center}
+.result__head .tick{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px}
+.result__head h2{color:#fff;margin:0 0 6px;font-family:var(--jc-serif)}
+.result__head p{margin:0;color:#d7ebee;font-size:14.5px}
+.result__body{padding:28px 32px}
+.receipt{background:var(--jc-bg-alt);border:1px dashed var(--jc-primary);border-radius:10px;padding:20px 24px;margin:0 0 22px}
+.receipt__no{font-family:var(--jc-serif);font-size:26px;letter-spacing:2px;color:var(--jc-primary);font-weight:700}
+.receipt dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:16px 0 0;font-size:14.5px}
+.receipt dt{color:var(--jc-muted)}
+.receipt dd{margin:0;color:var(--jc-ink)}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{position:relative;padding:0 0 18px 26px;border-left:2px solid var(--jc-line)}
+.timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--jc-bg);border:2px solid var(--jc-primary)}
+.timeline li.on:before{background:var(--jc-gold);border-color:var(--jc-gold)}
+.timeline b{display:block;color:var(--jc-ink);font-size:15px}
+.timeline span{font-size:13.5px;color:var(--jc-muted)}
+
+/* footer */
+.page-foot{background:var(--jc-primary-darker);color:#cfe3e7;padding:52px 0 0;margin-top:60px;font-size:14.5px}
+.page-foot__inner{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:38px}
+@media(max-width:860px){.page-foot__inner{grid-template-columns:1fr 1fr}}
+.page-foot h4{color:#fff;font-size:15px;margin:0 0 14px;letter-spacing:1px}
+.page-foot ul{list-style:none;margin:0;padding:0}
+.page-foot li{margin-bottom:9px}
+.page-foot a{color:#bcd6db}
+.page-foot a:hover{color:#fff}
+.page-foot__brand b{color:#fff;font-size:19px;font-family:var(--jc-serif);letter-spacing:1px;display:block;margin-bottom:8px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:18px 0;font-size:13px;color:#9fc4cb}
+.foot-bottom a{color:#bcd6db}
+.skip-link{position:absolute;left:-9999px}
+.skip-link:focus{left:16px;top:10px;background:#fff;padding:8px 14px;z-index:99;border-radius:6px}
+@media print{.page-head,.topbar,.progress-wrap,.page-foot,.form-actions,.notice{display:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#mainForm">跳至表单内容</a>
+
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__left">
+      <a href="../index.html">首页</a><a href="../current-students/index.html">在校学生</a><a href="../staff/index.html">教职员工</a><a href="../alumni/index.html">校友</a>
+    </div>
+    <div class="topbar__right">
+      <a href="../library/index.html">图书馆</a><a href="../intra/index.html">内联网</a><a href="../contact/index.html">联系我们</a>
+    </div>
+  </div>
+</div>
+
+<header class="page-head">
+  <div class="container page-head__inner">
+    <a class="page-head__brand" href="../index.html" aria-label="江川大学首页">
+      <span class="page-head__logo" aria-hidden="true">江</span>
+      <span class="brand-text"><b>江川大学</b><i>JIANGCHUAN UNIVERSITY</i></span>
+    </a>
+    <nav class="mn" aria-label="主导航">
+      <ul class="mn__list">
+        <li><a class="mn__link" href="../about/index.html">关于江川</a></li>
+        <li><a class="mn__link" href="../teaching/index.html">教学与学习</a></li>
+        <li><a class="mn__link" href="../research/index.html">研究</a></li>
+        <li><a class="mn__link" href="../faculties/index.html">学院与学系</a></li>
+        <li><a class="mn__link is-active" href="../admissions/index.html">招生就业</a></li>
+        <li><a class="mn__link" href="../campus-life/index.html">校园生活</a></li>
+      </ul>
+    </nav>
+    <div class="toolkit">
+      <button class="toolkit__btn" type="button" id="langBtn">中 / EN</button>
+      <button class="toolkit__btn" type="button" id="themeBtn">🌙 夜间</button>
+    </div>
+  </div>
+</header>
+
+<section class="page-banner">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">首页</a><span>›</span><a href="../admissions/index.html">招生就业</a><span>›</span>报读意愿登记</div>
+    <span class="page-banner__kicker">Admission Intention Survey · 2026</span>
+    <h1>江川大学报读意愿</h1>
+    <p>本表用于了解考生的报读意向与基本情况，以便招生办公室提供针对性的专业介绍、政策解答与志愿填报指导。填写约需 8 分钟。</p>
+  </div>
+</section>
+
+<div class="progress-wrap">
+  <div class="container">
+    <div class="progress-bar"><i id="progressFill"></i></div>
+    <div class="progress-meta"><span id="progressText">已完成 0 / 18 项必填内容</span><span id="draftTip">草稿将自动保存在本机</span></div>
+  </div>
+</div>
+
+<main class="container-narrow" style="padding-top:34px">
+
+  <div class="notice">
+    <h4>填表须知</h4>
+    <ul>
+      <li>本表不构成正式报名，正式报考须在规定时间内通过江川大学本科 / 研究生招生系统完成网上报名。</li>
+      <li>标记 <span style="color:var(--jc-danger)">*</span> 的项目为必填项，未填写完整无法提交。</li>
+      <li>所填信息仅用于招生咨询与回访服务，不作其他用途，详见《考生信息使用授权说明》。</li>
+      <li>如遇填写问题，请联系招生办公室：+86-000-12345678（工作日 8:30–17:30）。</li>
+    </ul>
+  </div>
+
+  <form id="mainForm" novalidate autocomplete="on">
+
+    <!-- ========== 第一部分 ========== -->
+    <section class="form-section">
+      <div class="form-section__head">
+        <span class="form-section__no">一</span>
+        <div><h3>基本信息</h3><span>Basic Information · 第 1–8 题</span></div>
+      </div>
+      <div class="form-section__body">
+
+        <div class="q" data-q="1">
+          <div class="q__title"><span class="q__no">1.</span><span>您的姓名<span class="q__req">*</span><span class="q__hint">请填写与身份证件一致的姓名</span></span></div>
+          <input type="text" name="q1_name" required placeholder="请输入姓名" autocomplete="name">
+          <div class="q__err">请填写姓名</div>
+        </div>
+
+        <div class="q" data-q="2">
+          <div class="q__title"><span class="q__no">2.</span><span>性别<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q2_gender" value="男" required><span>男</span></label>
+            <label class="opt"><input type="radio" name="q2_gender" value="女"><span>女</span></label>
+          </div>
+          <div class="q__err">请选择性别</div>
+        </div>
+
+        <div class="q" data-q="3">
+          <div class="q__title"><span class="q__no">3.</span><span>出生年月<span class="q__req">*</span></span></div>
+          <input type="month" name="q3_birth" required style="max-width:280px">
+          <div class="q__err">请选择出生年月</div>
+        </div>
+
+        <div class="q" data-q="4">
+          <div class="q__title"><span class="q__no">4.</span><span>证件类型与号码<span class="q__req">*</span><span class="q__hint">港澳台及外籍考生请填写护照或通行证号码</span></span></div>
+          <div class="field-row field-row--3">
+            <select name="q4_idtype" required>
+              <option value="">请选择证件类型</option>
+              <option>居民身份证</option><option>港澳居民来往内地通行证</option>
+              <option>台湾居民来往大陆通行证</option><option>护照</option><option>其他</option>
+            </select>
+            <input type="text" name="q4_idno" required placeholder="证件号码" style="grid-column:span 2">
+          </div>
+          <div class="q__err">请完整填写证件类型与号码</div>
+        </div>
+
+        <div class="q" data-q="5">
+          <div class="q__title"><span class="q__no">5.</span><span>本人手机号码<span class="q__req">*</span><span class="q__hint">用于录取期间的紧急联系，请保持畅通</span></span></div>
+          <input type="tel" name="q5_mobile" required placeholder="11 位手机号码" pattern="^1[3-9]\d{9}$" style="max-width:320px">
+          <div class="q__err">请填写有效的 11 位手机号码</div>
+        </div>
+
+        <div class="q" data-q="6">
+          <div class="q__title"><span class="q__no">6.</span><span>电子邮箱<span class="q__req">*</span></span></div>
+          <input type="email" name="q6_email" required placeholder="example@mail.com" style="max-width:420px">
+          <div class="q__err">请填写有效的电子邮箱地址</div>
+        </div>
+
+        <div class="q" data-q="7">
+          <div class="q__title"><span class="q__no">7.</span><span>生源地（省 / 市 / 区）<span class="q__req">*</span></span></div>
+          <div class="field-row field-row--3">
+            <input type="text" name="q7_prov" required placeholder="省 / 自治区 / 直辖市">
+            <input type="text" name="q7_city" required placeholder="城市">
+            <input type="text" name="q7_dist" placeholder="区 / 县（选填）">
+          </div>
+          <div class="q__err">请填写生源地省与城市</div>
+        </div>
+
+        <div class="q" data-q="8">
+          <div class="q__title"><span class="q__no">8.</span><span>常用通讯地址<span class="q__req">*</span><span class="q__hint">用于寄送招生简章与纸质材料</span></span></div>
+          <input type="text" name="q8_addr" required placeholder="省 / 市 / 区 + 详细地址 + 邮政编码">
+          <div class="q__err">请填写通讯地址</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== 第二部分 ========== -->
+    <section class="form-section">
+      <div class="form-section__head">
+        <span class="form-section__no">二</span>
+        <div><h3>学业背景</h3><span>Academic Background · 第 9–14 题</span></div>
+      </div>
+      <div class="form-section__body">
+
+        <div class="q" data-q="9">
+          <div class="q__title"><span class="q__no">9.</span><span>当前学历状态<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q9_status" value="高中在读" required><span>高中在读</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="高中毕业/复读"><span>高中毕业 / 复读</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="专科在读"><span>专科在读</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="本科在读"><span>本科在读</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="本科毕业"><span>本科毕业</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="硕士在读/毕业"><span>硕士在读 / 毕业</span></label>
+            <label class="opt"><input type="radio" name="q9_status" value="已工作"><span>已工作</span></label>
+          </div>
+          <div class="q__err">请选择当前学历状态</div>
+        </div>
+
+        <div class="q" data-q="10">
+          <div class="q__title"><span class="q__no">10.</span><span>就读（或毕业）学校全称<span class="q__req">*</span></span></div>
+          <input type="text" name="q10_school" required placeholder="例：江川市第一中学">
+          <div class="q__err">请填写学校名称</div>
+        </div>
+
+        <div class="q" data-q="11">
+          <div class="q__title"><span class="q__no">11.</span><span>科类 / 专业<span class="q__req">*</span><span class="q__hint">高中生请填写选考科目组合，大学生请填写专业名称</span></span></div>
+          <div class="field-row field-row--2">
+            <select name="q11_track" required>
+              <option value="">请选择科类</option>
+              <option>物理类</option><option>历史类</option><option>综合改革（不分文理）</option>
+              <option>理工科专业</option><option>人文社科专业</option><option>艺术类</option><option>体育类</option><option>其他</option>
+            </select>
+            <input type="text" name="q11_major" required placeholder="具体专业 / 选考科目">
+          </div>
+          <div class="q__err">请完整填写科类与专业</div>
+        </div>
+
+        <div class="q" data-q="12">
+          <div class="q__title"><span class="q__no">12.</span><span>学业成绩水平<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q12_rank" value="年级前 5%" required><span>年级前 5%</span></label>
+            <label class="opt"><input type="radio" name="q12_rank" value="年级前 20%"><span>年级前 20%</span></label>
+            <label class="opt"><input type="radio" name="q12_rank" value="年级前 50%"><span>年级前 50%</span></label>
+            <label class="opt"><input type="radio" name="q12_rank" value="年级 50% 以后"><span>年级 50% 以后</span></label>
+            <label class="opt"><input type="radio" name="q12_rank" value="不便提供"><span>不便提供</span></label>
+          </div>
+          <div class="q__err">请选择学业成绩水平</div>
+        </div>
+
+        <div class="q" data-q="13">
+          <div class="q__title"><span class="q__no">13.</span><span>英语水平<span class="q__req">*</span></span></div>
+          <div class="field-row field-row--2">
+            <select name="q13_eng" required>
+              <option value="">请选择英语水平</option>
+              <option>大学英语四级（CET-4）</option><option>大学英语六级（CET-6）</option>
+              <option>雅思 IELTS 6.0 及以上</option><option>托福 TOEFL 80 及以上</option>
+              <option>专业四级 / 八级</option><option>暂无等级证明</option>
+            </select>
+            <input type="text" name="q13_score" placeholder="成绩 / 分数（选填）">
+          </div>
+          <div class="q__err">请选择英语水平</div>
+        </div>
+
+        <div class="q" data-q="14">
+          <div class="q__title"><span class="q__no">14.</span><span>学科竞赛、荣誉与社会实践<span class="q__hint">选填，可填写最高级别的三项</span></span></div>
+          <textarea name="q14_awards" placeholder="例：全国中学生学科奥林匹克竞赛省级一等奖；校学生会主席；志愿服务 120 小时"></textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== 第三部分 ========== -->
+    <section class="form-section">
+      <div class="form-section__head">
+        <span class="form-section__no">三</span>
+        <div><h3>报读意向</h3><span>Study Intention · 第 15–22 题</span></div>
+      </div>
+      <div class="form-section__body">
+
+        <div class="q" data-q="15">
+          <div class="q__title"><span class="q__no">15.</span><span>拟报读层次<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q15_level" value="本科" required><span>本科</span></label>
+            <label class="opt"><input type="radio" name="q15_level" value="硕士"><span>硕士研究生</span></label>
+            <label class="opt"><input type="radio" name="q15_level" value="博士"><span>博士研究生</span></label>
+            <label class="opt"><input type="radio" name="q15_level" value="预科/国际项目"><span>预科 / 国际项目</span></label>
+            <label class="opt"><input type="radio" name="q15_level" value="交换/访学"><span>交换 / 访学</span></label>
+            <label class="opt"><input type="radio" name="q15_level" value="尚未确定"><span>尚未确定</span></label>
+          </div>
+          <div class="q__err">请选择拟报读层次</div>
+        </div>
+
+        <div class="q" data-q="16">
+          <div class="q__title"><span class="q__no">16.</span><span>第一志愿学院<span class="q__req">*</span><span class="q__hint">学校下设十所学院，可先不作具体专业选择</span></span></div>
+          <select name="q16_fac1" required>
+            <option value="">请选择学院</option>
+            <option>建筑学院 School of Architecture</option>
+            <option>文学院 Faculty of Arts</option>
+            <option>商学院 School of Business</option>
+            <option>教育学院 Faculty of Education</option>
+            <option>工程学院 Faculty of Engineering</option>
+            <option>法学院 Faculty of Law</option>
+            <option>医学院 Faculty of Medicine</option>
+            <option>理学院 Faculty of Science</option>
+            <option>社会科学学院 Faculty of Social Sciences</option>
+            <option>圣殿科学学会学院 Temple Society of Science School</option>
+          </select>
+          <div class="q__err">请选择第一志愿学院</div>
+        </div>
+
+        <div class="q" data-q="17">
+          <div class="q__title"><span class="q__no">17.</span><span>第二志愿学院<span class="q__hint">选填</span></span></div>
+          <select name="q17_fac2">
+            <option value="">请选择学院（选填）</option>
+            <option>建筑学院 School of Architecture</option>
+            <option>文学院 Faculty of Arts</option>
+            <option>商学院 School of Business</option>
+            <option>教育学院 Faculty of Education</option>
+            <option>工程学院 Faculty of Engineering</option>
+            <option>法学院 Faculty of Law</option>
+            <option>医学院 Faculty of Medicine</option>
+            <option>理学院 Faculty of Science</option>
+            <option>社会科学学院 Faculty of Social Sciences</option>
+            <option>圣殿科学学会学院 Temple Society of Science School</option>
+          </select>
+        </div>
+
+        <div class="q" data-q="18">
+          <div class="q__title"><span class="q__no">18.</span><span>是否服从专业调剂<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q18_adjust" value="服从" required><span>服从</span></label>
+            <label class="opt"><input type="radio" name="q18_adjust" value="不服从"><span>不服从</span></label>
+            <label class="opt"><input type="radio" name="q18_adjust" value="服从部分专业"><span>仅服从相近专业</span></label>
+          </div>
+          <div class="q__err">请选择是否服从调剂</div>
+        </div>
+
+        <div class="q" data-q="19">
+          <div class="q__title"><span class="q__no">19.</span><span>您通过哪些渠道了解江川大学<span class="q__req">*</span><span class="q__hint">可多选</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="q19_ch" value="招生章程/专业目录" required><span>招生章程 / 专业目录</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="中学老师推荐"><span>中学老师推荐</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="校园开放日/宣讲会"><span>校园开放日 / 宣讲会</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="官网与微信公众号"><span>官网与微信公众号</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="亲友校友介绍"><span>亲友 / 校友介绍</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="媒体与排行榜"><span>媒体报道 / 大学排行榜</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="短视频/社交平台"><span>短视频 / 社交平台</span></label>
+            <label class="opt"><input type="checkbox" name="q19_ch" value="其他"><span>其他</span></label>
+          </div>
+          <div class="q__err">请至少选择一项</div>
+        </div>
+
+        <div class="q" data-q="20">
+          <div class="q__title"><span class="q__no">20.</span><span>选择学校时您最看重的因素<span class="q__req">*</span><span class="q__hint">可多选，最多选 3 项</span></span></div>
+          <div class="opts" id="factorOpts">
+            <label class="opt"><input type="checkbox" name="q20_f" value="学科实力与师资" required><span>学科实力与师资</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="就业与深造前景"><span>就业与深造前景</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="奖助学金政策"><span>奖助学金政策</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="城市与校园环境"><span>城市与校园环境</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="国际交流机会"><span>国际交流机会</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="住宿与生活条件"><span>住宿与生活条件</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="书院制培养模式"><span>书院制培养模式</span></label>
+            <label class="opt"><input type="checkbox" name="q20_f" value="离家远近"><span>离家远近</span></label>
+          </div>
+          <div class="q__err">请至少选择一项（最多 3 项）</div>
+        </div>
+
+        <div class="q" data-q="21">
+          <div class="q__title"><span class="q__no">21.</span><span>是否接受招生办公室电话回访<span class="q__req">*</span></span></div>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="q21_callback" value="接受" required><span>接受（工作日 9:00–18:00）</span></label>
+            <label class="opt"><input type="radio" name="q21_callback" value="仅接受短信/邮件"><span>仅接受短信 / 邮件</span></label>
+            <label class="opt"><input type="radio" name="q21_callback" value="暂不需要"><span>暂不需要</span></label>
+          </div>
+          <div class="q__err">请选择回访方式</div>
+        </div>
+
+        <div class="q" data-q="22">
+          <div class="q__title"><span class="q__no">22.</span><span>补充说明与个人陈述<span class="q__hint">选填，500 字以内。可说明选择本专业的原因、未来规划或需要学校协助的事项</span></span></div>
+          <textarea name="q22_note" maxlength="500" id="noteArea" placeholder="请在此输入…"></textarea>
+          <div style="text-align:right;font-size:12.5px;color:var(--jc-muted);margin-top:6px"><span id="noteCount">0</span> / 500</div>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <div class="form-actions__left">提交后可在 5 个工作日内通过预留手机号查询受理进度。</div>
+        <div class="form-actions__right">
+          <button type="button" class="btn btn--ghost" id="clearBtn">清空重填</button>
+          <button type="button" class="btn btn--outline" id="printBtn">打印本表</button>
+          <button type="submit" class="btn btn--gold">提交报读意愿</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="consent" style="margin-top:-14px;margin-bottom:40px">
+      <label class="opt">
+        <input type="checkbox" name="consent" id="consentBox" required>
+        <span>我已阅读并同意《考生信息使用授权说明》：本人授权江川大学招生办公室在招生咨询、政策解答与回访服务范围内使用上述信息；本人确认所填内容真实有效，如有不实，学校有权取消相关咨询与录取资格。信息保存期限为考生入学当年 12 月 31 日，到期后按档案管理规定销毁。</span>
+      </label>
+      <div class="q__err" id="consentErr" style="margin-top:10px">请先勾选授权同意后提交</div>
+    </div>
+
+  </form>
+
+  <!-- ============ 提交结果 ============ -->
+  <div class="result" id="resultPanel" role="status" aria-live="polite">
+    <div class="result__head">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h2>提交成功</h2>
+      <p>您的报读意愿已进入招生办公室咨询队列</p>
+    </div>
+    <div class="result__body">
+      <div class="receipt">
+        <div style="font-size:13px;color:var(--jc-muted);letter-spacing:1px">受 理 编 号</div>
+        <div class="receipt__no" id="receiptNo">JCU-2026-000000</div>
+        <dl>
+          <dt>提交时间</dt><dd id="receiptTime">—</dd>
+          <dt>意向层次</dt><dd id="receiptLevel">—</dd>
+          <dt>第一志愿</dt><dd id="receiptFac">—</dd>
+          <dt>联系手机</dt><dd id="receiptTel">—</dd>
+          <dt>回访方式</dt><dd id="receiptCb">—</dd>
+        </dl>
+      </div>
+      <h4 style="margin:0 0 14px">后续流程</h4>
+      <ul class="timeline">
+        <li class="on"><b>已受理</b><span>系统已生成受理编号，可凭编号与手机号查询。</span></li>
+        <li><b>资料核对（1–3 个工作日）</b><span>招生办公室核对基本信息与意向学院归属。</span></li>
+        <li><b>专人回访（5 个工作日内）</b><span>由对应学院招生联络人以电话或短信方式联系。</span></li>
+        <li><b>正式报名提醒</b><span>当年招生章程发布后，将优先向您推送报名时间与材料清单。</span></li>
+      </ul>
+      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn--primary" id="backBtn" type="button">返回修改</button>
+        <button class="btn btn--outline" id="printResultBtn" type="button">打印回执</button>
+        <a class="btn btn--ghost" href="../admissions/index.html">返回招生就业</a>
+      </div>
+      <p style="margin:22px 0 0;font-size:13px;color:var(--jc-muted)">温馨提示：请截图保存受理编号。咨询电话 +86-000-12345678，邮箱 admission@jcu.edu.cn。</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="page-foot">
+  <div class="container">
+    <div class="page-foot__inner">
+      <div class="page-foot__brand">
+        <b>江川大学</b>
+        <p style="color:#cfe3e7;font-size:14px">创办于 1923 年，位于江川之畔，以研究为主导的综合性国际化大学。</p>
+        <p style="color:#9fc4cb;font-size:13.5px;margin:0">✉ admission@jcu.edu.cn<br>☎ +86-000-12345678<br>⌖ 江川市学苑路 1 号</p>
+      </div>
+      <div>
+        <h4>招生</h4>
+        <ul><li><a href="../admissions/index.html">本科招生</a></li><li><a href="../admissions/index.html">研究生招生</a></li><li><a href="../global/index.html">国际学生</a></li><li><a href="#mainForm">报读意愿登记</a></li></ul>
+      </div>
+      <div>
+        <h4>探索</h4>
+        <ul><li><a href="../campus-life/index.html">校园生活</a></li><li><a href="../faculties/index.html">学院与学系</a></li><li><a href="../library/index.html">图书馆</a></li><li><a href="../news/index.html">新闻与活动</a></li></ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul><li><a href="../about/index.html">学校简介</a></li><li><a href="../contact/index.html">联系我们</a></li><li><a href="../sitemap.html">网站地图</a></li><li><a href="../intra/index.html">内联网</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 江川大学 JIANGCHUAN UNIVERSITY. 版权所有 · <a href="#">隐私政策</a> · <a href="#">使用条款</a> · <a href="#">网站无障碍</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('mainForm');
+  if(!form) return;
+
+  /* ---------- 草稿自动保存 ---------- */
+  var DRAFT = 'jcu_enrol_draft_v1';
+  function saveDraft(){
+    try{
+      var data = {};
+      new FormData(form).forEach(function(v,k){ (data[k]=data[k]||[]).push(v); });
+      localStorage.setItem(DRAFT, JSON.stringify({t:Date.now(), d:data}));
+      document.getElementById('draftTip').textContent = '草稿已保存 ' + new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
+    }catch(e){}
+  }
+  function loadDraft(){
+    try{
+      var raw = localStorage.getItem(DRAFT); if(!raw) return;
+      var obj = JSON.parse(raw); if(!obj || !obj.d) return;
+      Object.keys(obj.d).forEach(function(k){
+        var vals = obj.d[k];
+        var els = form.querySelectorAll('[name="'+k+'"]');
+        els.forEach(function(el,i){
+          if(el.type==='radio' || el.type==='checkbox'){ el.checked = vals.indexOf(el.value)>-1; }
+          else { el.value = vals[0] || ''; }
+        });
+      });
+      document.getElementById('draftTip').textContent = '已恢复上次填写的草稿（' + new Date(obj.t).toLocaleString('zh-CN') + '）';
+    }catch(e){}
+  }
+  loadDraft();
+  form.addEventListener('input', debounce(saveDraft, 600));
+  form.addEventListener('change', saveDraft);
+  function debounce(fn,ms){var t;return function(){clearTimeout(t);var a=arguments,c=this;t=setTimeout(function(){fn.apply(c,a)},ms)}}
+
+  /* ---------- 进度 ---------- */
+  var requiredNames = [];
+  form.querySelectorAll('[required]').forEach(function(el){
+    if(requiredNames.indexOf(el.name)===-1) requiredNames.push(el.name);
+  });
+  var total = requiredNames.length;
+  function refreshProgress(){
+    var done = 0;
+    requiredNames.forEach(function(n){
+      var els = form.querySelectorAll('[name="'+n+'"]');
+      var ok = false;
+      els.forEach(function(el){
+        if(el.type==='radio'||el.type==='checkbox'){ if(el.checked) ok = true; }
+        else if(el.value.trim()!=='') ok = true;
+      });
+      if(ok) done++;
+    });
+    document.getElementById('progressFill').style.width = Math.round(done/total*100) + '%';
+    document.getElementById('progressText').textContent = '已完成 ' + done + ' / ' + total + ' 项必填内容';
+  }
+  form.addEventListener('input', refreshProgress);
+  form.addEventListener('change', refreshProgress);
+  refreshProgress();
+
+  /* ---------- 字数 ---------- */
+  var noteArea = document.getElementById('noteArea'), noteCount = document.getElementById('noteCount');
+  if(noteArea){ noteArea.addEventListener('input', function(){ noteCount.textContent = noteArea.value.length; }); }
+
+  /* ---------- 最多 3 项 ---------- */
+  var factorOpts = document.getElementById('factorOpts');
+  if(factorOpts){
+    factorOpts.addEventListener('change', function(){
+      var boxes = factorOpts.querySelectorAll('input[type=checkbox]');
+      var checked = factorOpts.querySelectorAll('input[type=checkbox]:checked');
+      if(checked.length > 3){ boxes.forEach(function(b){ if(!b.checked) b.disabled = true; }); }
+      else { boxes.forEach(function(b){ b.disabled = false; }); }
+    });
+  }
+
+  /* ---------- 校验 ---------- */
+  function validate(){
+    var firstError = null;
+    form.querySelectorAll('.q').forEach(function(q){ q.classList.remove('is-error'); });
+    form.querySelectorAll('.q').forEach(function(q){
+      var ok = true;
+      var inputs = q.querySelectorAll('input,select,textarea');
+      if(!inputs.length) return;
+      var reqs = q.querySelectorAll('[required]');
+      if(!reqs.length){ return; }
+      reqs.forEach(function(el){
+        if(el.type==='radio'||el.type==='checkbox'){
+          var group = q.querySelectorAll('[name="'+el.name+'"]:checked');
+          if(group.length===0) ok = false;
+        } else if(el.value.trim()===''){ ok = false; }
+        else if(el.pattern && !new RegExp(el.pattern).test(el.value.trim())){ ok = false; }
+        else if(el.type==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())){ ok = false; }
+      });
+      if(!ok){ q.classList.add('is-error'); if(!firstError) firstError = q; }
+    });
+    var consent = document.getElementById('consentBox');
+    var consentErr = document.getElementById('consentErr');
+    var consentOk = consent && consent.checked;
+    consentErr.style.display = consentOk ? 'none' : 'block';
+    if(!consentOk && !firstError) firstError = consent;
+    if(firstError){
+      if(firstError.scrollIntoView) firstError.scrollIntoView({behavior:'smooth', block:'center'});
+      if(firstError.classList) firstError.classList.add('is-error');
+      return false;
+    }
+    return true;
+  }
+
+  /* ---------- 提交 ---------- */
+  function val(name){
+    var el = form.querySelector('[name="'+name+'"]');
+    if(!el) return '—';
+    if(el.type==='radio'||el.type==='checkbox'){
+      var out = []; form.querySelectorAll('[name="'+name+'"]:checked').forEach(function(e){ out.push(e.value); });
+      return out.join('、') || '—';
+    }
+    return el.value.trim() || '—';
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+    var now = new Date();
+    var seq = String(Math.floor(Math.random()*9000)+1000);
+    var no = 'JCU-' + now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + seq;
+    document.getElementById('receiptNo').textContent = no;
+    document.getElementById('receiptTime').textContent = now.toLocaleString('zh-CN');
+    document.getElementById('receiptLevel').textContent = val('q15_level');
+    document.getElementById('receiptFac').textContent = val('q16_fac1');
+    document.getElementById('receiptTel').textContent = val('q5_mobile');
+    document.getElementById('receiptCb').textContent = val('q21_callback');
+    form.style.display = 'none';
+    document.querySelector('.notice').style.display = 'none';
+    document.querySelector('.progress-wrap').style.display = 'none';
+    var r = document.getElementById('resultPanel'); r.style.display = 'block';
+    if(r.scrollIntoView) r.scrollIntoView({behavior:'smooth', block:'start'});
+    try{ localStorage.removeItem(DRAFT); }catch(err){}
+  });
+
+  document.getElementById('backBtn').addEventListener('click', function(){
+    form.style.display = '';
+    document.querySelector('.notice').style.display = '';
+    document.querySelector('.progress-wrap').style.display = '';
+    document.getElementById('resultPanel').style.display = 'none';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    if(!confirm('确定清空所有已填写内容吗？此操作不可撤销。')) return;
+    form.reset();
+    try{ localStorage.removeItem(DRAFT); }catch(e){}
+    refreshProgress(); noteCount.textContent = '0';
+    document.getElementById('draftTip').textContent = '草稿已清空';
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  document.getElementById('printResultBtn').addEventListener('click', function(){ window.print(); });
+
+  /* ---------- 主题 / 语言（外观） ---------- */
+  var themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', function(){
+    var dark = document.documentElement.getAttribute('data-theme')==='dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '🌙 夜间' : '☀ 日间';
+  });
+  document.getElementById('langBtn').addEventListener('click', function(){
+    alert('英文版页面正在翻译校对中，敬请期待。');
+  });
+})();
+</script>
+</body>
+</html>

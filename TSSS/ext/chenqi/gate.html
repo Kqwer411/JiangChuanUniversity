@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>站点维护</title>
+<style>
+  body{margin:0;font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;background:#f2f2ee;color:#444;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .box{background:#fff;border:1px solid #e0e0d8;border-radius:4px;padding:36px 40px;width:320px;}
+  .box h1{font-size:1.05rem;color:#1a1a2e;margin:0 0 20px;font-weight:600;}
+  label{display:block;font-size:.78rem;color:#999;margin:14px 0 4px;}
+  input{width:100%;padding:9px 10px;border:1px solid #d5d5cb;border-radius:3px;font-size:.9rem;
+    box-sizing:border-box;background:#fdfdfb;}
+  button{margin-top:22px;width:100%;padding:10px;background:#1a1a2e;color:#fff;border:none;
+    border-radius:3px;font-size:.88rem;cursor:pointer;letter-spacing:.2em;}
+  button:hover{background:#33334d;}
+  .err{color:#b03a2e;font-size:.78rem;margin-top:12px;min-height:1.2em;}
+  .hint{margin-top:18px;font-size:.7rem;color:#c2c2b6;}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>站点维护 · 受限区域</h1>
+  <form id="g" autocomplete="off">
+    <label>账号</label>
+    <input id="u" type="text" spellcheck="false">
+    <label>口令</label>
+    <input id="p" type="password">
+    <button type="submit">进 入</button>
+  </form>
+  <div class="err" id="e"></div>
+  <div class="hint">仅限站点所有者。多次尝试将被记录。</div>
+</div>
+<script>
+var U=[99,113,105,45,55,55];
+var P=[82,51,116,117,114,110,48,102,86,101,115,115,51,108];
+function dec(a){return String.fromCharCode.apply(null,a);}
+document.getElementById('g').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var u=document.getElementById('u').value.trim();
+  var p=document.getElementById('p').value;
+  if(u===dec(U)&&p===dec(P)){location.href='private/index.html';}
+  else{document.getElementById('e').textContent='账号或口令错误。';}
+});
+</script>
+</body>
+</html>

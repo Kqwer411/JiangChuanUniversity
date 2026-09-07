@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>镜像灵阵</title>
+<style>
+  body{margin:0;background:#0a0c11;color:#c9ced8;font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;}
+  .rite{max-width:520px;text-align:center;padding:40px 28px;}
+  .ring{font-size:88px;letter-spacing:.2em;color:#39415a;margin-bottom:10px;}
+  h1{font-size:1.15rem;letter-spacing:.5em;color:#8a93a8;font-weight:400;margin:0 0 34px;}
+  .in{background:transparent;border:1px solid #2c3346;color:#e8ecf4;padding:12px 16px;font-size:1rem;
+    letter-spacing:.3em;text-align:center;width:260px;border-radius:2px;outline:none;}
+  .in:focus{border-color:#5a6488;}
+  .btn{margin-top:18px;background:transparent;border:1px solid #39415a;color:#8a93a8;padding:10px 34px;
+    letter-spacing:.4em;font-size:.85rem;cursor:pointer;border-radius:2px;}
+  .btn:hover{color:#e8ecf4;border-color:#8a93a8;}
+  .msg{margin-top:20px;font-size:.8rem;min-height:1.4em;color:#5f6678;}
+  .open{display:none;margin-top:36px;text-align:left;background:#10131b;border:1px solid #232839;
+    border-radius:4px;padding:26px 30px;font-size:.9rem;line-height:2;}
+  .open h2{font-size:1rem;color:#e0b46a;letter-spacing:.3em;margin:0 0 14px;font-weight:400;}
+  .open .d{color:#5f6678;font-size:.72rem;margin-top:18px;}
+</style>
+</head>
+<body>
+<div class="rite">
+  <div class="ring">⟁ ⌬ ◈ ✦</div>
+  <h1>镜 像 灵 阵</h1>
+  <input id="k" class="in" type="text" placeholder="········" autocomplete="off" spellcheck="false">
+  <br>
+  <button class="btn" id="go">校 验</button>
+  <div class="msg" id="m">镜位未校。四符连读，是为密钥。</div>
+
+  <div class="open" id="o">
+    <h2>镜 面 已 正</h2>
+    <p>充能周期 · 第七期 · 校验通过。</p>
+    <p>容器归位记录已解锁。仪式档案编号：MJ-Ⅶ-2026。</p>
+    <p>灵阵存档尚未开放全部内容——本页面为预留仪式入口，后续章节将在此展开。</p>
+    <p class="d">页面预留 · 无直达链接 · 仅凭密钥进入</p>
+  </div>
+</div>
+<script>
+var K=[77,73,82,82,79,82,45,48,55];
+function dec(a){return String.fromCharCode.apply(null,a);}
+document.getElementById('go').addEventListener('click',function(){
+  var v=document.getElementById('k').value.trim().toUpperCase();
+  if(v===dec(K)){
+    document.getElementById('o').style.display='block';
+    document.getElementById('m').textContent='镜位已校。';
+  }else{
+    document.getElementById('m').textContent='密钥不合。镜面未起波澜。';
+  }
+});
+document.getElementById('k').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){document.getElementById('go').click();}
+});
+</script>
+</body>
+</html>

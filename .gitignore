@@ -1,0 +1,68 @@
+# ---- 依赖 ----
+node_modules/
+vendor/
+.pnpm-store/
+yarn.lock
+package-lock.json
+
+# ---- 环境变量与密钥（一律不入库）----
+.env
+.env*
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.der
+*.jks
+*.keystore
+secrets.json
+credentials.json
+
+# ---- 构建产物 ----
+dist/
+build/
+out/
+.cache/
+.next/
+.nuxt/
+.svelte-kit/
+__pycache__/
+*.pyc
+
+# ---- 系统与编辑器 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.swp
+
+# ---- 日志 ----
+*.log
+npm-debug.log*
+yarn-error.log*
+logs/
+
+# ---- 临时/中间产物（本项目专用）----
+*.tsv
+_scan_project.py
+_img_inventory.py
+_extract_text.py
+_gen_pic_map.py
+_build_checklist.py
+_v.py
+TSSS/eduhklib/
+TSSS/build/
+TSSS/library-portal.zip
+TSSS/图片占位清单*.html
+
+# ---- 压缩包与备份 ----
+*.zip
+*.rar
+*.7z
+*.bak

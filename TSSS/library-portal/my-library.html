@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的图书馆 - 江川大学图书馆</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-nav="mylib" data-sub="mylib">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html"><span class="brand__mark">川</span><span class="brand__text"><span class="brand__cn">川流藏书馆</span><span class="brand__en">JIANGCHUAN UNIVERSITY LIBRARY</span></span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="导航菜单">☰</button>
+    <nav class="mainnav" id="mainnav"><ul class="nav-list"><li><a class="nav-link" data-nav="home" href="index.html">首页</a></li><li><a class="nav-link" data-nav="collection" href="collection.html">馆藏资源</a></li><li><a class="nav-link" data-nav="spaces" href="spaces.html">空间与设施</a></li><li><a class="nav-link" data-nav="borrowing" href="borrowing.html">借阅服务</a></li><li><a class="nav-link" data-nav="about" href="about.html">关于我们</a></li><li><a class="nav-link" data-nav="mylib" href="login.html">我的图书馆</a></li></ul></nav>
+    <div class="header-account" id="account-area"></div>
+  </div>
+</header>
+<div class="breadcrumb-wrap"><div class="container"><nav class="breadcrumb"><a href="index.html">首页</a> <span class="sep">&rsaquo;</span> 我的图书馆</nav></div></div>
+
+<main>
+<section class="section"><div class="container"><div class="account-bar" data-auth="user"><span class="who" id="lib-who"></span><a class="btn btn-ghost" href="#" onclick="doLogout();return false;" style="border-color:rgba(255,255,255,.4);color:#fff">退出登录</a></div><div id="login-required" class="card auth-hidden" data-auth="guest" style="text-align:center;max-width:560px;margin:0 auto"><h3>请先登录</h3><p class="muted">登录后可查看您的借阅历史、预约历史与荐购记录。</p><a class="btn btn-primary" href="login.html">前往登录</a></div><div id="lib-content" class="auth-hidden" data-auth="user"><div class="tabs"><div class="tab active" id="tab-borrow" data-panel="panel-borrow">借阅历史</div><div class="tab" id="tab-booking" data-panel="panel-booking">预约历史</div><div class="tab" id="tab-recommend" data-panel="panel-recommend">荐购历史</div></div><div class="tab-panel active" id="panel-borrow"></div><div class="tab-panel" id="panel-booking"></div><div class="tab-panel" id="panel-recommend"></div></div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-col"><h4>江川大学图书馆</h4><ul>
+        <li><a href="index.html">川流藏书馆</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="collection.html">馆藏资源</a></li>
+        <li><a href="spaces.html">空间与设施</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>联系方式</h4><ul>
+        <li>地址：白宁省江川市学苑路66号</li>
+        <li>电话：+86-894-15868</li>
+        <li>邮箱：<a href="mailto:lib@jcu.edu.cn">lib@jcu.edu.cn</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>友情链接</h4><ul>
+        <li><a href="../index.html">圣殿科学学会学院</a></li>
+        <li><a href="special-collection.html">资料档案室特藏</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+        <li><a href="feedback.html">意见反馈</a></li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">版权所有 &copy; 江川大学图书馆　|　川流藏书馆 · 圣殿科学学会学院资料档案室　|　内部系统，仅限本校师生</div>
+</footer>
+<button class="to-top" id="to-top" aria-label="返回顶部">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

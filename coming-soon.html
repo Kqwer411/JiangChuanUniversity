@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-level="2">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>分院官网建设中 — 江川大学 JIANGCHUAN UNIVERSITY</title>
+<meta name="description" content="该分院官网正在建设筹备中，敬请期待。">
+<style>
+:root{
+  --jc-primary:#0a5d6b;
+  --jc-primary-dark:#063f49;
+  --jc-primary-light:#0f7d8f;
+  --jc-gold:#c2992f;
+  --jc-ink:#16242a;
+  --jc-body:#3c4a4f;
+  --jc-muted:#6b7a80;
+  --jc-line:#e3eaec;
+  --jc-bg:#ffffff;
+  --jc-bg-alt:#f4f8f9;
+  --jc-font:"Source Sans 3","Segoe UI",Roboto,"Helvetica Neue",Arial,"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+  --jc-serif:"Noto Serif SC",Georgia,"Times New Roman",serif;
+}
+html[data-theme="dark"]{
+  --jc-ink:#eaf2f4;
+  --jc-body:#c3d3d7;
+  --jc-muted:#8fa3a9;
+  --jc-line:#1d3a41;
+  --jc-bg:#0c1f24;
+  --jc-bg-alt:#102a31;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--jc-font);background:var(--jc-bg);color:var(--jc-body);
+  min-height:100vh;display:flex;flex-direction:column}
+
+/* 页眉：极简文字标识，与全站主色一致 */
+.cs-head{background:var(--jc-primary-dark);padding:18px 0}
+.cs-head__inner{max-width:1180px;margin:0 auto;padding:0 24px}
+.cs-brand{display:inline-flex;flex-direction:column;text-decoration:none;line-height:1.35}
+.cs-brand b{color:#fff;font-size:17px;letter-spacing:2px;font-family:var(--jc-serif)}
+.cs-brand span{color:#9fc4cb;font-size:11px;letter-spacing:1.5px}
+
+/* 主体：仅文字提示 */
+.cs-main{flex:1;display:flex;align-items:center;justify-content:center;padding:80px 24px}
+.cs-panel{max-width:660px;width:100%;text-align:center;padding:64px 40px;
+  background:var(--jc-bg-alt);border:1px solid var(--jc-line);border-radius:14px}
+.cs-panel__eyebrow{display:block;font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--jc-gold);font-weight:700;margin-bottom:20px}
+.cs-panel__rule{width:44px;height:3px;background:var(--jc-gold);margin:0 auto 26px;border-radius:2px}
+.cs-panel__text{margin:0;font-family:var(--jc-serif);font-size:21px;line-height:1.9;
+  color:var(--jc-ink);letter-spacing:.5px}
+.cs-panel__en{margin:18px 0 0;font-size:13px;color:var(--jc-muted);letter-spacing:.4px}
+.cs-back{display:inline-block;margin-top:34px;font-size:14px;color:var(--jc-primary);
+  text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.cs-back:hover{color:var(--jc-primary-light);border-bottom-color:var(--jc-primary-light)}
+html[data-theme="dark"] .cs-back{color:#7fd3e0}
+
+/* 页脚：极简版权行 */
+.cs-foot{background:var(--jc-primary-darker,#042a32);color:#8fb3ba;font-size:12.5px;
+  text-align:center;padding:20px 24px;letter-spacing:.3px}
+
+@media (max-width:640px){
+  .cs-panel{padding:46px 22px}
+  .cs-panel__text{font-size:18px}
+  .cs-main{padding:48px 18px}
+}
+</style>
+</head>
+<body>
+
+<header class="cs-head">
+  <div class="cs-head__inner">
+    <a class="cs-brand" href="index.html" aria-label="江川大学 JIANGCHUAN UNIVERSITY 首页">
+      <b>江川大学</b>
+      <span>JIANGCHUAN UNIVERSITY</span>
+    </a>
+  </div>
+</header>
+
+<main class="cs-main">
+  <section class="cs-panel" role="status" aria-live="polite">
+    <span class="cs-panel__eyebrow">Under Construction</span>
+    <div class="cs-panel__rule"></div>
+    <p class="cs-panel__text">该分院官网正在建设筹备中，敬请期待。</p>
+    <p class="cs-panel__en">The faculty website is currently under preparation.</p>
+    <a class="cs-back" href="faculties/index.html">← 返回学院与学系</a>
+  </section>
+</main>
+
+<footer class="cs-foot">
+  © <span id="csYear">2026</span> 江川大学 JIANGCHUAN UNIVERSITY. 版权所有
+</footer>
+
+<script>
+/* 与全站共用主题偏好（localStorage: jc-theme），保证深浅色一致 */
+(function () {
+  try {
+    if (localStorage.getItem("jc-theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  } catch (e) {}
+  var y = document.getElementById("csYear");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
